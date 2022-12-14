@@ -8,7 +8,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-class Pip extends MY_Controller
+class Pipbase extends MY_Controller
 {
 
     /*
@@ -20,7 +20,7 @@ class Pip extends MY_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('pip_model');
+        $this->load->model('pipbase_model', 'pip_model');
     }
 
     /*
