@@ -14,8 +14,9 @@
                         <tr class="bg-primary">
                             <TH class="align-middle" rowspan="2">No</th>
                             <TH class="align-middle" rowspan="2">Kecamatan
-                            <TH class="align-middle" rowspan="2" width="50">Jumlah RW
-                            <TH class="align-middle" rowspan="2" width="50">Jumlah RT
+                            <TH class="align-middle" rowspan="2" width="50">Jumlah Kelurahan
+                                <!-- <TH class="align-middle" rowspan="2" width="50">Jumlah RW
+                            <TH class="align-middle" rowspan="2" width="50">Jumlah RT -->
                             <TH class="align-middle" rowspan="2" width="50">Jumlah DPT
                             <TH colspan="2">
                                 < 17 Tahun </th>
@@ -47,9 +48,10 @@
                         foreach ($age as $row) {
                             echo "<tr>";
                             echo "<td>" . $i . "</td>";
-                            echo "<td>" . $row->namakec . "</td>";
-                            echo "<td>" . $row->jrw . "</td>";
-                            echo "<td>" . $row->jrt . "</td>";
+                            echo "<td><a href=" . base_url('master/age/' . $row->namakec) . ">" . $row->namakec . "</a></td>";
+                            echo "<td>" . $row->jkel . "</td>";
+                            // echo "<td>" . $row->jrw . "</td>";
+                            // echo "<td>" . $row->jrt . "</td>";
                             echo "<td>" . $row->total . "</td>";
                             echo "<td>" . $row->age0 . "</td>";
                             echo "<td>" . round($row->age0 / $row->total * 100, 2) . "</td>";

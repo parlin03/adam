@@ -31,7 +31,7 @@ class Dpt extends CI_Controller
         }
 
         // config pagination
-        $config['base_url'] = 'http://localhost:8080/ADAM/master/dpt/' . $data['namakec'];
+        $config['base_url'] = base_url() . 'master/dpt/' . $data['namakec'];
         $config['total_rows'] = $this->dpt->countAllDpt($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
         $config['per_page'] = 6;
@@ -69,7 +69,7 @@ class Dpt extends CI_Controller
         }
 
         // config pagination
-        $config['base_url'] = 'http://localhost:8080/ADAM/master/dpt/' . $data['namakec'];
+        $config['base_url'] = base_url() . 'master/dpt/' . $data['namakec'];
         $config['total_rows'] = $this->dpt->countAllDpt($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
         $config['per_page'] = 6;
@@ -107,7 +107,7 @@ class Dpt extends CI_Controller
         }
 
         // config pagination
-        $config['base_url'] = 'http://localhost:8080/ADAM/master/dpt/' . $data['namakec'];
+        $config['base_url'] = base_url() . 'master/dpt/' . $data['namakec'];
         $config['total_rows'] = $this->dpt->countAllDpt($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
         $config['per_page'] = 6;
@@ -145,7 +145,7 @@ class Dpt extends CI_Controller
         }
 
         // config pagination
-        $config['base_url'] = 'http://localhost:8080/ADAM/master/dpt/' . $data['namakec'];
+        $config['base_url'] = base_url() . 'master/dpt/' . $data['namakec'];
         $config['total_rows'] = $this->dpt->countAllDpt($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
         $config['per_page'] = 6;

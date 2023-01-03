@@ -12,6 +12,8 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
+
+
                     <li class="nav-item  d-sm-block text-center">
                         <a href="<?= base_url('home'); ?>" class="nav-link text-center">Acountable Data Access Management</a>
                     </li>
@@ -20,7 +22,6 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
 
 
 

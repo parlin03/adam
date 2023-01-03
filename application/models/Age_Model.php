@@ -4,9 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Age_model extends CI_Model
 {
 
-    public function age_kecamatan()
-    {
-        $query = "SELECT namakec, count(DISTINCT concat(namakel,rw)) as jrw, 
+  public function age_kecamatan()
+  {
+    $query = "SELECT namakec, count(distinct (namakel)) as jkel, count(DISTINCT concat(namakel,rw)) as jrw, 
         count(DISTINCT concat( namakel,rw,rt)) as jrt,
         COUNT(umur)as 'total', 
          COUNT(IF(umur < 17,1,NULL)) AS 'age0',
@@ -19,13 +19,13 @@ class Age_model extends CI_Model
          TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) AS umur from dpt)
           as dummy_table  GROUP by namakec
         ";
-      //  return  $this->db->query($query)->result_array();
-      //  return $query->result();
-        return  $this->db->query($query)->result();
-    }
-    public function age_panakukkang()
-    {
-        $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
+    //  return  $this->db->query($query)->result_array();
+    //  return $query->result();
+    return  $this->db->query($query)->result();
+  }
+  public function age_panakukkang()
+  {
+    $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
         count(DISTINCT concat( namakel,rw,rt)) as jrt,
         COUNT(umur)as 'total', 
          COUNT(IF(umur < 17,1,NULL)) AS 'age0',
@@ -38,11 +38,11 @@ class Age_model extends CI_Model
          TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) AS umur from dpt)
           as dummy_table  where namakec = 'panakukkang' GROUP by namakel
         ";
-        return  $this->db->query($query)->result();
-    }
-    public function age_manggala()
-    {
-        $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
+    return  $this->db->query($query)->result();
+  }
+  public function age_manggala()
+  {
+    $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
         count(DISTINCT concat( namakel,rw,rt)) as jrt,
         COUNT(umur)as 'total', 
          COUNT(IF(umur < 17,1,NULL)) AS 'age0',
@@ -55,11 +55,11 @@ class Age_model extends CI_Model
          TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) AS umur from dpt)
           as dummy_table  where namakec = 'manggala' GROUP by namakel
         ";
-        return  $this->db->query($query)->result();
-    }
-    public function age_biringkanaya()
-    {
-        $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
+    return  $this->db->query($query)->result();
+  }
+  public function age_biringkanaya()
+  {
+    $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
         count(DISTINCT concat( namakel,rw,rt)) as jrt,
         COUNT(umur)as 'total', 
          COUNT(IF(umur < 17,1,NULL)) AS 'age0',
@@ -72,11 +72,11 @@ class Age_model extends CI_Model
          TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) AS umur from dpt)
           as dummy_table  where namakec = 'biringkanaya' GROUP by namakel
         ";
-        return  $this->db->query($query)->result();
-    }
-    public function age_tamalanrea()
-    {
-        $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
+    return  $this->db->query($query)->result();
+  }
+  public function age_tamalanrea()
+  {
+    $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
         count(DISTINCT concat( namakel,rw,rt)) as jrt,
         COUNT(umur)as 'total', 
          COUNT(IF(umur < 17,1,NULL)) AS 'age0',
@@ -89,8 +89,6 @@ class Age_model extends CI_Model
          TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) AS umur from dpt)
           as dummy_table  where namakec = 'tamalanrea' GROUP by namakel
         ";
-        return  $this->db->query($query)->result();
-    }
+    return  $this->db->query($query)->result();
+  }
 }
-
-

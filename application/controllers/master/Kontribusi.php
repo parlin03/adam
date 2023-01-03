@@ -84,7 +84,7 @@ class Kontribusi extends CI_Controller
 
     public function Panakukkang()
     {
-        $data['title'] = 'Kontribusi Pemilih Kec. Panakukkang';
+        $data['title'] = 'Kontribusi Pemilih Kec. Panakkukang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $this->load->helper('url');

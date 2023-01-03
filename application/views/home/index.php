@@ -10,48 +10,48 @@
     <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
     <!-- end load library -->
     <script>
-    $(function() {
-        var chart;
+        $(function() {
+            var chart;
 
-        $(document).ready(function() {
-            chart0 = new Highcharts.Chart({
-                chart: {
-                    renderTo: 'mygraph',
-                    height: 330,
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: ['Kecamatan']
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total DPT'
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true,
-                            crop: false,
-                            overflow: 'none'
-                        }
-                    }
-                },
-
-                series: [<?php foreach ($maingraph as $mg) :  ?> {
-
-                        name: '<?= $mg['namakec']; ?>',
-                        data: [<?= $mg['total']; ?>]
-
+            $(document).ready(function() {
+                chart0 = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'mygraph',
+                        height: 330,
+                        type: 'column'
                     },
-                    <?php endforeach; ?>
-                ]
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: ['Kecamatan']
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total DPT'
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            dataLabels: {
+                                enabled: true,
+                                crop: false,
+                                overflow: 'none'
+                            }
+                        }
+                    },
+
+                    series: [<?php foreach ($maingraph as $mg) :  ?> {
+
+                                name: '<?= $mg['namakec']; ?>',
+                                data: [<?= $mg['total']; ?>]
+
+                            },
+                        <?php endforeach; ?>
+                    ]
+                });
             });
         });
-    });
     </script>
     <!-- Main content -->
     <section class="content">
@@ -71,8 +71,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 20%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="col-auto">
@@ -92,7 +91,8 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Relawan</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
+                                    <div class="h6 mb-0 font-weight-bold text-gray-800">215,000</div>
+                                    <div class="text-xs mb-0 font-weight-bold text-gray-800">215,000</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

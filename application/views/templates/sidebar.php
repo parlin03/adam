@@ -6,7 +6,7 @@
             <!-- <i class="fas fa-laugh-wink"></i> -->
             <img class="img-profile" src="<?= base_url('assets/img/favicon.ico') ?>">
         </div>
-        <div class="sidebar-brand-text mx-3">ADAM</div>
+        <div class="sidebar-brand-text mx-2">ADAM</div>
     </a>
 
     <!-- Divider -->
@@ -119,7 +119,7 @@
                 </li>
 
             <?php endforeach; ?>
-            <hr class="sidebar-divider mt-3" />
+            <hr class="sidebar-divider mt-1" />
         <?php endforeach; ?>
 
         <!-- Nav Item - Dashboard -->

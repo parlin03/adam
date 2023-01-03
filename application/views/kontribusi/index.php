@@ -18,7 +18,7 @@
                             text: 'Kontribusi Pemilih Terhadap Target Suara'
                         },
                         xAxis: {
-                            categories: ['Panakukkang', 'Biringkanaya', 'Manggala', 'Tamalanrea']
+                            categories: ['Panakkukang', 'Biringkanaya', 'Manggala', 'Tamalanrea']
                         },
                         yAxis: {
                             title: {

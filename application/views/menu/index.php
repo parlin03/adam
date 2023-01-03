@@ -52,11 +52,40 @@
                                                     </th>
                                                     <td><?= $m['menu']; ?></td>
                                                     <td class="text-center">
-                                                        <a href="" class="badge badge-success">edit</a>
+                                                        <a href="" class="badge badge-success" data-toggle="modal" data-target="#edit<?= $m['id']; ?>">edit</a>
                                                         <a href="" class="badge badge-danger">delete</a>
                                                     </td>
                                                 </tr>
                                                 <?php $i++; ?>
+
+                                                <!-- Modal Edit Menu -->
+                                                <div class="modal fade" id="edit<?= $m['id']; ?>" tabindex="-1" aria-labelledby="editMenuModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog  modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="editMenuModalLabel">Edit Menu</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="<?= base_url('menu'); ?>" method="POST">
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="menu" name="menu" value="<?= $m['menu']; ?>" placeholder="Menu Name">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" id="uri" name="uri" value="<?= $m['uri']; ?>" placeholder="Uri Name">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Modal Edit Menu -->
 
                                             <?php endforeach; ?>
 
@@ -83,7 +112,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="newMenuModal" tabindex="-1" aria-labelledby="newMenuModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="newMenuModalLabel">Add New Menu</h5>

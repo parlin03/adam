@@ -21,20 +21,27 @@
         <table class="table table-striped border">
             <thead class="text-center">
                 <th class="border">#</th>
-                <th class="border">NAMA SISWA</th>
-                <th class="border">NISN</th>
-                <th class="border">SEKOLAH</th>
-                <th class="border">NAMA SEKOLAH</th>
-                <th class="border">KECAMATAN SEKOLAH</th>
-                <th class="border">KELAS</th>
-                <th class="border">NAMA IBU</th>
+                <th class="border">EMAIL</th>
+                <th class="border">NAMA LENGKAP</th>
+                <th class="border">NO KTP</th>
+                <th class="border">ALAMAT LENGKAP</th>
+                <th class="border">KECAMATAN</th>
+                <th class="border">KELURAHAN</th>
+                <th class="border">RT/RW</th>
+                <th class="border">KOTA</th>
+                <th class="border">NO. TELEPON / HP</th>
+                <th class="border">TEMPAT, TANGGAL LAHIR</th>
+                <th class="border">ASAL SEKOLAH</th>
+                <th class="border">ANGKATAN MASUK KULIAH</th>
+                <th class="border">UNIVERSITAS</th>
+                <th class="border">FAKULTAS</th>
+                <th class="border">JURUSAN</th>
+                <th class="border">REKOMENDASI</th>
                 <th class="border">NAMA AYAH</th>
-                <th class="border">TGL LAHIR SISWA</th>
-                <th class="border">ALAMAT SISWA</th>
-                <th class="border">KELURAHAN SISWA</th>
-                <th class="border">KECAMATAN SISWA</th>
-                <th class="border">NO TELPON</th>
-                <th class="border">NIK ORANG TUA</th>
+                <th class="border">NAMA IBU</th>
+                <th class="border">PEKERJAAN AYAH</th>
+                <th class="border">PEKERJAAN IBU</th>
+                <th class="border">NO. TELEPON ORANG TUA</th>
             </thead>
 
             <tbody>
