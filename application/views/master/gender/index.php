@@ -34,7 +34,7 @@
                         foreach ($gender as $row) {
                             echo "<tr>";
                             echo "<td>" . $i . "</td>";
-                            echo "<td>" . $row->namakec . "</td>";
+                            echo "<td><a href=" . base_url('master/gender/' . $row->namakec) . ">" . $row->namakec . "</a></td>";
                             echo "<td>" . $row->jrw . "</td>";
                             echo "<td>" . $row->jrt . "</td>";
                             echo "<td>" . $row->total . "</td>";
