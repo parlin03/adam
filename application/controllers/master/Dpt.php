@@ -12,9 +12,9 @@ class Dpt extends CI_Controller
         is_logged_in();
     }
 
-    public function Panakukkang()
+    public function Panakkukang()
     {
-        $data['namakec'] = 'panakukkang';
+        $data['namakec'] = 'panakkukang';
         $data['title'] = 'DPT Kec. ' . ucfirst($data['namakec']);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
         $this->load->model('Dpt_model', 'dpt');

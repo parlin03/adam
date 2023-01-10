@@ -16,77 +16,76 @@ class Kk extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $this->load->model('Kk_Model', 'kk');
-        $data['kk'] = $this->kk->makassar();
+        $data['kk'] = $this->kk->getKk();
 
         $this->load->helper('url');       //pointer sidebar
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kk/index', $data);
+        $this->load->view('master/kk/index', $data);
         $this->load->view('templates/footer');
     }
-    public function Panakukkang()
+    public function Panakkukang()
     {
-        $namakec = 'panakukkang';
-        // $this->kk_Model->$namakec;
-        $data['title'] = 'Data Jenis Kelamin Kec. Panakukkang';
+        $data['namakec'] = 'panakkukang';
+        $data['title'] = 'Data Kartu Keluarga Kec. ' . ucfirst($data['namakec']);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
         $this->load->model('Kk_Model', 'kk');
-        $data['kk'] = $this->kk->kecamatan($namakec);
+        $data['kk'] = $this->kk->getKkKecamatan($data['namakec']);
 
         $this->load->helper('url');       //pointer sidebar
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kk/panakukkang', $data);
-        $this->load->view('templates/footer');
-    }
-    public function Manggala()
-    {
-        $namakec = 'manggala';
-        $data['title'] = 'Data Jenis Kelamin Kec. Manggala';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
-        $this->load->model('Kk_Model', 'kk');
-        $data['kk'] = $this->kk->kecamatan($namakec);
-
-        $this->load->helper('url');       //pointer sidebar
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('kk/manggala', $data);
+        $this->load->view('master/kk/kecamatan', $data);
         $this->load->view('templates/footer');
     }
     public function Biringkanaya()
     {
-        $namakec = 'biringkanaya';
-        $data['title'] = 'Data Jenis Kelamin Kec. Biringkanaya';
+        $data['namakec'] = 'biringkanaya';
+        $data['title'] = 'Data Kartu Keluarga Kec. ' . ucfirst($data['namakec']);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $this->load->model('Kk_Model', 'kk');
-        $data['kk'] = $this->kk->kecamatan($namakec);
+        $data['kk'] = $this->kk->getKkKecamatan($data['namakec']);
 
         $this->load->helper('url');       //pointer sidebar
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kk/biringkanaya', $data);
+        $this->load->view('master/kk/kecamatan', $data);
+        $this->load->view('templates/footer');
+    }
+    public function Manggala()
+    {
+        $data['namakec'] = 'manggala';
+        $data['title'] = 'Data Kartu Keluarga Kec. ' . ucfirst($data['namakec']);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $this->load->model('Kk_Model', 'kk');
+        $data['kk'] = $this->kk->getKkKecamatan($data['namakec']);
+
+        $this->load->helper('url');       //pointer sidebar
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('master/kk/kecamatan', $data);
         $this->load->view('templates/footer');
     }
     public function Tamalanrea()
     {
-        $namakec = 'tamalanrea';
-        $data['title'] = 'Data Jenis Kelamin Kec. Tamalanrea';
+        $data['namakec'] = 'tamalanrea';
+        $data['title'] = 'Data Kartu Keluarga Kec. ' . ucfirst($data['namakec']);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $this->load->model('Kk_Model', 'kk');
-        $data['kk'] = $this->kk->kecamatan($namakec);
+        $data['kk'] = $this->kk->getKkKecamatan($data['namakec']);
 
         $this->load->helper('url');       //pointer sidebar
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kk/tamalanrea', $data);
+        $this->load->view('master/kk/kecamatan', $data);
         $this->load->view('templates/footer');
     }
 }

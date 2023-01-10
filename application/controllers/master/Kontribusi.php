@@ -74,7 +74,7 @@ class Kontribusi extends CI_Controller
         $dpt = $this->kontribusi->getDataDpt();
         $categories = array();
         foreach ($dpt as $d) {
-            $categories['categories'][] = $d->namakec;
+            $categories['categories'][0] = $d->namakec;
         }
         $result = array();
 
@@ -82,7 +82,7 @@ class Kontribusi extends CI_Controller
         print json_encode($categories);
     }
 
-    public function Panakukkang()
+    public function Panakkukang()
     {
         $data['title'] = 'Kontribusi Pemilih Kec. Panakkukang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
@@ -97,7 +97,7 @@ class Kontribusi extends CI_Controller
 
     public function Panakukkang_list()
     {
-        $namakec = 'panakukkang';
+        $namakec = 'panakkukang';
         $this->load->model('Kontribusi_model', 'kontribusi');
         $dpt = $this->kontribusi->getDataDptKec($namakec);
         // $categories = array();

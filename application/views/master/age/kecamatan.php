@@ -13,31 +13,31 @@
                     <thead class="text-center text-light">
                         <tr class="bg-primary">
                             <TH class="align-middle" rowspan="2">No</th>
-                            <th class="align-middle" rowspan="2">Kelurahan
-                            <TH class="align-middle" rowspan="2" width="50">Jumlah RW</th>
-                            <TH class="align-middle" rowspan="2" width="50">Jumlah RT</th>
-                            <TH class="align-middle" rowspan="2" width="50">Jumlah DPT</th>
+                            <TH class="align-middle" rowspan="2">Kelurahan
+                            <TH class="align-middle" rowspan="2" width="50">Jumlah RW
+                            <TH class="align-middle" rowspan="2" width="50">Jumlah RT
+                            <TH class="align-middle" rowspan="2" width="50">Jumlah DPT
                             <TH colspan="2">
                                 < 17 Tahun </th>
                             <TH colspan="2">17-25 Tahun</th>
-                            <TH colspan="2">26-35 Tahun</th>
-                            <TH colspan="2">36-45 Tahun</th>
-                            <TH colspan="2">46-55 Tahun</th>
-                            <TH colspan="2">> 56 Tahun</th>
+                            <TH colspan="2">26-35 Tahun
+                            <TH colspan="2">36-45 Tahun
+                            <TH colspan="2">46-55 Tahun
+                            <TH colspan="2">> 56 Tahun
                         </tr>
                         <tr class="bg-primary">
-                            <TH>Jumlah</th>
-                            <TH>%</th>
-                            <TH>Jumlah</th>
-                            <TH>%</th>
-                            <TH>Jumlah</th>
-                            <TH>%</th>
-                            <TH>Jumlah</th>
-                            <TH>%</th>
-                            <TH>Jumlah</th>
-                            <TH>%</th>
-                            <TH>Jumlah</th>
-                            <TH>%</th>
+                            <TH>Jumlah
+                            <TH>%
+                            <TH>Jumlah
+                            <TH>%
+                            <TH>Jumlah
+                            <TH>%
+                            <TH>Jumlah
+                            <TH>%
+                            <TH>Jumlah
+                            <TH>%
+                            <TH>Jumlah
+                            <TH>%
                         </tr>
                     </thead>
 
@@ -76,5 +76,4 @@
     <!-- /.container-fluid -->
 
 </div>
-<!-- End of Main Content -->
 <!-- End of Main Content -->
