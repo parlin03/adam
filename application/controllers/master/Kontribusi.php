@@ -37,6 +37,14 @@ class Kontribusi extends CI_Controller
             $rows['data'][] = $d->total;
         }
 
+        $rekap = $this->kontribusi->getDataRekap();
+        $rows0 = array();
+        $rows0['name'] = 'Rekap 2019';
+        $rows0['type'] = 'column';
+        foreach ($rekap as $r) {
+            $rows0['data'][] =  $r->total;
+        }
+
         $target = $this->kontribusi->getDataTarget();
         $rows1 = array();
         $rows1['name'] = 'Target';
@@ -61,6 +69,7 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
+        array_push($result, $rows0);
         array_push($result, $rows1);
         array_push($result, $rows2);
         array_push($result, $rows3);
@@ -111,6 +120,13 @@ class Kontribusi extends CI_Controller
             $rows['data'][] = $d->total;
         }
 
+        $rekap = $this->kontribusi->getDataRekapKec($namakec);
+        $rows0 = array();
+        $rows0['name'] = 'Rekap 2019';
+        $rows0['type'] = 'column';
+        foreach ($rekap as $r) {
+            $rows0['data'][] =  $r->total;
+        }
         $target = $this->kontribusi->getDataTargetKec($namakec);
         $rows1 = array();
         $rows1['name'] = 'Target';
@@ -135,64 +151,7 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
-        array_push($result, $rows1);
-        array_push($result, $rows2);
-        array_push($result, $rows3);
-
-        print json_encode($result, JSON_NUMERIC_CHECK);
-    }
-
-    public function Manggala()
-    {
-        $data['title'] = 'Kontribusi Pemilih Kec. Manggala';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
-        $this->load->helper('url');
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('kontribusi/manggala', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function Manggala_list()
-    {
-        $namakec = 'manggala';
-        $this->load->model('Kontribusi_model', 'kontribusi');
-        $dpt = $this->kontribusi->getDataDptKec($namakec);
-        $rows = array();
-        $rows['name'] = 'Total DPT';
-        $rows['type'] = 'column';
-        foreach ($dpt as $d) {
-            // $categories['categories'][] = $d->namakec;
-            // $rows['kel'][] = $d->namakel;
-            $rows['data'][] = $d->total;
-        }
-
-        $target = $this->kontribusi->getDataTargetKec($namakec);
-        $rows1 = array();
-        $rows1['name'] = 'Target';
-        $rows1['type'] = 'column';
-        foreach ($target as $t) {
-            $rows1['data'][] =  $t->total;
-        }
-        $tercapai = $this->kontribusi->getDataTercapaiKec($namakec);
-        $rows2 = array();
-        $rows2['name'] = 'Tercapai';
-        $rows2['type'] = 'line';
-        foreach ($tercapai as $c) {
-            $rows2['data'][] =  $c->total;
-        }
-        $ragu = $this->kontribusi->getDataRaguKec($namakec);
-        $rows3 = array();
-        $rows3['name'] = 'Ragu-Ragu';
-        $rows3['type'] = 'line';
-        foreach ($ragu as $r) {
-            $rows3['data'][] = $r->total;
-        }
-        $result = array();
-        // array_push($result, $categories);
-        array_push($result, $rows);
+        array_push($result, $rows0);
         array_push($result, $rows1);
         array_push($result, $rows2);
         array_push($result, $rows3);
@@ -226,7 +185,13 @@ class Kontribusi extends CI_Controller
             // $rows['kel'][] = $d->namakel;
             $rows['data'][] = $d->total;
         }
-
+        $rekap = $this->kontribusi->getDataRekapKec($namakec);
+        $rows0 = array();
+        $rows0['name'] = 'Rekap 2019';
+        $rows0['type'] = 'column';
+        foreach ($rekap as $r) {
+            $rows0['data'][] =  $r->total;
+        }
         $target = $this->kontribusi->getDataTargetKec($namakec);
         $rows1 = array();
         $rows1['name'] = 'Target';
@@ -251,6 +216,72 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
+        array_push($result, $rows0);
+        array_push($result, $rows1);
+        array_push($result, $rows2);
+        array_push($result, $rows3);
+
+        print json_encode($result, JSON_NUMERIC_CHECK);
+    }
+
+    public function Manggala()
+    {
+        $data['title'] = 'Kontribusi Pemilih Kec. Manggala';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $this->load->helper('url');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('kontribusi/manggala', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function Manggala_list()
+    {
+        $namakec = 'manggala';
+        $this->load->model('Kontribusi_model', 'kontribusi');
+        $dpt = $this->kontribusi->getDataDptKec($namakec);
+        $rows = array();
+        $rows['name'] = 'Total DPT';
+        $rows['type'] = 'column';
+        foreach ($dpt as $d) {
+            // $categories['categories'][] = $d->namakec;
+            // $rows['kel'][] = $d->namakel;
+            $rows['data'][] = $d->total;
+        }
+        $rekap = $this->kontribusi->getDataRekapKec($namakec);
+        $rows0 = array();
+        $rows0['name'] = 'Rekap 2019';
+        $rows0['type'] = 'column';
+        foreach ($rekap as $r) {
+            $rows0['data'][] =  $r->total;
+        }
+        $target = $this->kontribusi->getDataTargetKec($namakec);
+        $rows1 = array();
+        $rows1['name'] = 'Target';
+        $rows1['type'] = 'column';
+        foreach ($target as $t) {
+            $rows1['data'][] =  $t->total;
+        }
+        $tercapai = $this->kontribusi->getDataTercapaiKec($namakec);
+        $rows2 = array();
+        $rows2['name'] = 'Tercapai';
+        $rows2['type'] = 'line';
+        foreach ($tercapai as $c) {
+            $rows2['data'][] =  $c->total;
+        }
+        $ragu = $this->kontribusi->getDataRaguKec($namakec);
+        $rows3 = array();
+        $rows3['name'] = 'Ragu-Ragu';
+        $rows3['type'] = 'line';
+        foreach ($ragu as $r) {
+            $rows3['data'][] = $r->total;
+        }
+        $result = array();
+        // array_push($result, $categories);
+        array_push($result, $rows);
+        array_push($result, $rows0);
         array_push($result, $rows1);
         array_push($result, $rows2);
         array_push($result, $rows3);
@@ -284,7 +315,13 @@ class Kontribusi extends CI_Controller
             // $rows['kel'][] = $d->namakel;
             $rows['data'][] = $d->total;
         }
-
+        $rekap = $this->kontribusi->getDataRekapKec($namakec);
+        $rows0 = array();
+        $rows0['name'] = 'Rekap 2019';
+        $rows0['type'] = 'column';
+        foreach ($rekap as $r) {
+            $rows0['data'][] =  $r->total;
+        }
         $target = $this->kontribusi->getDataTargetKec($namakec);
         $rows1 = array();
         $rows1['name'] = 'Target';
@@ -309,6 +346,7 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
+        array_push($result, $rows0);
         array_push($result, $rows1);
         array_push($result, $rows2);
         array_push($result, $rows3);

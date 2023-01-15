@@ -1,24 +1,27 @@
 <table class="table table-striped">
     <tr>
-        <th>#</th>
-        <th>Nik</th>
-        <th>Nama</th>
-        <th>Kecamatan</th>
-        <th>Keluraha</th>
-        <th>Alamat</th>
+        <TH>#</th>
+        <TH>NIK</th>
+        <TH>Nama</th>
+        <TH>Alamat</th>
+        <TH>RT</th>
+        <TH>RW</th>
+        <TH>Kelurahan</th>
     </tr>
     <?php $no = 1;
     foreach ($dpt as $row) : ?>
         <tr>
-            <td><?= $no++; ?></td>
-            <td><?= $row->noktp; ?></td>
-            <td><?= $row->nama; ?></td>
-            <td><?= $row->namakec; ?></td>
-            <td><?= $row->namakel; ?></td>
-            <td><?= $row->alamat; ?></td>
+            <th class="text-right"> <?= ++$start; ?> </th>
+            <td class="text-center"> <?= $row['noktp']; ?></td>
+            <td> <?= $row['nama']; ?></td>
+            <td> <?= $row['alamat']; ?></td>
+            <td class="text-center"> <?= $row['rt']; ?></td>
+            <td class="text-center"> <?= $row['rw']; ?></td>
+            <td> <?= $row['namakel']; ?></td>
         </tr>
     <?php endforeach ?>
 </table>
+<?= $this->pagination->create_links(); ?>
 <script>
     window.print();
 </script>
