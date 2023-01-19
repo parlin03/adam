@@ -156,17 +156,17 @@
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
-                            <div class="chart-area">
-                                <div id="mygraph"></div>
-                            </div>
+                            <!-- <div class="chart-area"> -->
+                            <div id="mygraph"></div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-primary">
+                <!-- <div class="panel panel-primary">
                     <div class="panel-body">
                         <div id="mygraph"></div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Content Row -->
 
 
