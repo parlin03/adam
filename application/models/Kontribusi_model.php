@@ -32,7 +32,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataTarget()
     {
-        $this->db->select('namakec, round((count(*)*7)/100,0) as total');
+        $this->db->select('namakec, round((count(*)*8)/100,0) as total');
         $this->db->from('dpt');
         $this->db->group_by('namakec');
         $this->db->order_by('iddesa');
@@ -42,7 +42,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataTercapai()
     {
-        $this->db->select('namakec, round(count(*)/3) as total');
+        $this->db->select('namakec, round(((count(*)*8)/100)/3) as total');
         $this->db->from('dpt');
         $this->db->group_by('namakec');
         $this->db->order_by('iddesa');
@@ -52,7 +52,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataRagu()
     {
-        $this->db->select('namakec, round(count(*)/5) as total');
+        $this->db->select('namakec, round(((count(*)*8)/100)/5) as total');
         $this->db->from('dpt');
         $this->db->group_by('namakec');
         $this->db->order_by('iddesa');
@@ -85,7 +85,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataTargetKec($namakec)
     {
-        $this->db->select('namakel, round((count(*)*7)/100,0) as total');
+        $this->db->select('namakel, round((count(*)*8)/100,0) as total');
         $this->db->from('dpt');
         $this->db->where('namakec', $namakec);
         $this->db->group_by('namakel');
@@ -96,7 +96,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataTercapaiKec($namakec)
     {
-        $this->db->select('namakel, round(count(*)/3) as total');
+        $this->db->select('namakel, round(((count(*)*8)/100)/3,0) as total');
         $this->db->from('dpt');
         $this->db->where('namakec', $namakec);
         $this->db->group_by('namakel');
@@ -107,7 +107,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataRaguKec($namakec)
     {
-        $this->db->select('namakel, round(count(*)/5) as total');
+        $this->db->select('namakel, round(((count(*)*8)/100)/10,0) as total');
         $this->db->from('dpt');
         $this->db->where('namakec', $namakec);
         $this->db->group_by('namakel');
