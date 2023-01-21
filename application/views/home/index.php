@@ -30,7 +30,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Jumlah DPT</span>
                             <span class="info-box-number">
-                                10
+                                <?= number_format($this->db->count_all('dpt')); ?>
                                 <!-- <small>%</small> -->
                             </span>
                         </div>
@@ -45,7 +45,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Team</span>
-                            <span class="info-box-number">41,410</span>
+                            <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -62,7 +62,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Saksi</span>
-                            <span class="info-box-number">760</span>
+                            <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -75,7 +75,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">RPS 2024</span>
-                            <span class="info-box-number">2,000</span>
+                            <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
