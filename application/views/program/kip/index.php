@@ -47,27 +47,28 @@
                                         <table class="table table-bordered table-striped table-hover text-dark  ">
                                             <thead class="text-center">
                                                 <th class="border">#</th>
-                                                <th class="border">EMAIL</th>
-                                                <th class="border">NAMA LENGKAP</th>
-                                                <th class="border">NO KTP</th>
-                                                <th class="border">ALAMAT LENGKAP</th>
+                                                <!-- <th class="border">EMAIL</th> -->
+                                                <th class="border">NAMA</th>
+                                                <!-- <th class="border">NO KTP</th> -->
+                                                <th class="border">ALAMAT</th>
                                                 <th class="border">KECAMATAN</th>
                                                 <th class="border">KELURAHAN</th>
-                                                <th class="border">RT/RW</th>
-                                                <th class="border">KOTA</th>
-                                                <th class="border">NO. TELEPON / HP</th>
-                                                <th class="border">TEMPAT, TANGGAL LAHIR</th>
-                                                <th class="border">ASAL SEKOLAH</th>
-                                                <th class="border">ANGKATAN MASUK KULIAH</th>
+                                                <!-- <th class="border">RT/RW</th> -->
+                                                <!-- <th class="border">KOTA</th> -->
+                                                <th class="border">NO. TELEPON</th>
+                                                <!-- <th class="border">TEMPAT, TANGGAL LAHIR</th> -->
+                                                <!-- <th class="border">ASAL SEKOLAH</th> -->
+                                                <th class="border">ANGKATAN</th>
                                                 <th class="border">UNIVERSITAS</th>
-                                                <th class="border">FAKULTAS</th>
-                                                <th class="border">JURUSAN</th>
-                                                <th class="border">REKOMENDASI</th>
-                                                <th class="border">NAMA AYAH</th>
-                                                <th class="border">NAMA IBU</th>
-                                                <th class="border">PEKERJAAN AYAH</th>
-                                                <th class="border">PEKERJAAN IBU</th>
-                                                <th class="border">NO. TELEPON ORANG TUA</th>
+                                                <!-- <th class="border">FAKULTAS</th> -->
+                                                <!-- <th class="border">JURUSAN</th> -->
+                                                <!-- <th class="border">REKOMENDASI</th> -->
+                                                <!-- <th class="border">NAMA AYAH</th> -->
+                                                <!-- <th class="border">NAMA IBU</th> -->
+                                                <!-- <th class="border">PEKERJAAN AYAH</th> -->
+                                                <!-- <th class="border">PEKERJAAN IBU</th> -->
+                                                <!-- <th class="border">NO. TELEPON ORANG TUA</th> -->
+                                                <th class="border">Action</th>
                                             </thead>
                                             <tbody>
                                                 <?php if (empty($kip)) : ?>
@@ -84,28 +85,175 @@
                                                     <tr class="text-center">
                                                         <!-- Number -->
                                                         <td class="border"> <?= ++$start; ?></td>
-                                                        <td class="border"><?= $row['email'] ?></td>
+                                                        <!-- <td class="border"><?= $row['email'] ?></td> -->
                                                         <td class="border"><?= $row['nama'] ?></td>
-                                                        <td class="border"><?= $row['noktp'] ?></td>
+                                                        <!-- <td class="border"><?= $row['noktp'] ?></td> -->
                                                         <td class="border"><?= $row['alamat'] ?></td>
                                                         <td class="border"><?= $row['namakec'] ?></td>
                                                         <td class="border"><?= $row['namakel'] ?></td>
-                                                        <td class="border"><?= $row['rtrw'] ?></td>
-                                                        <td class="border"><?= $row['kota'] ?></td>
+                                                        <!-- <td class="border"><?= $row['rtrw'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['kota'] ?></td> -->
                                                         <td class="border"><?= $row['nohp'] ?></td>
-                                                        <td class="border"><?= $row['ttl'] ?></td>
-                                                        <td class="border"><?= $row['asalsekolah'] ?></td>
+                                                        <!-- <td class="border"><?= $row['ttl'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['asalsekolah'] ?></td> -->
                                                         <td class="border"><?= $row['angkatan'] ?></td>
                                                         <td class="border"><?= $row['universitas'] ?></td>
-                                                        <td class="border"><?= $row['fakultas'] ?></td>
-                                                        <td class="border"><?= $row['jurusan'] ?></td>
-                                                        <td class="border"><?= $row['rekomendasi'] ?></td>
-                                                        <td class="border"><?= $row['ayah'] ?></td>
-                                                        <td class="border"><?= $row['ibu'] ?></td>
-                                                        <td class="border"><?= $row['kerjaayah'] ?></td>
-                                                        <td class="border"><?= $row['kerjaibu'] ?></td>
-                                                        <td class="border"><?= $row['nohportu'] ?></td>
+                                                        <!-- <td class="border"><?= $row['fakultas'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['jurusan'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['rekomendasi'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['ayah'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['ibu'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['kerjaayah'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['kerjaibu'] ?></td> -->
+                                                        <!-- <td class="border"><?= $row['nohportu'] ?></td> -->
+                                                        <td class="border text-center">
+                                                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#detailModal<?= $row['id'] ?>">Details</a>
+                                                        </td>
                                                     </tr>
+
+                                                    <!-- Modal detail -->
+                                                    <div class="modal fade" id="detailModal<?= $row['id'] ?>" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog  modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="detailModalLabel"><?= $row['nama'] ?></h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="<?= base_url('menu'); ?>" method="POST">
+
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Email</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['email'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">NIK</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['noktp'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Alamat</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['alamat'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Kecamatan</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['namakec'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Kelurahan</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['namakel'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">RT/RW</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['rtrw'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Kota</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['kota'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">No Telepon</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['nohp'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['ttl'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Asal Sekolah</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['asalsekolah'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Angkatan</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['angkatan'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Universitas</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['universitas'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Fakultas</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['fakultas'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Jurusan</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['jurusan'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Rekomendasi</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['rekomendasi'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Nama Ayah</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['ayah'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Nama Ibu</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['ibu'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Pekerjaan Ayah</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['kerjaayah'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">Pekerjaan Ibu</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['kerjaibu'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-4 col-form-label">No HP Orang Tua</label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control" placeholder="<?= $row['nohportu'] ?>" disabled>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Modal Detail -->
                                                 <?php endforeach; ?>
                                             </tbody>
                                         </table>

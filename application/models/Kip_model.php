@@ -19,11 +19,11 @@ class Kip_model extends CI_Model
 
             $this->db->where('namakec', $namakec);
         }
-
         if ($keyword) {
             $this->db->like('nama', $keyword);
             // $this->db->or_like('noktp', $keyword);
         }
+        $this->db->order_by('angkatan', 'DESC');
 
         return $this->db->get('tbl_kip', $limit, $start)->result_array();
     }

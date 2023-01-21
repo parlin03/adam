@@ -228,7 +228,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- End Modal Add New Menu -->
+                                                    <!-- End Modal Detail -->
 
                                                 <?php endforeach; ?>
                                             </tbody>

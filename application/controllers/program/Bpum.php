@@ -34,7 +34,7 @@ class Bpum extends CI_Controller
         $config['base_url'] = base_url('program/bpum/' . $data['namakec']);
         $config['total_rows'] = $this->bpum->countAllBpum($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
+        $config['per_page'] = 5;
 
         // initialize pagination
         $this->pagination->initialize($config);
@@ -71,7 +71,7 @@ class Bpum extends CI_Controller
         $config['base_url'] = base_url('program/bpum/' . $data['namakec']);
         $config['total_rows'] = $this->bpum->countAllBpum($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
+        $config['per_page'] = 5;
 
         // initialize pagination
         $this->pagination->initialize($config);
@@ -108,7 +108,7 @@ class Bpum extends CI_Controller
         $config['base_url'] = base_url('program/bpum/' . $data['namakec']);
         $config['total_rows'] = $this->bpum->countAllBpum($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
+        $config['per_page'] = 5;
 
         // initialize pagination
         $this->pagination->initialize($config);
@@ -145,7 +145,7 @@ class Bpum extends CI_Controller
         $config['base_url'] = base_url('program/bpum/' . $data['namakec']);
         $config['total_rows'] = $this->bpum->countAllBpum($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
+        $config['per_page'] = 5;
 
         // initialize pagination
         $this->pagination->initialize($config);
