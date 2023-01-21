@@ -21,9 +21,23 @@ class Home extends CI_Controller
         $data['maingraph'] = $this->dashboard->mainGraph();
         // $data['graphpanakukkang'] = $this->dashboard->graphPanakukkang();
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('home/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function index2()
+    {
+        $data['title'] = 'Dashboard';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['maingraph'] = $this->dashboard->mainGraph();
+        // $data['graphpanakukkang'] = $this->dashboard->graphPanakukkang();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('home/index2', $data);
         $this->load->view('templates/footer');
     }
 }

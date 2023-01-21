@@ -18,7 +18,7 @@ class Kontribusi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kontribusi/index', $data);
+        $this->load->view('master/kontribusi/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -100,7 +100,7 @@ class Kontribusi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kontribusi/panakukkang', $data);
+        $this->load->view('master/kontribusi/panakukkang', $data);
         $this->load->view('templates/footer');
     }
 
@@ -168,7 +168,7 @@ class Kontribusi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kontribusi/biringkanaya', $data);
+        $this->load->view('master/kontribusi/biringkanaya', $data);
         $this->load->view('templates/footer');
     }
 
@@ -233,7 +233,7 @@ class Kontribusi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kontribusi/manggala', $data);
+        $this->load->view('master/kontribusi/manggala', $data);
         $this->load->view('templates/footer');
     }
 
@@ -298,7 +298,7 @@ class Kontribusi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('kontribusi/tamalanrea', $data);
+        $this->load->view('master/kontribusi/tamalanrea', $data);
         $this->load->view('templates/footer');
     }
 

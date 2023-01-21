@@ -1,85 +1,93 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?> </h1>
-
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark"><?= $title; ?></h1>
+                </div><!-- /.col -->
+                <!-- <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard v2</li>
+                    </ol>
+                </div>/.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
-        <div class="container">
-            <!-- Content Row -->
+        <div class="container-fluid">
             <div class="row">
-                <!-- Area Chart -->
-                <div class="col-xl-12 col-lg-12">
-                    <div class="card shadow mb-2">
-                        <!-- Card Header - Dropdown -->
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <!-- <h5 class="card-title">Monthly Recap Report</h5> -->
                             <!-- notif error -->
                             <?= form_error('menu', '<div class="alert alert-danger" role ="alert">', '</div>'); ?>
 
                             <!-- notif sukses -->
                             <?= $this->session->flashdata('message'); ?>
-
-
-                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#newRoleModal"> Add New Role</a>
-
+                            <div class="row justify-content-end">
+                                <a href="" class="btn btn-primary" data-toggle="modal" data-target="#newRoleModal"> Add New Role</a>
+                            </div>
                         </div>
-                        <!-- Card Body -->
                         <div class="card-body">
-                            <div class="card">
-                                <div class="table table-responsive">
-                                    <table class="table table-bordered table-striped table-hover ">
-                                        <thead class="text-center text-dark">
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Role</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $i = 1; ?>
-
-                                            <?php foreach ($role as $r) : ?>
-
+                            <div class="row justify-content-center">
+                                <div class="info-box mb-10">
+                                    <div class="table table-responsive">
+                                        <table class="table table-bordered table-striped table-hover ">
+                                            <thead class="text-center text-dark">
                                                 <tr>
-                                                    <th class="text-center" scope="row"><?= $i; ?>
-                                                    </th>
-                                                    <td><?= $r['role']; ?></td>
-                                                    <td class="text-center">
-                                                        <a href="<?= base_url('menu/roleaccess/') . $r['id']; ?>" class="badge badge-warning">access</a>
-                                                        <a href="" class="badge badge-success">edit</a>
-                                                        <a href="" class="badge badge-danger">delete</a>
-                                                    </td>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Role</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
-                                                <?php $i++; ?>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 1; ?>
 
-                                            <?php endforeach; ?>
+                                                <?php foreach ($role as $r) : ?>
 
-                                        </tbody>
-                                    </table>
+                                                    <tr>
+                                                        <th class="text-center" scope="row"><?= $i; ?>
+                                                        </th>
+                                                        <td><?= $r['role']; ?></td>
+                                                        <td class="text-center">
+                                                            <a href="<?= base_url('menu/roleaccess/') . $r['id']; ?>" class="badge badge-warning">access</a>
+                                                            <a href="" class="badge badge-success">edit</a>
+                                                            <a href="" class="badge badge-danger">delete</a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php $i++; ?>
+
+                                                <?php endforeach; ?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.info-box-content -->
                                 </div>
+                                <!-- /.info-box -->
                             </div>
                         </div>
                     </div>
+                    <!-- /.card -->
                 </div>
-                <!-- Content Row -->
-
+                <!-- /.col -->
             </div>
+            <!-- /.row -->
+        </div><!--/. container-fluid -->
     </section>
     <!-- /.content -->
-
-
-
 </div>
-<!-- /.container-fluid -->
+<!-- /.content-wrapper -->
 
-</div>
-<!-- End of Main Content -->
 
 <!-- Modal Add New Role -->
-
-<!-- Modal -->
 <div class="modal fade" id="newRoleModal" tabindex="-1" aria-labelledby="newRoleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -103,4 +111,4 @@
         </div>
     </div>
 </div>
-<!-- End Modal Add New Menu -->
+<!-- End Modal Add New Role -->

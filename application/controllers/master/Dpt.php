@@ -46,7 +46,7 @@ class Dpt extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dpt/index', $data);
+        $this->load->view('master/dpt/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -84,7 +84,7 @@ class Dpt extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dpt/index', $data);
+        $this->load->view('master/dpt/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -122,7 +122,7 @@ class Dpt extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dpt/index', $data);
+        $this->load->view('master/dpt/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -160,7 +160,7 @@ class Dpt extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dpt/index', $data);
+        $this->load->view('master/dpt/index', $data);
         $this->load->view('templates/footer');
     }
 }
