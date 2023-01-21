@@ -49,6 +49,15 @@ class Jaring_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function getDataTarget()
+    {
+        $this->db->select('namakec, round((count(*)*8)/100,0) as total');
+        $this->db->from('dpt');
+        $this->db->group_by('namakec');
+        $this->db->order_by('namakec', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function getDataDptKec($namakec)
     {
@@ -63,7 +72,7 @@ class Jaring_model extends CI_Model
 
     public function getDataTargetKec($namakec)
     {
-        $this->db->select('namakel, round(count(*)/2+1,0) as total');
+        $this->db->select('namakec, round((count(*)*8)/100,0) as total');
         $this->db->from('dpt');
         $this->db->where('namakec', $namakec);
         $this->db->group_by('namakel');

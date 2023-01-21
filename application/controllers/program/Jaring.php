@@ -58,9 +58,17 @@ class Jaring extends CI_Controller
         foreach ($ragu as $r) {
             $rows3['data'][] = $r->total;
         }
+        $target = $this->jaring->getDataTarget();
+        $rows4 = array();
+        $rows4['name'] = 'Target';
+        $rows4['type'] = 'column';
+        foreach ($target as $t) {
+            $rows4['data'][] =  $t->total;
+        }
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
+        array_push($result, $rows4);
         array_push($result, $rows1);
         array_push($result, $rows2);
         array_push($result, $rows3);
