@@ -55,8 +55,8 @@
                                                 </div>
                                                 <div class="col-sm-9">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="image" name="image" />
-                                                        <label class="custom-file-label" for="image">Choose file</label>
+                                                        <input type="file" class="custom-file-input" id="image" name="image" placeholder="" />
+                                                        <label class="custom-file-label" for="image">Choose file (Max 2MB)</label>
                                                     </div>
                                                 </div>
                                             </div>
