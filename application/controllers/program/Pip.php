@@ -68,7 +68,7 @@ class Pip extends CI_Controller
         }
 
         // config pagination
-        $config['base_url'] = 'http://localhost:8080/ADAM/program/pip/' . $data['namakec'];
+        $config['base_url'] = base_url('program/pip/' . $data['namakec']);
         $config['total_rows'] = $this->pip->countAllPip($data['namakec'], $data['keyword']);
         $data['total_rows'] = $config['total_rows'];
         $config['per_page'] = 6;
