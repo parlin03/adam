@@ -52,18 +52,18 @@ class Kontribusi extends CI_Controller
         foreach ($target as $t) {
             $rows1['data'][] =  $t->total;
         }
-        $tercapai = $this->kontribusi->getDataTercapai();
+        $team = $this->kontribusi->getDataTeam();
         $rows2 = array();
-        $rows2['name'] = 'Tercapai';
+        $rows2['name'] = 'Team';
         $rows2['type'] = 'line';
-        foreach ($tercapai as $c) {
+        foreach ($team as $c) {
             $rows2['data'][] =  $c->total;
         }
-        $ragu = $this->kontribusi->getDataRagu();
+        $rps = $this->kontribusi->getDataRps();
         $rows3 = array();
-        $rows3['name'] = 'Ragu-Ragu';
+        $rows3['name'] = 'RPS 2024';
         $rows3['type'] = 'line';
-        foreach ($ragu as $r) {
+        foreach ($rps as $r) {
             $rows3['data'][] = $r->total;
         }
         $result = array();
@@ -134,18 +134,18 @@ class Kontribusi extends CI_Controller
         foreach ($target as $t) {
             $rows1['data'][] =  $t->total;
         }
-        $tercapai = $this->kontribusi->getDataTercapaiKec($namakec);
+        $team = $this->kontribusi->getDataTeamKec($namakec);
         $rows2 = array();
-        $rows2['name'] = 'Tercapai';
+        $rows2['name'] = 'Team';
         $rows2['type'] = 'line';
-        foreach ($tercapai as $c) {
+        foreach ($team as $c) {
             $rows2['data'][] =  $c->total;
         }
-        $ragu = $this->kontribusi->getDataRaguKec($namakec);
+        $rps = $this->kontribusi->getDataRpsKec($namakec);
         $rows3 = array();
-        $rows3['name'] = 'Ragu-Ragu';
+        $rows3['name'] = 'RPS 2024';
         $rows3['type'] = 'line';
-        foreach ($ragu as $r) {
+        foreach ($rps as $r) {
             $rows3['data'][] = $r->total;
         }
         $result = array();
@@ -199,18 +199,18 @@ class Kontribusi extends CI_Controller
         foreach ($target as $t) {
             $rows1['data'][] =  $t->total;
         }
-        $tercapai = $this->kontribusi->getDataTercapaiKec($namakec);
+        $team = $this->kontribusi->getDataTeamKec($namakec);
         $rows2 = array();
-        $rows2['name'] = 'Tercapai';
+        $rows2['name'] = 'Team';
         $rows2['type'] = 'line';
-        foreach ($tercapai as $c) {
+        foreach ($team as $c) {
             $rows2['data'][] =  $c->total;
         }
-        $ragu = $this->kontribusi->getDataRaguKec($namakec);
+        $rps = $this->kontribusi->getDataRpsKec($namakec);
         $rows3 = array();
-        $rows3['name'] = 'Ragu-Ragu';
+        $rows3['name'] = 'RPS 2024';
         $rows3['type'] = 'line';
-        foreach ($ragu as $r) {
+        foreach ($rps as $r) {
             $rows3['data'][] = $r->total;
         }
         $result = array();
@@ -264,18 +264,18 @@ class Kontribusi extends CI_Controller
         foreach ($target as $t) {
             $rows1['data'][] =  $t->total;
         }
-        $tercapai = $this->kontribusi->getDataTercapaiKec($namakec);
+        $team = $this->kontribusi->getDataTeamKec($namakec);
         $rows2 = array();
-        $rows2['name'] = 'Tercapai';
+        $rows2['name'] = 'Team';
         $rows2['type'] = 'line';
-        foreach ($tercapai as $c) {
+        foreach ($team as $c) {
             $rows2['data'][] =  $c->total;
         }
-        $ragu = $this->kontribusi->getDataRaguKec($namakec);
+        $rps = $this->kontribusi->getDataRpsKec($namakec);
         $rows3 = array();
-        $rows3['name'] = 'Ragu-Ragu';
+        $rows3['name'] = 'RPS 2024';
         $rows3['type'] = 'line';
-        foreach ($ragu as $r) {
+        foreach ($rps as $r) {
             $rows3['data'][] = $r->total;
         }
         $result = array();
@@ -329,18 +329,18 @@ class Kontribusi extends CI_Controller
         foreach ($target as $t) {
             $rows1['data'][] =  $t->total;
         }
-        $tercapai = $this->kontribusi->getDataTercapaiKec($namakec);
+        $team = $this->kontribusi->getDataTeamKec($namakec);
         $rows2 = array();
-        $rows2['name'] = 'Tercapai';
+        $rows2['name'] = 'Team';
         $rows2['type'] = 'line';
-        foreach ($tercapai as $c) {
+        foreach ($team as $c) {
             $rows2['data'][] =  $c->total;
         }
-        $ragu = $this->kontribusi->getDataRaguKec($namakec);
+        $rps = $this->kontribusi->getDataRpsKec($namakec);
         $rows3 = array();
-        $rows3['name'] = 'Ragu-Ragu';
+        $rows3['name'] = 'RPS 2024';
         $rows3['type'] = 'line';
-        foreach ($ragu as $r) {
+        foreach ($rps as $r) {
             $rows3['data'][] = $r->total;
         }
         $result = array();
