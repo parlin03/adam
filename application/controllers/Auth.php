@@ -53,16 +53,16 @@ class Auth extends CI_Controller
                         redirect('home');
                     } elseif ($user['role_id'] == 3) {
 
-                        redirect('home');
+                        redirect('user');
                     } elseif ($user['role_id'] == 4) {
 
-                        redirect('home');
+                        redirect('user');
                     } elseif ($user['role_id'] == 5) {
 
-                        redirect('home');
+                        redirect('user');
                     } elseif ($user['role_id'] == 6) {
 
-                        redirect('home');
+                        redirect('user');
                     } else {
                         redirect('user');
                     }
