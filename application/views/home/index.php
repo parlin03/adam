@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Jumlah DPT</span>
@@ -41,10 +41,10 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-friends"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Relawan</span>
+                            <span class="info-box-text">Team</span>
                             <span class="info-box-number">41,410</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -58,10 +58,10 @@
 
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-vote-yea"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Program</span>
+                            <span class="info-box-text">Saksi</span>
                             <span class="info-box-number">760</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -71,10 +71,10 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-chart-line"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Saksi</span>
+                            <span class="info-box-text">RPS 2024</span>
                             <span class="info-box-number">2,000</span>
                         </div>
                         <!-- /.info-box-content -->
