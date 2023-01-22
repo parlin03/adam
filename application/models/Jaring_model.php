@@ -15,17 +15,7 @@ class Jaring_model extends CI_Model
         $this->db->select('namakec, count(*) as total');
         $this->db->from('dpt');
         $this->db->group_by('namakec');
-        $this->db->order_by('namakec', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function getDataKip()
-    {
-        $this->db->select('namakec, count(*) as total');
-        $this->db->from('tbl_kip');
-        $this->db->group_by('namakec');
-        $this->db->order_by('namakec', 'DESC');
+        $this->db->order_by('idkec');
         $query = $this->db->get();
         return $query->result();
     }
@@ -34,8 +24,20 @@ class Jaring_model extends CI_Model
     {
         $this->db->select('kec_siswa, count(*) as total');
         $this->db->from('tbl_pip');
-        $this->db->group_by('kec_siswa');
-        $this->db->order_by('kec_siswa', 'DESC');
+        $this->db->join('kec', 'kec.namakec = tbl_pip.kec_siswa');
+        $this->db->group_by('kec.namakec');
+        $this->db->order_by('kec.idkec');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataKip()
+    {
+        $this->db->select('tbl_kip.namakec, count(*) as total');
+        $this->db->from('tbl_kip');
+        $this->db->join('kec', 'kec.namakec = tbl_kip.namakec');
+        $this->db->group_by('kec.namakec');
+        $this->db->order_by('kec.idkec');
         $query = $this->db->get();
         return $query->result();
     }
@@ -44,17 +46,31 @@ class Jaring_model extends CI_Model
     {
         $this->db->select('kecamatan, count(*) as total');
         $this->db->from('tbl_bpum');
-        $this->db->group_by('kecamatan');
-        $this->db->order_by('kecamatan', 'DESC');
+        $this->db->join('kec', 'kec.namakec = tbl_bpum.kecamatan');
+        $this->db->group_by('kec.namakec');
+        $this->db->order_by('kec.idkec');
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function getDataBedahrumah()
+    {
+        $this->db->select('kecamatan, count(tbl_bedahrumah.nama) as total');
+        $this->db->from('tbl_bedahrumah');
+        $this->db->join('kec', 'kec.namakec = tbl_bedahrumah.kecamatan', 'right');
+        $this->db->group_by('kec.namakec');
+        $this->db->order_by('kec.idkec');
+        $query = $this->db->get();
+        // print_r($this->db->last_query());
+        return $query->result();
+    }
+
     public function getDataTarget()
     {
         $this->db->select('namakec, round((count(*)*8)/100,0) as total');
         $this->db->from('dpt');
         $this->db->group_by('namakec');
-        $this->db->order_by('namakec', 'DESC');
+        $this->db->order_by('idkec');
         $query = $this->db->get();
         return $query->result();
     }

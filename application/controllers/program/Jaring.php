@@ -36,42 +36,50 @@ class Jaring extends CI_Controller
             // $categories['categories'][] = $d->namakec;
             $rows['data'][] = $d->total;
         }
+        $target = $this->jaring->getDataTarget();
+        $rows0 = array();
+        $rows0['name'] = 'Target';
+        $rows0['type'] = 'column';
+        foreach ($target as $t) {
+            $rows0['data'][] =  $t->total;
+        }
+        $result = array();
 
-        $target = $this->jaring->getDataPip();
+        $pip = $this->jaring->getDataPip();
         $rows1 = array();
         $rows1['name'] = 'Beasiswa PIP';
         $rows1['type'] = 'column';
-        foreach ($target as $t) {
-            $rows1['data'][] =  $t->total;
+        foreach ($pip as $p) {
+            $rows1['data'][] =  $p->total;
         }
-        $tercapai = $this->jaring->getDataKip();
+        $kip = $this->jaring->getDataKip();
         $rows2 = array();
         $rows2['name'] = 'Beasiswa KIP';
         $rows2['type'] = 'column';
-        foreach ($tercapai as $c) {
-            $rows2['data'][] =  $c->total;
+        foreach ($kip as $k) {
+            $rows2['data'][] =  $k->total;
         }
-        $ragu = $this->jaring->getDataBpum();
+        $bpum = $this->jaring->getDataBpum();
         $rows3 = array();
         $rows3['name'] = 'BPUM';
         $rows3['type'] = 'column';
-        foreach ($ragu as $r) {
-            $rows3['data'][] = $r->total;
+        foreach ($bpum as $b) {
+            $rows3['data'][] = $b->total;
         }
-        $target = $this->jaring->getDataTarget();
+        $rumah = $this->jaring->getDataBedahrumah();
         $rows4 = array();
-        $rows4['name'] = 'Target';
+        $rows4['name'] = 'Bedah Rumah';
         $rows4['type'] = 'column';
-        foreach ($target as $t) {
-            $rows4['data'][] =  $t->total;
+        foreach ($rumah as $r) {
+            $rows4['data'][] = $r->total;
         }
-        $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
-        array_push($result, $rows4);
+        array_push($result, $rows0);
         array_push($result, $rows1);
         array_push($result, $rows2);
         array_push($result, $rows3);
+        array_push($result, $rows4);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
