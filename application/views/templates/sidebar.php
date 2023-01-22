@@ -104,7 +104,7 @@
                                     <?php foreach ($rasm as $asm) : ?>
                                         <ul class="nav nav-treeview  nav-child-indent">
                                             <li class="nav-item ">
-                                                <a href="<?= base_url($asm['alt_url']); ?>" class="nav-link <?= ($asm['alt_url'] == uri_string()) ? 'active' : ''; ?>">
+                                                <a href="<?= base_url($asm['alt_url']); ?>" class="nav-link <?= ($asm['alt_url'] == uri_string()) ? 'active bg-primary' : ''; ?>">
                                                     <!-- <i class="far fa-circle nav-icon"></i> -->
                                                     <p><?= $asm['alt_title']; ?></p>
                                                 </a>

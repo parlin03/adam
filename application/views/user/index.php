@@ -21,14 +21,14 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <?= $this->session->flashdata('message'); ?>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header bg-primary">
+                        <div class="card-header bg-primary col-sm-12">
                             <!-- <h5 class="card-title">Monthly Recap Report</h5> -->
-                            <div class="col-lg-8">
-                                <?= $this->session->flashdata('message'); ?>
-                            </div>
+                            <!-- <div class="col-sm-8">
+                            </div> -->
                             <div class="card-tools">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
@@ -54,7 +54,7 @@
                                         </span>
                                         <span class="info-box-text"><?= $user['email']; ?></span>
                                         <span class="info-box-text">
-                                            <small class="text-muted">Member since<?= date('d F Y', $user['date_created']); ?></small>
+                                            <small class="text-muted">Member since <?= date('d F Y', $user['date_created']); ?></small>
                                         </span>
                                     </div>
                                     <!-- /.info-box-content -->
