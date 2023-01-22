@@ -22,7 +22,7 @@ class Jaring_model extends CI_Model
 
     public function getDataPip()
     {
-        $this->db->select('kec_siswa, count(*) as total');
+        $this->db->select('kec_siswa, count(nama_siswa) as total');
         $this->db->from('tbl_pip');
         $this->db->join('kec', 'kec.namakec = tbl_pip.kec_siswa');
         $this->db->group_by('kec.namakec');

@@ -38,7 +38,7 @@ class Jaring extends CI_Controller
         }
         $target = $this->jaring->getDataTarget();
         $rows0 = array();
-        $rows0['name'] = 'Target';
+        $rows0['name'] = 'Target Suara';
         $rows0['type'] = 'column';
         foreach ($target as $t) {
             $rows0['data'][] =  $t->total;

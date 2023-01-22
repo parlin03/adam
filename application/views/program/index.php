@@ -66,7 +66,7 @@
                            type: 'column'
                        },
                        title: {
-                           text: 'Kontribusi Pemilih Terhadap Target Suara'
+                           text: ''
                        },
                        xAxis: {
                            categories: ['Panakkukang', 'Biringkanaya', 'Manggala', 'Tamalanrea', 'unknown']
