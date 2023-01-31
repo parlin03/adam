@@ -28,16 +28,16 @@
                             <thead class="text-center text-light">
                                 <tr class="bg-primary">
                                     <TH>#</th>
-                                    <TH>NIK</th>
-                                    <TH>Nama</th>
+                                    <TH>Nama Lengkap</th>
+                                    <TH>Nama Panggilan</th>
                                     <TH>Alamat</th>
-                                    <TH>RT</th>
-                                    <TH>RW</th>
+                                    <TH>Kecamatan</th>
                                     <TH>Kelurahan</th>
-                                    <TH>Domisili</th>
-                                    <TH>Telepon</th>
+                                    <TH>Kota</th>
+                                    <TH>Organik</th>
                                     <TH>Jabatan</th>
-                                    <TH>Refferal</th>
+                                    <TH>Telepon</th>
+                                    <TH>NIK</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,16 +46,16 @@
                                 foreach ($organik as $row) {
                                     echo "<tr>";
                                     echo "<th>" . $i . "</th>";
-                                    echo "<td>" . $row->noktp . "</td>";
                                     echo "<td>" . $row->nama . "</td>";
+                                    echo "<td>" . $row->alias . "</td>";
                                     echo "<td>" . $row->alamat . "</td>";
-                                    echo "<td>" . $row->rt . "</td>";
-                                    echo "<td>" . $row->rw . "</td>";
+                                    echo "<td>" . $row->namakec . "</td>";
                                     echo "<td>" . $row->namakel  . "</td>";
-                                    echo "<td>" . $row->domisili . "</td>";
-                                    echo "<td>" . $row->nohp . "</td>";
+                                    echo "<td>" . $row->kota . "</td>";
+                                    echo "<td>" . $row->organik . "</td>";
                                     echo "<td>" . $row->jabatan . "</td>";
-                                    echo "<td>" . $row->refferal . "</td>";
+                                    echo "<td>" . $row->nohp . "</td>";
+                                    echo "<td>" . $row->noktp . "</td>";
                                     echo "</tr>";
                                     $i++;
                                 }

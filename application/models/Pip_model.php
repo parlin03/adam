@@ -16,7 +16,7 @@ class Pip_model extends CI_Model
 
         if ($keyword) {
             $this->db->like('nama_siswa', $keyword);
-            // $this->db->or_like('noktp', $keyword);
+            $this->db->or_like('nama_sekolah', $keyword);
         }
 
         return $this->db->get('tbl_pip', $limit, $start)->result_array();
@@ -28,7 +28,7 @@ class Pip_model extends CI_Model
 
         if ($keyword) {
             $this->db->like('nama_siswa', $keyword);
-            // $this->db->or_like('noktp', $keyword);
+            $this->db->or_like('nama_sekolah', $keyword);
         }
 
         return $this->db->count_all_results('tbl_pip');

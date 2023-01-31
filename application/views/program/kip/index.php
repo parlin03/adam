@@ -30,7 +30,7 @@
                                 <div class="col-md-5">
                                     <form action=" <?= base_url('program/kip/' . $namakec)  ?>" method="POST">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Search NIK & Name..." name="keyword" autocomplete="off" autofocus>
+                                            <input type="text" class="form-control" placeholder="Cari Nama..." name="keyword" autocomplete="off" autofocus>
                                             <div class="input-group-append">
                                                 <input class="btn btn-primary" type="submit" name="submit">
                                             </div>
