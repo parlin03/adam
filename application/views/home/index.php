@@ -39,12 +39,26 @@
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
+                <div class="col-12 col-sm-6 col-md-2">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-friends"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Team</span>
+                            <span class="info-box-text">Tim</span>
+                            <span class="info-box-number"> <?= number_format($this->db->count_all('organik')); ?></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-2">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-indigo elevation-1"><i class="fas fa-tshirt"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Potensi</span>
                             <span class="info-box-number">0</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -52,11 +66,10 @@
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-
                 <!-- fix for small devices only -->
                 <div class="clearfix hidden-md-up"></div>
 
-                <div class="col-12 col-sm-6 col-md-3">
+                <div class="col-12 col-sm-6 col-md-2">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-vote-yea"></i></span>
 
@@ -148,6 +161,7 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/exporting.js"></script>
 <!-- end load library -->
 <script>
     $(function() {
@@ -184,7 +198,10 @@
                             data: [<?= $mg['total']; ?>]
                         },
                     <?php endforeach; ?>
-                ]
+                ],
+                exporting: {
+                    enabled: true // hide button
+                }
             });
         });
     });

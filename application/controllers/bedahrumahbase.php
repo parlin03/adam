@@ -8,7 +8,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-class Pipbase extends MY_Controller
+class Bedahrumahbase extends MY_Controller
 {
 
     /*
@@ -20,7 +20,7 @@ class Pipbase extends MY_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('pipbase_model', 'pip_model');
+        $this->load->model('Bedahrumahbase_model', 'Bedahrumah_m');
     }
 
     /*
@@ -31,17 +31,17 @@ class Pipbase extends MY_Controller
     */
     function index()
     {
-        $data['title'] = 'Pip';
+        $data['title'] = 'Bedahrumah';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
-        $data['pip_list'] = $this->pip_model->fetch_pips();
+        $data['Bpum_list'] = $this->Bedahrumah_m->fetch_pips();
 
 
         $this->load->helper('url');       //pointer sidebar
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('jaring/pip/content', $data);
+        $this->load->view('jaring/bedahrumah/content', $data);
         // $this->load->view('jaring/pip/footer', $data);
 
         $this->load->view('templates/footer');
@@ -82,37 +82,33 @@ class Pipbase extends MY_Controller
             }
 
             $spreadsheet = $reader->load($_FILES['uploadFile']['tmp_name']);
-            $sheet_data  = $spreadsheet->getActiveSheet(0)->toArray();
+            // $sheet_data  = $spreadsheet->getActiveSheet(0)->toArray();
             $array_data  = [];
+            $sheetCount = $spreadsheet->getSheetCount();
+            for ($j = 0; $j < $sheetCount; $j++) {
 
-            for ($i = 1; $i < count($sheet_data); $i++) {
-                $data = array(
-                    'nama_siswa'    => $sheet_data[$i]['1'],
-                    'nisn'          => $sheet_data[$i]['2'],
-                    'sekolah'       => $sheet_data[$i]['3'],
-                    'nama_sekolah'  => $sheet_data[$i]['4'],
-                    'kec_sekolah'   => $sheet_data[$i]['5'],
-                    'kelas'         => $sheet_data[$i]['6'],
-                    'nama_ibu'      => $sheet_data[$i]['7'],
-                    'nama_ayah'     => $sheet_data[$i]['8'],
-                    'tgl_lahir'     => $sheet_data[$i]['9'],
-                    'alamat_siswa'  => $sheet_data[$i]['10'],
-                    'kel_siswa'     => $sheet_data[$i]['11'],
-                    'kec_siswa'     => $sheet_data[$i]['12'],
-                    'telp'          => $sheet_data[$i]['13'],
-                    'nik_ortu'      => $sheet_data[$i]['14']
-                );
-                $array_data[] = $data;
+                $sheet = $spreadsheet->getSheet($j);
+                $sheet_data = $sheet->toArray();
+                for ($i = 1; $i < count($sheet_data); $i++) {
+                    $data = array(
+                        'nama'           => $sheet_data[$i]['1'],
+                        'jenis_kelamin'  => $sheet_data[$i]['2'],
+                        'noktp'          => $sheet_data[$i]['3'],
+                        'alamat'         => $sheet_data[$i]['4'],
+                        'kelurahan'      => $sheet_data[$i]['5'],
+                        'kecamatan'      => $sheet_data[$i]['6']
+                    );
+                    $array_data[] = $data;
+                }
             }
-
             if ($array_data != '') {
-                $this->pip_model->insert_pip_batch($array_data);
+                $this->Bedahrumah_m->insert_pip_batch($array_data);
             }
             $this->modal_feedback('success', 'Success', 'Data Imported', 'OK');
         } else {
             $this->modal_feedback('error', 'Error', 'Import failed', 'Try again');
         }
-        redirect('/pipbase');
+        redirect('/Bedahrumahbase');
     }
 
     /*
@@ -147,45 +143,33 @@ class Pipbase extends MY_Controller
         $spreadsheet->getActiveSheet()->getColumnDimension('M')->setWidth(27);
         $spreadsheet->getActiveSheet()->getColumnDimension('N')->setAutoSize(true);
         $spreadsheet->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('Q')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('R')->setAutoSize(true);
         $spreadsheet->getActiveSheet()->getStyle('O')->getNumberFormat()->setFormatCode('0000');
 
         $sheet = $spreadsheet->getActiveSheet();
 
         /* Excel Header */
         $sheet->setCellValue('A1', '#');
-        $sheet->setCellValue('B1', 'NAMA SISWA');
-        $sheet->setCellValue('C1', 'NISN');
-        $sheet->setCellValue('D1', 'SEKOLAH');
-        $sheet->setCellValue('E1', 'NAMA SEKOLAH');
-        $sheet->setCellValue('F1', 'KECAMATAN SEKOLAH');
-        $sheet->setCellValue('G1', 'KELAS');
-        $sheet->setCellValue('H1', 'NAMA IBU');
-        $sheet->setCellValue('I1', 'NAMA AYAH');
-        $sheet->setCellValue('J1', 'TGL LAHIR SISWA');
-        $sheet->setCellValue('K1', 'ALAMAT SISWA');
-        $sheet->setCellValue('L1', 'KELURAHAN SISWA');
-        $sheet->setCellValue('M1', 'KECAMATAN SISWA');
-        $sheet->setCellValue('N1', 'NO TELPON');
-        $sheet->setCellValue('O1', 'NIK ORANG TUA');
+        $sheet->setCellValue('B1', 'NAMA');
+        $sheet->setCellValue('C1', 'JENIS KELAMIN');
+        $sheet->setCellValue('D1', 'NO KTP');
+        $sheet->setCellValue('E1', 'ALAMAT');
+        $sheet->setCellValue('F1', 'KELURAHAN');
+        $sheet->setCellValue('G1', 'KECAMATAN');
+
 
         /* Excel Data */
         $row_number = 2;
         foreach ($data as $key => $row) {
             $sheet->setCellValue('A' . $row_number, $key + 1);
-            $sheet->setCellValue('B' . $row_number, $row['nama_siswa']);
-            $sheet->setCellValue('C' . $row_number, $row['nisn']);
-            $sheet->setCellValue('D' . $row_number, $row['sekolah']);
-            $sheet->setCellValue('E' . $row_number, $row['nama_sekolah']);
-            $sheet->setCellValue('F' . $row_number, $row['kec_sekolah']);
-            $sheet->setCellValue('G' . $row_number, $row['kelas']);
-            $sheet->setCellValue('H' . $row_number, $row['nama_ibu']);
-            $sheet->setCellValue('I' . $row_number, $row['nama_ayah']);
-            $sheet->setCellValue('J' . $row_number, $row['tgl_lahir']);
-            $sheet->setCellValue('K' . $row_number, $row['alamat_siswa']);
-            $sheet->setCellValue('L' . $row_number, $row['kel_siswa']);
-            $sheet->setCellValue('M' . $row_number, $row['kec_siswa']);
-            $sheet->setCellValue('N' . $row_number, $row['telp']);
-            $sheet->setCellValue('O' . $row_number, $row['nik_ortu']);
+            $sheet->setCellValue('B' . $row_number, $row['nama']);
+            $sheet->setCellValue('C' . $row_number, $row['jenis_kelamin']);
+            $sheet->setCellValue('D' . $row_number, $row['noktp']);
+            $sheet->setCellValue('E' . $row_number, $row['alamat']);
+            $sheet->setCellValue('F' . $row_number, $row['kelurahan']);
+            $sheet->setCellValue('G' . $row_number, $row['kecamatan']);
 
             $row_number++;
         }

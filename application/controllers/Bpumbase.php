@@ -82,32 +82,36 @@ class Bpumbase extends MY_Controller
             }
 
             $spreadsheet = $reader->load($_FILES['uploadFile']['tmp_name']);
-            $sheet_data  = $spreadsheet->getActiveSheet(0)->toArray();
+            // $sheet_data  = $spreadsheet->getActiveSheet(0)->toArray();
             $array_data  = [];
+            $sheetCount = $spreadsheet->getSheetCount();
+            for ($j = 0; $j < $sheetCount; $j++) {
 
-            for ($i = 1; $i < count($sheet_data); $i++) {
-                $data = array(
-                    'nik'           => $sheet_data[$i]['1'],
-                    'no_kk'         => $sheet_data[$i]['2'],
-                    'nama'          => $sheet_data[$i]['3'],
-                    'tanggal_lahir' => $sheet_data[$i]['4'],
-                    'jenis_kelamin' => $sheet_data[$i]['5'],
-                    'kota'          => $sheet_data[$i]['6'],
-                    'kecamatan'     => $sheet_data[$i]['7'],
-                    'kelurahan'     => $sheet_data[$i]['8'],
-                    'alamat_ktp'    => $sheet_data[$i]['9'],
-                    'provinsi'      => $sheet_data[$i]['10'],
-                    'kota_usaha'    => $sheet_data[$i]['11'],
-                    'kecamatan_usaha'   => $sheet_data[$i]['12'],
-                    'alamat_usaha'  => $sheet_data[$i]['13'],
-                    'bidang_usaha'  => $sheet_data[$i]['14'],
-                    'nib_sku'       => $sheet_data[$i]['15'],
-                    'telepon'       => $sheet_data[$i]['16'],
-                    'rekomendasi'   => $sheet_data[$i]['17']
-                );
-                $array_data[] = $data;
+                $sheet = $spreadsheet->getSheet($j);
+                $sheet_data = $sheet->toArray();
+                for ($i = 1; $i < count($sheet_data); $i++) {
+                    $data = array(
+                        'nik'           => $sheet_data[$i]['1'],
+                        'no_kk'         => $sheet_data[$i]['2'],
+                        'nama'          => $sheet_data[$i]['3'],
+                        'tanggal_lahir' => $sheet_data[$i]['4'],
+                        'jenis_kelamin' => $sheet_data[$i]['5'],
+                        'kota'          => $sheet_data[$i]['6'],
+                        'kecamatan'     => $sheet_data[$i]['7'],
+                        'kelurahan'     => $sheet_data[$i]['8'],
+                        'alamat_ktp'    => $sheet_data[$i]['9'],
+                        'provinsi'      => $sheet_data[$i]['10'],
+                        'kota_usaha'    => $sheet_data[$i]['11'],
+                        'kecamatan_usaha'   => $sheet_data[$i]['12'],
+                        'alamat_usaha'  => $sheet_data[$i]['13'],
+                        'bidang_usaha'  => $sheet_data[$i]['14'],
+                        'nib_sku'       => $sheet_data[$i]['15'],
+                        'telepon'       => $sheet_data[$i]['16'],
+                        'rekomendasi'   => $sheet_data[$i]['17']
+                    );
+                    $array_data[] = $data;
+                }
             }
-
             if ($array_data != '') {
                 $this->Bpum_model->insert_pip_batch($array_data);
             }

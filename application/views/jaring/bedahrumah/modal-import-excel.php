@@ -2,7 +2,7 @@
 <div id="modalImport" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form action="<?= site_url('pipbase/import_excel') ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= site_url('bedahrumahbase/import_excel') ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
