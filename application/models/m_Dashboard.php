@@ -3,7 +3,7 @@
 use LDAP\Result;
 
 defined('BASEPATH') or exit('No direct script access allowed');
-class m_Dashboard extends CI_Model
+class M_Dashboard extends CI_Model
 {
     public function __construct()
     {

@@ -27,7 +27,7 @@ class Home extends CI_Controller
     }
     public function index_list()
     {
-        $this->load->model('m_Dashboard', 'mdh');
+        $this->load->model('M_Dashboard', 'mdh');
 
         $dpt = $this->mdh->getDataDpt();
         // $categories = array();
