@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                        <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-users"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Jumlah DPT</span>
@@ -41,7 +41,7 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-2">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-friends"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-user-friends"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Tim</span>
@@ -55,7 +55,7 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-2">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-indigo elevation-1"><i class="fas fa-tshirt"></i></span>
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tshirt"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Potensi</span>
@@ -71,7 +71,7 @@
 
                 <div class="col-12 col-sm-6 col-md-2">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-vote-yea"></i></span>
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-vote-yea"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Saksi</span>
@@ -84,7 +84,7 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-chart-line"></i></span>
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-chart-line"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">RPS 2024</span>
@@ -161,53 +161,64 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/exporting.js"></script>
 <!-- end load library -->
-<script>
+<script type="text/javascript">
     $(function() {
         var chart;
         $(document).ready(function() {
-            chart0 = new Highcharts.Chart({
-                chart: {
-                    renderTo: 'mygraph',
-                    height: 330,
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: ['Kecamatan']
-                },
-                yAxis: {
+            $.getJSON("<?php echo site_url('home/index_list'); ?>", function(json) {
+
+                chart0 = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'mygraph',
+                        type: 'column'
+                    },
                     title: {
-                        text: 'Total DPT'
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true,
-                            crop: false,
-                            overflow: 'none'
+                        text: 'Kontribusi Pemilih Terhadap Target Suara'
+                    },
+                    xAxis: {
+                        categories: ['Panakkukang', 'Biringkanaya', 'Manggala', 'Tamalanrea']
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total DPT'
                         }
-                    }
-                },
-                colors: [
-                    '#ff0000',
-                    '#00ff00',
-                    '#0000ff'
-                ],
-                series: [<?php foreach ($maingraph as $mg) :  ?> {
-                            name: '<?= $mg['namakec']; ?>',
-                            data: [<?= $mg['total']; ?>]
-                        },
-                    <?php endforeach; ?>
-                ],
-                exporting: {
-                    enabled: true // hide button
-                }
+                    },
+                    labels: {
+                        items: [{
+                            html: '',
+                            style: {
+                                left: '50px',
+                                top: '18px',
+                                color: ( // theme
+                                    Highcharts.defaultOptions.title.style &&
+                                    Highcharts.defaultOptions.title.style.color
+                                ) || 'black'
+                            }
+                        }]
+                    },
+                    plotOptions: {
+                        column: {
+                            // stacking: 'percen',
+                            dataLabels: {
+                                enabled: true,
+                                crop: false,
+                                overflow: 'none'
+                            }
+                        }
+                    },
+                    colors: [
+                        '#0275d8',
+                        '#5cb85c',
+                        '#5bc0de',
+                        '#f0ad4e',
+                        '#d9534f'
+                    ],
+                    series: json
+                });;
             });
+
         });
+
     });
 </script>

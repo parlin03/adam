@@ -17,13 +17,67 @@ class Home extends CI_Controller
     {
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $data['maingraph'] = $this->dashboard->mainGraph();
+        $this->load->helper('url');
+        // $data['maingraph'] = $this->dashboard->mainGraph();
         // $data['graphpanakukkang'] = $this->dashboard->graphPanakukkang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('home/index', $data);
         $this->load->view('templates/footer');
+    }
+    public function Index_list()
+    {
+        $this->load->model('m_Dashboard', 'mdh');
+
+        $dpt = $this->mdh->getDataDpt();
+        // $categories = array();
+        // $categories['name'] = '';
+        $rows = array();
+        $rows['name'] = 'Total DPT';
+        $rows['type'] = 'column';
+        foreach ($dpt as $d) {
+            // $categories['categories'][] = $d->namakec;
+            $rows['data'][] = $d->total;
+        }
+
+        $team = $this->mdh->getDataTeam();
+        $rows0 = array();
+        $rows0['name'] = 'Tim';
+        $rows0['type'] = 'column';
+        foreach ($team as $t) {
+            $rows0['data'][] =  $t->total;
+        }
+
+        $potensi = $this->mdh->getDataPotensi();
+        $rows1 = array();
+        $rows1['name'] = 'Potensi';
+        $rows1['type'] = 'column';
+        foreach ($potensi as $p) {
+            $rows1['data'][] =  $p->total;
+        }
+        $saksi = $this->mdh->getDataSaksi();
+        $rows2 = array();
+        $rows2['name'] = 'Saksi';
+        $rows2['type'] = 'column';
+        foreach ($saksi as $s) {
+            $rows2['data'][] =  $s->total;
+        }
+        $rps = $this->mdh->getDataRps();
+        $rows3 = array();
+        $rows3['name'] = 'RPS 2024';
+        $rows3['type'] = 'column';
+        foreach ($rps as $r) {
+            $rows3['data'][] = $r->total;
+        }
+        $result = array();
+        // array_push($result, $categories);
+        array_push($result, $rows);
+        array_push($result, $rows0);
+        array_push($result, $rows1);
+        array_push($result, $rows2);
+        array_push($result, $rows3);
+
+        print json_encode($result, JSON_NUMERIC_CHECK);
     }
 }
