@@ -25,7 +25,7 @@ class Home extends CI_Controller
         $this->load->view('home/index', $data);
         $this->load->view('templates/footer');
     }
-    public function Index_list()
+    public function index_list()
     {
         $this->load->model('m_Dashboard', 'mdh');
 
