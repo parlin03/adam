@@ -45,7 +45,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Tim</span>
-                            <span class="info-box-number"> <?= number_format($this->db->count_all('organik')); ?></span>
+                            <span class="info-box-number"> <?= number_format($this->db->count_all('organik') + $this->db->count_all('soa') + $this->db->count_all('simpul')); ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -193,6 +193,11 @@
                         }
                     }
                 },
+                colors: [
+                    '#ff0000',
+                    '#00ff00',
+                    '#0000ff'
+                ],
                 series: [<?php foreach ($maingraph as $mg) :  ?> {
                             name: '<?= $mg['namakec']; ?>',
                             data: [<?= $mg['total']; ?>]

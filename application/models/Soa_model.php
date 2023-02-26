@@ -6,45 +6,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Soa_model extends CI_Model
 {
 
-    public function panakkukang()
+    public function getSoaKecamatan($limit, $start,  $keyword = null)
     {
-        $this->db->where('namakec', 'panakkukang');
-        return  $this->db->get('soa')->result();
+        // $this->db->where('namakec', $namakec);
+
+        if ($keyword) {
+            $this->db->like('nama', $keyword);
+            $this->db->or_like('noktp', $keyword);
+        }
+
+        return $this->db->get('soa', $limit, $start)->result_array();
     }
-    public function manggala()
+
+    public function countAllSoa($keyword = null)
     {
-        $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
-        count(DISTINCT concat( namakel,rw,rt)) as jrt,
-        COUNT(sex)as 'total', 
-         COUNT(IF(sex = 'Lk',1,NULL)) AS 'Pria',
-         COUNT(IF(sex = 'Pr',1,NULL)) AS 'Wanita'
-         FROM (select idkec,namakec,namakel, rw, rt, sex from dpt)
-          as dummy_table  where namakec = 'manggala' GROUP by namakel
-        ";
-        return  $this->db->query($query)->result();
-    }
-    public function biringkanaya()
-    {
-        $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
-        count(DISTINCT concat( namakel,rw,rt)) as jrt,
-        COUNT(sex)as 'total', 
-         COUNT(IF(sex = 'Lk',1,NULL)) AS 'Pria',
-         COUNT(IF(sex = 'Pr',1,NULL)) AS 'Wanita'
-         FROM (select idkec,namakec,namakel, rw, rt, sex from dpt)
-          as dummy_table  where namakec = 'biringkanaya' GROUP by namakel
-        ";
-        return  $this->db->query($query)->result();
-    }
-    public function tamalanrea()
-    {
-        $query = "SELECT namakec, namakel, count(DISTINCT rw) as jrw, 
-        count(DISTINCT concat( namakel,rw,rt)) as jrt,
-        COUNT(sex)as 'total', 
-         COUNT(IF(sex = 'Lk',1,NULL)) AS 'Pria',
-         COUNT(IF(sex = 'Pr',1,NULL)) AS 'Wanita'
-         FROM (select idkec,namakec,namakel, rw, rt, sex from dpt)
-          as dummy_table  where namakec = 'tamalanrea' GROUP by namakel
-        ";
-        return  $this->db->query($query)->result();
+        // $this->db->where('namakec', $namakec);
+
+        if ($keyword) {
+            $this->db->like('nama', $keyword);
+            $this->db->or_like('noktp', $keyword);
+        }
+
+        return $this->db->count_all_results('soa');
     }
 }

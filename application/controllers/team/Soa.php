@@ -11,60 +11,37 @@ class Soa extends CI_Controller
     }
 
 
-    public function Panakkukang()
+
+    public function index()
     {
-        $namakec = 'panakkukang';
-        $data['title'] = 'Data Team SoA Kec. ' . ucfirst($namakec);
+        $data['title'] = 'Data Team SoA';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        $this->load->model('Soa_model', 'soa');
 
-        $data['soa'] = $this->db->get_where('soa', ['namakec' => $namakec])->result();
+        // load library pagination
+        $this->load->library('pagination');
 
-        $this->load->helper('url');       //pointer sidebar
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('team/soa/index', $data);
-        $this->load->view('templates/footer');
-    }
-    public function Manggala()
-    {
-        $namakec = 'manggala';
-        $data['title'] = 'Data Team SoA Kec. ' . ucfirst($namakec);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        // ambil data keyword
+        if ($this->input->post('submit')) {
+            $data['keyword'] = $this->input->post('keyword');
+            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
+        } else {
+            $data['keyword'] =  $this->session->userdata('keyword');
+        }
 
-        $data['soa'] = $this->db->get_where('soa', ['namakec' => $namakec])->result();
+        // config pagination
+        $config['base_url'] = base_url('team/soa/index');
+        $config['total_rows'] = $this->soa->countAllSoa($data['keyword']);
+        $data['total_rows'] = $config['total_rows'];
+        $config['per_page'] = 5;
 
-        $this->load->helper('url');       //pointer sidebar
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('team/soa/index', $data);
-        $this->load->view('templates/footer');
-    }
-    public function Biringkanaya()
-    {
-        $namakec = 'biringkanaya';
-        $data['title'] = 'Data Team SoA Kec. ' . ucfirst($namakec);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        // initialize pagination
+        $this->pagination->initialize($config);
 
-        $data['soa'] = $this->db->get_where('soa', ['namakec' => $namakec])->result();
+        // echo $this->pagination->create_links();
+        $data['start'] = $this->uri->segment(4);
+        $data['soa'] = $this->soa->getSoaKecamatan($config['per_page'], $data['start'],  $data['keyword']);
 
-        $this->load->helper('url');       //pointer sidebar
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('team/soa/index', $data);
-        $this->load->view('templates/footer');
-    }
-    public function Tamalanrea()
-    {
-        $namakec = 'tamalanrea';
-        $data['title'] = 'Data Team SoA Kec. ' . ucfirst($namakec);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
-        $data['soa'] = $this->db->get_where('soa', ['namakec' => $namakec])->result();
-
-        $this->load->helper('url');       //pointer sidebar
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
