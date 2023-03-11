@@ -84,9 +84,9 @@
                                                         <td class="border"><?= $row['program'] ?></td>
                                                         <td class="border"><?= $row['tanggapan'] ?></td>
                                                         <td class="border"><?= $row['name'] ?></td>
-                                                        <td class="border text-center">
+                                                        <!-- <td class="border text-center">
                                                             <a href="" class="btn btn-primary" data-toggle="modal" data-target="#detailModal<?= $row['id'] ?>">Details</a>
-                                                        </td>
+                                                        </td> -->
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>
