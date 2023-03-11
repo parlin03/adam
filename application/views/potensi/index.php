@@ -30,7 +30,7 @@
                                        <div>
                                            <div class="panel panel-primary">
                                                <div class="panel-body">
-                                                   <div id="container" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
+                                                   <div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
                                                </div>
                                            </div>
                                        </div>
@@ -55,59 +55,47 @@
    <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
    <!-- end load library -->
    <script type="text/javascript">
-       $(function() {
-           var chart;
-           $(document).ready(function() {
-               $.getJSON("<?php echo site_url('potensi/chart/Index_list'); ?>", function(json) {
-
-                   chart0 = new Highcharts.Chart({
-                       chart: {
-                           renderTo: 'container',
-                           type: 'pie'
-                       },
-                       title: {
-                           text: ''
-                       },
-                       xAxis: {
-                           categories: ['Panakkukang', 'Biringkanaya', 'Manggala', 'Tamalanrea', 'unknown']
-                       },
-                       yAxis: {
-                           title: {
-                               text: 'Total DPT'
+       $(document).ready(function() {
+           var options = {
+               chart: {
+                   renderTo: 'mygraph',
+                   plotBackgroundColor: null,
+                   plotBorderWidth: null,
+                   plotShadow: false
+               },
+               title: {
+                   text: 'Web Sales & Marketing Efforts'
+               },
+               tooltip: {
+                   formatter: function() {
+                       return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                   }
+               },
+               plotOptions: {
+                   pie: {
+                       allowPointSelect: true,
+                       cursor: 'pointer',
+                       dataLabels: {
+                           enabled: true,
+                           color: '#000000',
+                           connectorColor: 'green',
+                           formatter: function() {
+                               return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) + ' % ';
                            }
                        },
-                       labels: {
-                           items: [{
-                               html: '',
-                               style: {
-                                   left: '50px',
-                                   top: '18px',
-                                   color: ( // theme
-                                       Highcharts.defaultOptions.title.style &&
-                                       Highcharts.defaultOptions.title.style.color
-                                   ) || 'black'
-                               }
-                           }]
-                       },
-                       plotOptions: {
-                           pie: {
-                               allowPointSelect: true,
-                               cursor: 'pointer',
-                               dataLabels: {
-                                   enabled: true,
-                                   format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                               }
-                           }
-                       },
+                       showInLegend: true
+                   }
+               },
+               series: [{
+                   type: 'pie',
+                   name: 'Browser share',
+                   data: []
+               }]
+           }
 
-
-
-
-
-                       series: json
-                   });;
-               });
-
+           $.getJSON("<?php echo site_url('potensi/chart/Index_list'); ?>", function(json) {
+               options.series[0].data = json;
+               chart = new Highcharts.Chart(options);
            });
 
        });
