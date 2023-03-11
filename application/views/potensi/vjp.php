@@ -59,7 +59,7 @@
                                                 <th class="border">Action</th>
                                             </thead>
                                             <tbody>
-                                                <?php if (empty($bpum)) : ?>
+                                                <?php if (empty($verifikasi)) : ?>
                                                     <tr>
                                                         <td colspan="7">
                                                             <div class="alert alert-danger" role="alert">
