@@ -48,6 +48,7 @@
                                             <thead class="text-center">
                                                 <th class="border">#</th>
                                                 <th class="border">NIK</th>
+                                                <th class="border">Nama</th>
                                                 <th class="border">Alamat</th>
                                                 <th class="border">Kelurahan</th>
                                                 <th class="border">Kecamatan</th>
@@ -56,7 +57,7 @@
                                                 <th class="border">Tanggapan</th>
                                                 <th class="border">Rekomendasi</th>
                                                 <!-- <th class="border">REKOMENDASI</th> -->
-                                                <th class="border">Action</th>
+                                                <!-- <th class="border">Action</th> -->
                                             </thead>
                                             <tbody>
                                                 <?php if (empty($verifikasi)) : ?>
