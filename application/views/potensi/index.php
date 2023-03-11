@@ -30,7 +30,52 @@
                                        <div>
                                            <div class="panel panel-primary">
                                                <div class="panel-body">
-                                                   <div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
+                                                   <div class="row">
+                                                       <div class="col-md-8">
+
+                                                           <div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
+                                                       </div>
+                                                       <div class="col-md-4">
+                                                           <div class="table-responsive">
+                                                               <table class="table table-bordered table-striped table-hover text-dark  ">
+                                                                   <thead class="text-center">
+                                                                       <th class="border">Tanggapan</th>
+                                                                       <th class="border">Jumlah</th>
+                                                                       <!-- <th class="border">REKOMENDASI</th> -->
+                                                                       <!-- <th class="border">Action</th> -->
+                                                                   </thead>
+                                                                   <tbody>
+                                                                       <?php if (empty($potensi)) : ?>
+                                                                           <tr>
+                                                                               <td colspan="7">
+                                                                                   <div class="alert alert-danger" role="alert">
+                                                                                       data not found!
+                                                                                   </div>
+                                                                               </td>
+                                                                           </tr>
+                                                                       <?php endif; ?>
+                                                                       <?php
+                                                                        $jtotal = 0;
+                                                                        foreach ($potensi as $row) : ?>
+                                                                           <tr class="text-center">
+
+                                                                               <td class="border"><?= $row->tanggapan; ?></td>
+                                                                               <td class="border"><?= $row->total; ?></td>
+                                                                           </tr>
+                                                                           <?php $jtotal += $row->total; ?>
+                                                                       <?php endforeach; ?>
+
+                                                                   </tbody>
+                                                                   <tfoot>
+                                                                       <tr class="text-center">
+                                                                           <th class="border">Total</th>
+                                                                           <th class="border"><?= $jtotal; ?></th>
+                                                                       </tr>
+                                                                   </tfoot>
+                                                               </table>
+                                                           </div>
+                                                       </div>
+                                                   </div>
                                                </div>
                                            </div>
                                        </div>
@@ -64,7 +109,7 @@
                    plotShadow: false
                },
                title: {
-                   text: 'Web Sales & Marketing Efforts'
+                   text: 'Potensi Jaring Suara'
                },
                tooltip: {
                    formatter: function() {

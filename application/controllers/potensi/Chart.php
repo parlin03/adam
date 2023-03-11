@@ -8,35 +8,38 @@ class Chart extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('Potensi_model', 'chart');
     }
 
     public function Index()
     {
         $data['title'] = 'Chart Potensi Jaring Program';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        $data['potensi'] = $this->chart->getDataPotensi();
         $this->load->helper('url');
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('program/index', $data);
+        $this->load->view('potensi/index', $data);
         $this->load->view('templates/footer');
     }
 
     public function Index_list()
     {
-        $this->load->model('Potensi_model', 'chart');
+
 
         $dpt = $this->chart->getDataPotensi();
         // $categories = array();
         // $categories['name'] = '';
         $rows = array();
-        foreach ($dpt as $r) {
+        foreach ($dpt as $d) {
+            // $rows = array($d->tanggapan, $d->total);
             // $categories['categories'][] = $d->namakec;
-            // $rows['data'][] = $d->total;
-            $row[0] = $r[0];
-            $row[1] = $r[1];
-            array_push($rows, $row);
+            // $row[] = $d->tanggapan;
+            // $row[] = $d->total;
+            array_push($rows, array($d->tanggapan, $d->total));
         }
+        // array_push($rows, $row);
         // array_push($result, $rows); 
         print json_encode($rows, JSON_NUMERIC_CHECK);
     }
