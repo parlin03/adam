@@ -46,7 +46,7 @@ class Jaring_model extends CI_Model
     {
         $this->db->select('kecamatan, count(*) as total');
         $this->db->from('tbl_bpum');
-        $this->db->join('kec', 'kec.namakec = tbl_bpum.kecamatan');
+        $this->db->join('kec', 'kec.namakec = tbl_bpum.kecamatan', 'right');
         $this->db->group_by('kec.namakec');
         $this->db->order_by('kec.idkec');
         $query = $this->db->get();
