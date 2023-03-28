@@ -20,7 +20,7 @@ class Verifikasi_model extends CI_Model
         //     $this->db->where('kecamatan', $namakec);
         // }
 
-        $this->db->join('kec', 'lks_vjp.namakec = kec.idkec');
+        // $this->db->join('kec', 'lks_vjp.namakec = kec.idkec');
         $this->db->join('user', 'lks_vjp.user_id = user.id');
 
 
@@ -29,10 +29,7 @@ class Verifikasi_model extends CI_Model
             // $this->db->or_like('noktp', $keyword);
         }
 
-        $query = $this->db->get('lks_vjp', $limit, $start);
-        // var_dump($query);
-        // die;
-        return $query->result_array();
+        return $this->db->get('lks_vjp', $limit, $start)->result_array();
     }
 
     public function countAll($keyword = null)
