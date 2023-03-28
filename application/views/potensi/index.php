@@ -138,7 +138,7 @@
                }]
            }
 
-           $.getJSON("<?php echo site_url('potensi/chart/Index_list'); ?>", function(json) {
+           $.getJSON("<?php echo site_url('potensi/Chart_list'); ?>", function(json) {
                options.series[0].data = json;
                chart = new Highcharts.Chart(options);
            });

@@ -79,6 +79,7 @@
                                                         <td class="border"><?= $row['nama'] ?></td>
                                                         <td class="border"><?= $row['alamat'] ?></td>
                                                         <td class="border"><?= $row['namakel'] ?></td>
+
                                                         <td class="border"><?= $row['namakec'] ?></td>
                                                         <td class="border"><?= $row['nohp'] ?></td>
                                                         <td class="border"><?= $row['program'] ?></td>
