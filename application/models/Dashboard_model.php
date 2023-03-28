@@ -47,11 +47,10 @@ class Dashboard_model extends CI_Model
 
     public function getDataSaksi()
     {
-        $this->db->select('lks_dtdc.namakec, count(*) as total');
-        $this->db->from('lks_dtdc');
-        $this->db->join('kec', 'kec.namakec = lks_dtdc.namakec');
-        $this->db->where('tanggapan', 'Bersedia');
-        $this->db->group_by('lks_dtdc.namakec');
+        $this->db->select('saksi.namakec, count(*) as total');
+        $this->db->from('saksi');
+        $this->db->join('kec', 'kec.namakec = saksi.namakec');
+        $this->db->group_by('saksi.namakec');
         $this->db->order_by('idkec');
         $query = $this->db->get();
         return $query->result();
@@ -59,11 +58,10 @@ class Dashboard_model extends CI_Model
 
     public function getDataRps()
     {
-        $this->db->select('lks_dtdc.namakec, count(*) as total');
-        $this->db->from('lks_dtdc');
-        $this->db->join('kec', 'kec.namakec = lks_dtdc.namakec');
-        $this->db->where('tanggapan', 'Bersedia');
-        $this->db->group_by('lks_dtdc.namakec');
+        $this->db->select('saksi.namakec, count(*) as total');
+        $this->db->from('saksi');
+        $this->db->join('kec', 'kec.namakec = saksi.namakec');
+        $this->db->group_by('saksi.namakec');
         $this->db->order_by('idkec');
         $query = $this->db->get();
         return $query->result();
