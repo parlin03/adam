@@ -1,6 +1,7 @@
 <?php
 
 use LDAP\Result;
+use phpDocumentor\Reflection\Types\This;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 class Potensi_model extends CI_Model
