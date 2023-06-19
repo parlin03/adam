@@ -36,7 +36,7 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col">Jenis Program</th>
-                                                    <th scope="col">Jumla</th>
+                                                    <th scope="col">Jumlah</th>
                                                     <th scope="col">Capaian</th>
                                                     <th scope="col">Persentase(%)</th>
                                                 </tr>
