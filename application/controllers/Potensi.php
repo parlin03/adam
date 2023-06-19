@@ -121,4 +121,16 @@ class Potensi extends CI_Controller
         $this->load->view('potensi/vjp', $data);
         $this->load->view('templates/footer');
     }
+    public function capaian()
+    {
+        $data['title'] = 'Data Pencapaian Program';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        $data['capaian'] = $this->chart->getDataCapaian();
+        $this->load->helper('url');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/capaian', $data);
+        $this->load->view('templates/footer');
+    }
 }
