@@ -33,4 +33,26 @@ class Dpt_model extends CI_Model
 
         return $this->db->count_all_results('dpt');
     }
+
+    public function getDpt1Kecamatan($limit, $start, $namakec, $keyword = null)
+    {
+
+        if ($keyword) {
+            $this->db->like('nama', $keyword);
+            $this->db->or_like('noktp', $keyword);
+        }
+
+        return $this->db->get('dpt1', $limit, $start)->result_array();
+    }
+
+    public function countAllDpt1($namakec, $keyword = null)
+    {
+
+        if ($keyword) {
+            $this->db->like('nama', $keyword);
+            $this->db->or_like('noktp', $keyword);
+        }
+
+        return $this->db->count_all_results('dpt1');
+    }
 }
