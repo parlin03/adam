@@ -46,16 +46,16 @@
                                                     <th class="border">#</th>
                                                     <th class="border">No. KTP</th>
                                                     <th class="border">NAMA PEMILIH</th>
-                                                    <th class="border">ALAMAT LENGKAP</th>
                                                     <th class="border">TEMPAT LAHIR</th>
                                                     <th class="border">TGL. LAHIR</th>
                                                     <th class="border">STATUS</th>
                                                     <th class="border">JENIS KEL.</th>
-                                                    <th class="border">KECAMATAN</th>
-                                                    <th class="border">KELURAHAN</th>
+                                                    <th class="border">ALAMAT LENGKAP</th>
                                                     <th class="border">RT</th>
                                                     <th class="border">RW</th>
                                                     <th class="border">TPS</th>
+                                                    <th class="border">KECAMATAN</th>
+                                                    <th class="border">KELURAHAN</th>
 
                                                 </tr>
                                             </thead>
@@ -76,16 +76,16 @@
                                                         <th class="text-right"> <?= ++$start; ?> </th>
                                                         <td class="border"><?= $tbl['noktp'] ?></td>
                                                         <td class="border"><?= $tbl['nama'] ?></td>
-                                                        <td class="border"><?= $tbl['alamat'] ?></td>
                                                         <td class="border"><?= $tbl['t4_lahir'] ?></td>
                                                         <td class="border"><?= $tbl['tgl_lahir'] ?></td>
                                                         <td class="border"><?= $tbl['status'] ?></td>
                                                         <td class="border"><?= $tbl['sex'] ?></td>
-                                                        <td class="border"><?= $tbl['namakec'] ?></td>
-                                                        <td class="border"><?= $tbl['namakel'] ?></td>
+                                                        <td class="border"><?= $tbl['alamat'] ?></td>
                                                         <td class="border"><?= $tbl['rt'] ?></td>
                                                         <td class="border"><?= $tbl['rw'] ?></td>
                                                         <td class="border"><?= $tbl['tps'] ?></td>
+                                                        <td class="border"><?= $tbl['namakec'] ?></td>
+                                                        <td class="border"><?= $tbl['namakel'] ?></td>
 
                                                     </tr>
 

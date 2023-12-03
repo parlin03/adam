@@ -59,7 +59,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Potensi</span>
-                            <span class="info-box-number"><?= number_format($this->db->get_Where('lks_vjp', array('tanggapan' => 'Bersedia'))->num_rows() + $this->db->get_Where('lks_dtdc', array('tanggapan' => 'Bersedia'))->num_rows()); ?></span>
+                            <!-- <span class="info-box-number"><?= number_format($this->db->get_Where('lks_vjp', array())->num_rows() + $this->db->get_Where('lks_dtdc', array('tanggapan' => 'Bersedia'))->num_rows()); ?></span> -->
                         </div>
                         <!-- /.info-box-content -->
                     </div>

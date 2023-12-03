@@ -112,16 +112,16 @@ class Dpt extends MY_Controller
                 $data = array(
                     'noktp'         => $sheet_data[$i]['1'],
                     'nama'          => $sheet_data[$i]['2'],
-                    'alamat'        => $sheet_data[$i]['3'],
-                    't4_lahir'      => $sheet_data[$i]['4'],
-                    'tgl_lahir'     => $sheet_data[$i]['5'],
-                    'status'        => $sheet_data[$i]['6'],
-                    'sex'           => $sheet_data[$i]['7'],
-                    'namakec'       => $sheet_data[$i]['8'],
-                    'namakel'       => $sheet_data[$i]['9'],
-                    'rt'            => $sheet_data[$i]['10'],
-                    'rw'            => $sheet_data[$i]['11'],
-                    'tps'           => $sheet_data[$i]['12']
+                    't4_lahir'      => $sheet_data[$i]['3'],
+                    'tgl_lahir'     => $sheet_data[$i]['4'],
+                    'status'        => $sheet_data[$i]['5'],
+                    'sex'           => $sheet_data[$i]['6'],
+                    'alamat'        => $sheet_data[$i]['7'],
+                    'rt'            => $sheet_data[$i]['8'],
+                    'rw'            => $sheet_data[$i]['9'],
+                    'tps'           => $sheet_data[$i]['10'],
+                    'namakec'       => $sheet_data[$i]['11'],
+                    'namakel'       => $sheet_data[$i]['12']
                 );
                 $array_data[] = $data;
             }
