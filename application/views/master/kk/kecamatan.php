@@ -61,7 +61,7 @@
                                 foreach ($kk as $row) {
                                     echo "<tr>";
                                     echo "<td>" . $i . "</td>";
-                                    echo "<td>" . $row->namakel . "</td>";
+                                    echo "<td>" . $row->namakela . "</td>";
                                     echo "<td>" . $row->jrw . "</td>";
                                     echo "<td>" . $row->jrt . "</td>";
                                     echo "<td>" . $row->total . "</td>";

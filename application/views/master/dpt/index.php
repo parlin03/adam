@@ -41,54 +41,50 @@
                         </div>
                         <div class="card-body">
                             <h5>Result: <?= $total_rows; ?></h5>
-                            <div class="row justify-content-center">
-                                <div class="info-box mb-10">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover text-dark  ">
-                                            <thead class="text-center text-light">
-                                                <tr class="bg-primary">
-                                                    <TH>#</th>
-                                                    <TH>NIK</th>
-                                                    <TH>Nama</th>
-                                                    <TH>Alamat</th>
-                                                    <TH>RT</th>
-                                                    <TH>RW</th>
-                                                    <TH>Kelurahan</th>
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-sm table-hover text-nowrap" align="center">
+                                    <thead class=" text-light">
+                                        <tr class="bg-primary">
+                                            <TH>#</th>
+                                            <TH>NIK</th>
+                                            <TH>Nama</th>
+                                            <TH>Alamat</th>
+                                            <TH>RT</th>
+                                            <TH>RW</th>
+                                            <TH>Kelurahan</th>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php if (empty($dpt)) : ?>
-                                                    <tr>
-                                                        <td colspan="7">
-                                                            <div class="alert alert-danger" role="alert">
-                                                                data not found!
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php endif; ?>
-                                                <?php
-                                                foreach ($dpt as $row) : ?>
-                                                    <tr>
-                                                        <th class="text-right"> <?= ++$start; ?> </th>
-                                                        <td class="text-center"> <?= $row['noktp']; ?></td>
-                                                        <td> <?= $row['nama']; ?></td>
-                                                        <td> <?= $row['alamat']; ?></td>
-                                                        <td class="text-center"> <?= $row['rt']; ?></td>
-                                                        <td class="text-center"> <?= $row['rw']; ?></td>
-                                                        <td> <?= $row['namakel']; ?></td>
-                                                    </tr>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($dpt)) : ?>
+                                            <tr>
+                                                <td colspan="7">
+                                                    <div class="alert alert-danger" role="alert">
+                                                        data not found!
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php
+                                        foreach ($dpt as $row) : ?>
+                                            <tr>
+                                                <td> <?= ++$start; ?> </td>
+                                                <td> <?= $row['noktp']; ?></td>
+                                                <td> <?= $row['nama']; ?></td>
+                                                <td> <?= $row['alamat']; ?></td>
+                                                <td> <?= $row['rt']; ?></td>
+                                                <td> <?= $row['rw']; ?></td>
+                                                <td> <?= $row['namakel']; ?></td>
+                                            </tr>
 
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                        <?= $this->pagination->create_links(); ?>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                                <?= $this->pagination->create_links(); ?>
                             </div>
+                            <!-- /.info-box-content -->
                         </div>
+                        <!-- /.info-box -->
                     </div>
                     <!-- /.card -->
                 </div>

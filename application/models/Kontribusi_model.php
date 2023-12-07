@@ -12,20 +12,21 @@ class Kontribusi_model extends CI_Model
 
     public function getDataDpt()
     {
-        $this->db->select('namakec, count(*) as total');
+        $this->db->select('dpt.namakec, count(*) as total');
         $this->db->from('dpt');
+        $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('namakec');
-        $this->db->order_by('iddesa');
+        $this->db->order_by('kec.idkec', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
     public function getDataRekap()
     {
-        $this->db->select('namakec, sum(rekap) as total');
+        $this->db->select('rekap2019.namakec, sum(rekap) as total');
         $this->db->from('rekap2019');
-        $this->db->join('kel', 'kel.namakel = rekap2019.namakel');
+        $this->db->join('kec', 'kec.namakec = rekap2019.namakec');
         $this->db->group_by('namakec');
-        $this->db->order_by('kel.iddesa');
+        $this->db->order_by('kec.idkec', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -34,8 +35,9 @@ class Kontribusi_model extends CI_Model
     {
         $this->db->select('namakec, round((count(*)*8)/100,0) as total');
         $this->db->from('dpt');
+        $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('namakec');
-        $this->db->order_by('iddesa');
+        $this->db->order_by('kec.idkec', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -44,8 +46,9 @@ class Kontribusi_model extends CI_Model
     {
         $this->db->select('namakec, round(((count(*)*8)/100)/3) as total');
         $this->db->from('dpt');
+        $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('namakec');
-        $this->db->order_by('iddesa');
+        $this->db->order_by('kec.idkec', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -54,19 +57,21 @@ class Kontribusi_model extends CI_Model
     {
         $this->db->select('namakec, round(((count(*)*6)/100)) as total');
         $this->db->from('dpt');
+        $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('namakec');
-        $this->db->order_by('iddesa');
+        $this->db->order_by('kec.idkec', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
 
     public function getDataDptKec($namakec)
     {
-        $this->db->select('namakel, count(*) as total');
+        $this->db->select('dpt.namakel, count(*) as total');
         $this->db->from('dpt');
         $this->db->where('namakec', $namakec);
-        $this->db->group_by('namakel');
-        $this->db->order_by('iddesa');
+        $this->db->join('kel', 'kel.namakel = dpt.namakel');
+        $this->db->group_by('kel.iddesa');
+        $this->db->order_by('kel.iddesa');
         $query = $this->db->get();
         return $query->result();
     }
@@ -85,33 +90,36 @@ class Kontribusi_model extends CI_Model
 
     public function getDataTargetKec($namakec)
     {
-        $this->db->select('namakel, round((count(*)*8)/100,0) as total');
+        $this->db->select('dpt.namakel, round((count(*)*8)/100,0) as total');
         $this->db->from('dpt');
         $this->db->where('namakec', $namakec);
-        $this->db->group_by('namakel');
-        $this->db->order_by('iddesa');
+        $this->db->join('kel', 'kel.namakel = dpt.namakel');
+        $this->db->group_by('kel.iddesa');
+        $this->db->order_by('kel.iddesa');
         $query = $this->db->get();
         return $query->result();
     }
 
     public function getDataTeamKec($namakec)
     {
-        $this->db->select('namakel, round(((count(*)*8)/100)/3,0) as total');
+        $this->db->select('dpt.namakel, round(((count(*)*8)/100)/3,0) as total');
         $this->db->from('dpt');
         $this->db->where('namakec', $namakec);
-        $this->db->group_by('namakel');
-        $this->db->order_by('iddesa');
+        $this->db->join('kel', 'kel.namakel = dpt.namakel');
+        $this->db->group_by('kel.iddesa');
+        $this->db->order_by('kel.iddesa');
         $query = $this->db->get();
         return $query->result();
     }
 
     public function getDataRpsKec($namakec)
     {
-        $this->db->select('namakel, round(((count(*)*6)/100),0) as total');
+        $this->db->select('dpt.namakel, round(((count(*)*6)/100),0) as total');
         $this->db->from('dpt');
         $this->db->where('namakec', $namakec);
-        $this->db->group_by('namakel');
-        $this->db->order_by('iddesa');
+        $this->db->join('kel', 'kel.namakel = dpt.namakel');
+        $this->db->group_by('kel.iddesa');
+        $this->db->order_by('kel.iddesa');
         $query = $this->db->get();
         return $query->result();
     }

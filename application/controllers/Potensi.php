@@ -48,41 +48,6 @@ class Potensi extends CI_Controller
         print json_encode($rows, JSON_NUMERIC_CHECK);
     }
 
-    public function dtdc()
-    {
-        $data['title'] = 'DTDC Potensi Jaring Program';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
-        // load library pagination
-        $this->load->library('pagination');
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
-        }
-
-        // config pagination
-        $config['base_url'] = base_url('potensi/dtdc/');
-        $config['total_rows'] = $this->dtdc->countAll($data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 5;
-
-        // initialize pagination
-        $this->pagination->initialize($config);
-
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(3);
-        $data['dtdc'] = $this->dtdc->getDtdc($config['per_page'], $data['start'], $data['keyword']);
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('potensi/dtdc', $data);
-        $this->load->view('templates/footer');
-    }
 
     public function verifikasi()
     {
@@ -132,5 +97,71 @@ class Potensi extends CI_Controller
         $this->load->view('templates/topbar', $data);
         $this->load->view('potensi/capaian', $data);
         $this->load->view('templates/footer');
+    }
+
+    ###############DTDC####################################################################################################################
+
+    public function dtdc()
+    {
+        $data['title'] = 'DTDC Potensi Jaring Program';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+
+        $data['pencapaian'] = $this->dtdc->getPencapaian(); //array banyak
+        $data['pencapaiantim'] = $this->dtdc->getPencapaianTim(); //array banyak
+        // load library pagination
+        $this->load->library('pagination');
+
+        // ambil data keyword
+        if ($this->input->post('submit')) {
+            $data['keyword'] = $this->input->post('keyword');
+            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
+        } else {
+            $data['keyword'] =  $this->session->userdata('keyword');
+        }
+
+        // config pagination
+        $config['base_url'] = base_url('potensi/dtdc/');
+        $config['total_rows'] = $this->dtdc->countAll($data['keyword']);
+        $data['total_rows'] = $config['total_rows'];
+        $config['per_page'] = 5;
+
+        // initialize pagination
+        $this->pagination->initialize($config);
+
+        // echo $this->pagination->create_links();
+        $data['start'] = $this->uri->segment(3);
+        $data['dtdc'] = $this->dtdc->getDtdc($config['per_page'], $data['start'], $data['keyword']);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc', $data);
+        $this->load->view('templates/footer');
+    }
+    public function Dtdc_list()
+    {
+
+        $target = $this->dtdc->getDataTarget();
+        $rows1 = array();
+        $rows1['name'] = 'Target';
+        $rows1['type'] = 'column';
+        foreach ($target as $t) {
+            $rows1['data'][] =  $t->total;
+        }
+        $Capaian = $this->dtdc->getDataCapaian();
+        $rows2 = array();
+        $rows2['name'] = 'Capaian';
+        $rows2['type'] = 'line';
+        foreach ($Capaian as $c) {
+            $rows2['data'][] =  $c->total;
+        }
+
+        $result = array();
+
+        array_push($result, $rows1);
+        array_push($result, $rows2);
+
+        print json_encode($result, JSON_NUMERIC_CHECK);
     }
 }

@@ -25,17 +25,14 @@
                  <div class="col-md-12">
                      <div class="card">
                          <div class="card-body">
-                             <div class="row ">
-                                 <div class="container" style="margin-top:20px">
-                                     <div>
-                                         <div class="panel panel-primary">
-                                             <div class="panel-body">
-                                                 <div id="container" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
-                                             </div>
-                                         </div>
+                             <div class="row">
+                                 <div class="col-md-12">
+                                     <div class="container" style=" height: 480px; margin: 0 auto">
+                                         <div id="container"></div>
                                      </div>
                                  </div>
                              </div>
+                             <!-- /.row -->
                          </div>
                      </div>
                      <!-- /.card -->
@@ -71,7 +68,7 @@
                          text: 'Kontribusi Pemilih Terhadap Target Suara'
                      },
                      xAxis: {
-                         categories: ['Panakkukang', 'Biringkanaya', 'Manggala', 'Tamalanrea']
+                         categories: ['<a href="<?= base_url('master/kontribusi/panakkukang'); ?>">Panakkukang</a>', '<a href="<?= base_url('master/kontribusi/biringkanaya'); ?>">Biringkanaya</a>', '<a href="<?= base_url('master/kontribusi/manggala'); ?>">Manggala</a>', '<a href="<?= base_url('master/kontribusi/tamalanrea'); ?>">Tamalanrea</a>']
                      },
                      yAxis: {
                          title: {
@@ -103,6 +100,7 @@
                      },
                      series: json
                  });;
+
              });
 
          });

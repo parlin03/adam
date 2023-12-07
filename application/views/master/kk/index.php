@@ -59,7 +59,7 @@
                                 foreach ($kk as $row) {
                                     echo "<tr>";
                                     echo "<td>" . $i . "</td>";
-                                    echo "<td><a class='collapse-item active' href=" . base_url('master/kk/' . $row->namakec) . ">" . $row->namakec . "</a></td>";
+                                    echo "<td><a class='collapse-item active' href=" . base_url('master/kk/' . $row->namakeca) . ">" . $row->namakeca . "</a></td>";
                                     // echo "<td>" . $row->jkel . "</td>";
                                     echo "<td>" . $row->tjnokk . "</td>";
                                     echo "<td>" . $row->kk1 . "</td>";

@@ -34,6 +34,9 @@
     <script src="<?php echo base_url('assets/jquery/jquery-2.2.3.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js') ?>"></script>
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+
 </head>
 
 <body class="hold-transition skin-blue fixed sidebar-mini sidebar-mini-expand-feature layout-fixed layout-navbar-fixed layout-footer-fixed" style=" height: auto; min-height: 100%;">
