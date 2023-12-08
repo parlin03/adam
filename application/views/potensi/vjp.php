@@ -179,3 +179,55 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+ <!-- load library jquery dan highcharts -->
+ <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
+   <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+   <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
+   <!-- end load library -->
+   <script type="text/javascript">
+       $(document).ready(function() {
+           var options = {
+               chart: {
+                   renderTo: 'mygraph',
+                   plotBackgroundColor: null,
+                   plotBorderWidth: null,
+                   plotShadow: false
+               },
+               title: {
+                   text: 'Potensi Jaring Suara'
+               },
+               tooltip: {
+                   formatter: function() {
+                       return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                   }
+               },
+               plotOptions: {
+                   pie: {
+                       allowPointSelect: true,
+                       cursor: 'pointer',
+                       dataLabels: {
+                           enabled: true,
+                           color: '#000000',
+                           connectorColor: 'green',
+                           formatter: function() {
+                               return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) + ' % ';
+                           }
+                       },
+                       showInLegend: true
+                   }
+               },
+               series: [{
+                   type: 'pie',
+                   name: 'Browser share',
+                   data: []
+               }]
+           }
+
+           $.getJSON("<?php echo site_url('potensi/Verifikasi_list'); ?>", function(json) {
+               options.series[0].data = json;
+               chart = new Highcharts.Chart(options);
+           });
+
+       });
+   </script>
