@@ -209,7 +209,7 @@
 
                             <table class="table table-hover text-nowrap" align="center">
 
-                                <thead class="text-center">
+                                <thead>
                                     <TH>#</th>
                                     <TH>DPT</th>
                                     <th>Rekomendasi</th>
@@ -234,7 +234,7 @@
                                             <br><b><?= $m['nama']; ?></b>
                                             <br><?= $m['alamat']; ?> Kec. <?= $m['namakel']; ?> Kel. <?= $m['namakec']; ?>
                                             <br>RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> TPS. <?= $m['tps']; ?>
-                                            <br><?= $m['nohp']; ?></td>
+                                            <br>No. Telpon : <?= $m['nohp']; ?></td>
                                             <!-- <td style="width: 150px">
 
                                                 <a href="https://dtdc.sonsofadam.org/assets/img/dtdc/<?= $m['image']; ?>" class="portfolio-popup">
