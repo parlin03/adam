@@ -230,7 +230,7 @@
                                         <tr>
 
                                             <th class="text-center" scope="row"><?= ++$start; ?></th>
-                                            <td><br><?= $m['noktp']; ?>
+                                            <td><?= $m['noktp']; ?>
                                             <br><b><?= $m['nama']; ?></b>
                                             <br><?= $m['alamat']; ?> Kec. <?= $m['namakel']; ?> Kel. <?= $m['namakec']; ?>
                                             <br>RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> TPS. <?= $m['tps']; ?>
