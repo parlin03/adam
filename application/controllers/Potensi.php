@@ -15,46 +15,14 @@ class Potensi extends CI_Controller
         $this->load->model('Verifikasi_model', 'verifikasi');
     }
 
-    public function Chart()
-    {
-        $data['title'] = 'Chart Potensi Jaring Program';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-        $data['potensi'] = $this->chart->getDataPotensi();
-        $this->load->helper('url');
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('potensi/index', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function Chart_list()
-    {
-
-
-        $dpt = $this->chart->getDataPotensi();
-        // $categories = array();
-        // $categories['name'] = '';
-        $rows = array();
-        foreach ($dpt as $d) {
-            // $rows = array($d->tanggapan, $d->total);
-            // $categories['categories'][] = $d->namakec;
-            // $row[] = $d->tanggapan;
-            // $row[] = $d->total;
-            array_push($rows, array($d->tanggapan, $d->total));
-        }
-        // array_push($rows, $row);
-        // array_push($result, $rows); 
-        print json_encode($rows, JSON_NUMERIC_CHECK);
-    }
-
-
     public function verifikasi()
     {
         $data['title'] = 'Verifikasi Potensi Jaring Program';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
+       
+        $data['potensi'] = $this->chart->getDataPotensi();
         // load library pagination
+        $this->load->helper('url');
         $this->load->library('pagination');
 
         // ambil data keyword
@@ -86,6 +54,27 @@ class Potensi extends CI_Controller
         $this->load->view('potensi/vjp', $data);
         $this->load->view('templates/footer');
     }
+
+    public function Verifikasi_list()
+    {
+
+
+        $dpt = $this->chart->getDataPotensi();
+        // $categories = array();
+        // $categories['name'] = '';
+        $rows = array();
+        foreach ($dpt as $d) {
+            // $rows = array($d->tanggapan, $d->total);
+            // $categories['categories'][] = $d->namakec;
+            // $row[] = $d->tanggapan;
+            // $row[] = $d->total;
+            array_push($rows, array($d->tanggapan, $d->total));
+        }
+        // array_push($rows, $row);
+        // array_push($result, $rows); 
+        print json_encode($rows, JSON_NUMERIC_CHECK);
+    }
+
     public function capaian()
     {
         $data['title'] = 'Data Pencapaian Program';
