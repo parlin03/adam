@@ -136,7 +136,7 @@
                             <table class="table table-sm table-hover text-nowrap" align="center">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">#</th>
+                                        <th>#</th>
                                         <th>Kecamatan</th>
                                         <th class="text-center">Jumlah</th>
                                     </tr>
@@ -147,8 +147,7 @@
                                 <?php foreach ($pencapaiantim as $ct) : ?>
                                     <tbody>
                                         <tr>
-                                            <th class="text-center" scope="row"><?= $i; ?>
-                                            </th>
+                                            <td><?= $i; ?></td>
                                             <td><?= $ct['name']; ?></td>
                                             <td class="text-center"><?= $ct['total']; ?></td>
                                         </tr>
@@ -227,8 +226,7 @@
                                     <?php
                                     foreach ($dtdc as $m) : ?>
                                         <tr>
-
-                                            <th class="text-center" scope="row"><?= ++$start; ?></th>
+                                            <td><?= ++$start; ?></td>
                                             <td><?= $m['noktp']; ?>
                                             <br><b><?= $m['nama']; ?></b>
                                             <br><?= $m['alamat']; ?> Kec. <?= $m['namakel']; ?> Kel. <?= $m['namakec']; ?>
