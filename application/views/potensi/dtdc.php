@@ -211,16 +211,7 @@
 
                                 <thead class="text-center">
                                     <TH>#</th>
-                                    <TH>NIK</th>
-                                    <TH>Nama</th>
-                                    <TH>Alamat</th>
-                                    <TH>Kelurahan</th>
-                                    <TH>Kecamatan</th>
-                                    <TH>RT</th>
-                                    <TH>RW</th>
-                                    <TH>TPS</th>
-                                    <TH>No Telpon</th>
-                                    <TH>Foto KTP</th>
+                                    <TH>DPT</th>
                                     <th>Rekomendasi</th>
                                 </thead>
                                 <tbody>
@@ -239,21 +230,21 @@
                                         <tr class="text-center">
 
                                             <th class="text-center" scope="row"><?= ++$start; ?></th>
-                                            <td><?= $m['noktp']; ?></td>
-                                            <td><?= $m['nama']; ?></td>
-                                            <td style="width: 200px"><?= $m['alamat']; ?></td>
-                                            <td><?= $m['namakel']; ?></td>
-                                            <td><?= $m['namakec']; ?></td>
-                                            <td><?= $m['rt']; ?></td>
-                                            <td><?= $m['rw']; ?></td>
-                                            <td><?= $m['tps']; ?></td>
-                                            <td><?= $m['nohp']; ?></td>
-                                            <td style="width: 150px">
+                                            <br><?= $m['noktp']; ?>
+                                            <br><b><?= $m['nama']; ?></b>
+                                            <br><?= $m['alamat']; ?>
+                                            <br><?= $m['namakel']; ?>
+                                            <br><?= $m['namakec']; ?>
+                                            <br><?= $m['rt']; ?>
+                                            <br><?= $m['rw']; ?>
+                                            <br><?= $m['tps']; ?>
+                                            <br><?= $m['nohp']; ?>
+                                            <!-- <td style="width: 150px">
 
                                                 <a href="https://dtdc.sonsofadam.org/assets/img/dtdc/<?= $m['image']; ?>" class="portfolio-popup">
                                                     <img src="public_html/dtdc.sonsofadam.org/assets/img/dtdc<?= $m['image']; ?>" class="img-thumbnail" />
                                                 </a>
-                                            </td>
+                                            </td> -->
 
                                             <td><?= $m['name'] ?></td>
                                         </tr>
