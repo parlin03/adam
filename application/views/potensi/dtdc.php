@@ -22,7 +22,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <div class="card">
                         <div class="card-header border-0">
                             <!-- <div class="d-flex justify-content-between"> -->
@@ -68,7 +68,7 @@
 
                 </div>
                 <!-- /.col-md-6 -->
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <!-- Info Boxes Style 2 -->
                     <!--  -->
                     <!-- /.info-box -->
@@ -82,7 +82,7 @@
                             <table class="table table-sm table-hover text-nowrap" align="center">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">#</th>
+                                        <th>#</th>
                                         <th>Kecamatan</th>
                                         <th class="text-center">Terdaftar</th>
                                         <th class="text-center">Total DPT</th>
@@ -96,8 +96,7 @@
                                 <?php foreach ($pencapaian as $cp) : ?>
                                     <tbody>
                                         <tr>
-                                            <th class="text-center" scope="row"><?= $i; ?>
-                                            </th>
+                                            <td><?= $i; ?></td>
                                             <td><?= $cp['namakec']; ?></td>
                                             <td class="text-center"><?= $cp['total']; ?></td>
                                             <td class="text-center"><?= $cp['totaldpt']; ?></td>
