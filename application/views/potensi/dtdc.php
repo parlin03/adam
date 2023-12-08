@@ -232,12 +232,8 @@
                                             <th class="text-center" scope="row"><?= ++$start; ?></th>
                                             <br><?= $m['noktp']; ?>
                                             <br><b><?= $m['nama']; ?></b>
-                                            <br><?= $m['alamat']; ?>
-                                            <br><?= $m['namakel']; ?>
-                                            <br><?= $m['namakec']; ?>
-                                            <br><?= $m['rt']; ?>
-                                            <br><?= $m['rw']; ?>
-                                            <br><?= $m['tps']; ?>
+                                            <br><?= $m['alamat']; ?> Kec. <?= $m['namakel']; ?> Kel. <?= $m['namakec']; ?>
+                                            <br>RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> TPS. <?= $m['tps']; ?>
                                             <br><?= $m['nohp']; ?>
                                             <!-- <td style="width: 150px">
 
