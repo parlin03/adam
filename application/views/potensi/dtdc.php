@@ -230,11 +230,11 @@
                                         <tr class="text-center">
 
                                             <th class="text-center" scope="row"><?= ++$start; ?></th>
-                                            <br><?= $m['noktp']; ?>
+                                            <td><br><?= $m['noktp']; ?>
                                             <br><b><?= $m['nama']; ?></b>
                                             <br><?= $m['alamat']; ?> Kec. <?= $m['namakel']; ?> Kel. <?= $m['namakec']; ?>
                                             <br>RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> TPS. <?= $m['tps']; ?>
-                                            <br><?= $m['nohp']; ?>
+                                            <br><?= $m['nohp']; ?></td>
                                             <!-- <td style="width: 150px">
 
                                                 <a href="https://dtdc.sonsofadam.org/assets/img/dtdc/<?= $m['image']; ?>" class="portfolio-popup">
