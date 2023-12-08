@@ -33,7 +33,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataTarget()
     {
-        $this->db->select('namakec, round((count(*)*8)/100,0) as total');
+        $this->db->select('kec.namakec, round((count(*)*8)/100,0) as total');
         $this->db->from('dpt');
         $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('namakec');
@@ -44,7 +44,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataTeam()
     {
-        $this->db->select('namakec, round(((count(*)*8)/100)/3) as total');
+        $this->db->select('kec.namakec, round(((count(*)*8)/100)/3) as total');
         $this->db->from('dpt');
         $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('namakec');
@@ -55,7 +55,7 @@ class Kontribusi_model extends CI_Model
 
     public function getDataRps()
     {
-        $this->db->select('namakec, round(((count(*)*6)/100)) as total');
+        $this->db->select('kec.namakec, round(((count(*)*6)/100)) as total');
         $this->db->from('dpt');
         $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('namakec');
