@@ -227,7 +227,7 @@
                                     <?php $i = 1; ?>
                                     <?php
                                     foreach ($dtdc as $m) : ?>
-                                        <tr class="text-center">
+                                        <tr>
 
                                             <th class="text-center" scope="row"><?= ++$start; ?></th>
                                             <td><br><?= $m['noktp']; ?>
