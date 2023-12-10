@@ -19,7 +19,7 @@ class Potensi extends CI_Controller
     {
         $data['title'] = 'Verifikasi Potensi Jaring Program';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-       
+
         $data['potensi'] = $this->chart->getDataPotensi();
         // load library pagination
         $this->load->helper('url');
@@ -152,5 +152,56 @@ class Potensi extends CI_Controller
         array_push($result, $rows2);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
+    }
+    public function tps()
+    {
+        $data['title'] = 'Pasukan Timur';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['kec'] = $this->uri->segment(3);
+        $data['kelurahan'] = $this->dtdc->getKelurahan($data['kec']);
+        $data['PencapaianKec'] = $this->dtdc->getPencapaianKec($data['kec']); //array banyak
+        // load library pagination
+        $this->load->library('pagination');
+
+        // ambil data keyword
+        // if ($this->input->post('submit')) {
+        //     $data['keyword'] = $this->input->post('keyword');
+        //     $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
+        // } else {
+        //     $data['keyword'] =  $this->session->userdata('keyword');
+        // }
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/tps', $data);
+        $this->load->view('templates/footer');
+    }
+    public function team()
+    {
+        $data['title'] = 'Pasukan Timur';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+
+        $data['pencapaiantimall'] = $this->dtdc->getPencapaianTimAll(); //array banyak
+        // load library pagination
+        $this->load->library('pagination');
+
+        // ambil data keyword
+        // if ($this->input->post('submit')) {
+        //     $data['keyword'] = $this->input->post('keyword');
+        //     $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
+        // } else {
+        //     $data['keyword'] =  $this->session->userdata('keyword');
+        // }
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/team', $data);
+        $this->load->view('templates/footer');
     }
 }

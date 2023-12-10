@@ -97,7 +97,7 @@
                                     <tbody>
                                         <tr>
                                             <td><?= $i; ?></td>
-                                            <td><?= $cp['namakec']; ?></td>
+                                            <td><a href="<?= base_url('potensi/tps/') . $cp['namakec']; ?>"><?= $cp['namakec']; ?></a></td>
                                             <td class="text-center"><?= $cp['total']; ?></td>
                                             <td class="text-center"><?= $cp['totaldpt']; ?></td>
                                             <td class="text-center"><?= number_format((($cp['total'] * 100) / $cp['totaldpt']), 2); ?> %</td>
@@ -127,7 +127,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Capaian Tim</h3>
+                            <h3 class="card-title"><a href="<?= base_url('potensi/team'); ?>">Capaian Tim</a></h3>
                         </div>
                         <!-- /.card-header -->
 
