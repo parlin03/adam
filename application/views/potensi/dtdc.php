@@ -55,7 +55,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="container" style=" height: 480px; margin: 0 auto">
+                                    <div class="container" style=" height: 460px; margin: 0 auto">
                                         <div id="container"></div>
                                     </div>
                                 </div>
@@ -210,7 +210,7 @@
                                 <thead>
                                     <TH>#</th>
                                     <TH>DPT</th>
-                                    <th>Rekomendasi</th>
+                                    <th>PIC</th>
                                 </thead>
                                 <tbody>
                                     <?php if (empty($dtdc)) : ?>
@@ -228,10 +228,11 @@
                                         <tr>
                                             <td><?= ++$start; ?></td>
                                             <td><?= $m['noktp']; ?>
-                                            <br><b><?= $m['nama']; ?></b>
-                                            <br><?= $m['alamat']; ?> Kec. <?= $m['namakel']; ?> Kel. <?= $m['namakec']; ?>
-                                            <br>RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> TPS. <?= $m['tps']; ?>
-                                            <br>No. Telpon : <?= $m['nohp']; ?></td>
+                                                <br><b><?= $m['nama']; ?></b>
+                                                <br><?= $m['alamat']; ?> RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> Kel. <?= $m['namakel']; ?> Kec. <?= $m['namakec']; ?>
+                                                <b>TPS. <?= $m['tps']; ?></b>
+                                                <br>No. Telpon : <?= $m['nohp']; ?>
+                                            </td>
                                             <!-- <td style="width: 150px">
 
                                                 <a href="https://dtdc.sonsofadam.org/assets/img/dtdc/<?= $m['image']; ?>" class="portfolio-popup">

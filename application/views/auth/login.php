@@ -1,6 +1,6 @@
 <div class="login-box">
     <div class="login-logo">
-         <!-- <a href="../../index2.html"><b>ADAM</b></a>-->
+        <!-- <a href="../../index2.html"><b>ADAM</b></a>-->
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -10,8 +10,8 @@
 
             <form class="user" method="POST" action="<?= base_url('auth'); ?>">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?= set_value('email') ?>">
-                    <?= form_error('email', '<small class="text-danger pl-3" >', '</small>'); ?>
+                    <!-- <input type="email" class="form-control" id="email" name="email" placeholder="Username or Email" value="<?= set_value('email') ?>"> -->
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Username or Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>

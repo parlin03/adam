@@ -38,7 +38,7 @@ class Dtdc_model extends CI_Model
 
     public function getPencapaian()
     {
-        $this->db->select('dpt.namakec, count(lks_dtdc.noktp) as total, , totaldpt');
+        $this->db->select('dpt.namakec, count(lks_dtdc.noktp) as total, totaldpt');
         $this->db->from('dpt');
         $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id');
         $this->db->join('kec', 'kec.namakec = dpt.namakec');
@@ -73,7 +73,7 @@ class Dtdc_model extends CI_Model
             $this->db->or_like('lks_dtdc.noktp', $keyword);
         }
 
-
+        $this->db->order_by('lks_dtdc.id', 'DESC');
 
 
         return $this->db->get('lks_dtdc', $limit, $start)->result_array();

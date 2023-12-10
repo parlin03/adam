@@ -32,7 +32,11 @@ class Auth extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+        $wherecond = " ( username ='" . $email . "' OR email='" . $email . "')  ";
+        $this->db->where($wherecond);
+        $user = $this->db->get('user')->row_array();
+
+
         // var_dump($user);
         // die;
         // jika user ada
