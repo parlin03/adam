@@ -56,7 +56,7 @@ class Dtdc_model extends CI_Model
     public function getPencapaianKec($kec)
     {
 
-        if ($kec == 'PANAKKUKANG') {
+        if ($kec == 'panakkukang') {
             $query = "select tps, 
                 count(if(dummy_table.namakel= 'Karuwisi',dtdcktp,NULL)) AS 'C0', 
                 count(if(dummy_table.namakel= 'Panaikang',dtdcktp,NULL)) AS 'C1', 
@@ -73,7 +73,7 @@ class Dtdc_model extends CI_Model
                 FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp join kel on kel.namakel = dpt.namakel) 
                 as dummy_table WHERE namakec ='Panakkukang' group by dummy_table.tps ORDER by tps asc";
         }
-        if ($kec == 'BIRINGKANAYA') {
+        if ($kec == 'biringkanaya') {
             $query = "select tps, 
         count(if(dummy_table.namakel= 'Paccerakkang',dtdcktp,NULL)) AS 'C0', 
         count(if(dummy_table.namakel= 'Daya',dtdcktp,NULL)) AS 'C1', 
@@ -90,7 +90,7 @@ class Dtdc_model extends CI_Model
         FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp join kel on kel.namakel = dpt.namakel) 
         as dummy_table WHERE namakec ='BIRINGKANAYA' group by dummy_table.tps ORDER by tps asc";
         }
-        if ($kec == 'MANGGALA') {
+        if ($kec == 'manggala') {
             $query = "select tps, 
         count(if(dummy_table.namakel= 'Manggala',dtdcktp,NULL)) AS 'C0', 
         count(if(dummy_table.namakel= 'Bangkala',dtdcktp,NULL)) AS 'C1', 
@@ -104,7 +104,7 @@ class Dtdc_model extends CI_Model
         FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp join kel on kel.namakel = dpt.namakel) 
         as dummy_table WHERE namakec ='MANGGALA' group by dummy_table.tps ORDER by tps asc";
         }
-        if ($kec == 'TAMALANREA') {
+        if ($kec == 'tamalanrea') {
             $query = "select tps, 
         count(if(dummy_table.namakel= 'Tamalanrea',dtdcktp,NULL)) AS 'C0', 
         count(if(dummy_table.namakel= 'Kapasa',dtdcktp,NULL)) AS 'C1', 
@@ -119,6 +119,17 @@ class Dtdc_model extends CI_Model
         as dummy_table WHERE namakec ='tamalanrea' group by dummy_table.tps ORDER by tps asc";
         }
         return  $this->db->query($query)->result_array();
+    }
+
+    public function getPencapaianTps($kec, $kel, $tps)
+    {
+        $this->db->select('lks_dtdc.id, dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, lks_dtdc.nohp, user.name, lks_dtdc.image');
+        $this->db->from('dpt');
+        $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id');
+        $this->db->join('user', 'lks_dtdc.user_id = user.id');
+        $this->db->where(array('dpt.namakec' => $kec, 'dpt.namakel' => $kel, 'dpt.tps' => $tps));
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function getPencapaianTim()

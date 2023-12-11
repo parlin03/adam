@@ -6,7 +6,7 @@
             <div class="row mb-2 ju">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark"><?= $title; ?></h1>
-                    <br><a href="<?= base_url('potensi/dtdc/'); ?>">
+                    <br><a href="<?= base_url('potensi/kec/' . $kec); ?>">
                         <i class="fas fa-arrow-left"></i> Kembali<a>
                 </div><!-- /.col -->
                 <!-- <div class="col-sm-6">
@@ -29,53 +29,53 @@
 
 
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Ranking Tim</h3>
+                        <div class="card-header " style="justify-content: center;">
+                            <h3 class="card-title">Capaian Dukungan Kel. <?= ucfirst($kel); ?> Kec. <?= ucfirst($kec); ?> DI TPS <?= ucfirst($tps); ?> </h3>
                         </div>
                         <!-- /.card-header -->
 
                         <div class="card-body table-responsive p-0">
 
-                            <table class="table table-sm table-hover text-nowrap" align="center">
+                            <table class="table table-hover text-nowrap" align="center">
+
                                 <thead>
-                                    <tr>
-                                        <th>TPS</th>
-                                        <?php $i = 0; ?>
-                                        <?php $j = 1; ?>
-                                        <?php foreach ($kelurahan as $kel) : ?>
-                                            <th class="text-center"><?= $kel['namakel']; ?></th>
-                                            <?php $i++; ?>
-                                            <?php $j++; ?>
-                                        <?php endforeach; ?>
-                                    </tr>
+                                    <TH>#</th>
+                                    <TH>DPT</th>
+                                    <th>PIC</th>
                                 </thead>
-                                <?php for ($l = 0; $l < $i; ++$l) {
-                                    $total[$l] = 0;
-                                } ?>
-                                <?php $total[1] = 0; ?>
-                                <?php foreach ($PencapaianKec as $pt) : ?>
-                                    <tbody>
+                                <tbody>
+                                    <?php if (empty($PencapaianTps)) : ?>
                                         <tr>
-                                            <td><?= $pt['tps']; ?></td>
-                                            <?php for ($k = 0; $k < $i; ++$k) {
-                                                echo "<td class='text-center'>" . $pt['C' . $k] . "</td>";
-                                                $total[$k] += $pt['C' . $k];
-                                            } ?>
+                                            <td colspan="7">
+                                                <div class="alert alert-danger" role="alert">
+                                                    data not found!
+                                                </div>
+                                            </td>
                                         </tr>
+                                    <?php endif; ?>
+                                    <?php $i = 1; ?>
+                                    <?php
+                                    foreach ($PencapaianTps as $m) : ?>
+                                        <tr>
+                                            <td><?= $i; ?></td>
+                                            <td><?= $m['noktp']; ?>
+                                                <br><b><?= $m['nama']; ?></b>
+                                                <br><?= $m['alamat']; ?> RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> Kel. <?= $m['namakel']; ?> Kec. <?= $m['namakec']; ?>
+                                                <b>TPS. <?= $m['tps']; ?></b>
+                                                <br>No. Telpon : <?= $m['nohp']; ?>
+                                            </td>
+                                            <!-- <td style="width: 150px">
 
+                <a href="https://dtdc.sonsofadam.org/assets/img/dtdc/<?= $m['image']; ?>" class="portfolio-popup">
+                    <img src="public_html/dtdc.sonsofadam.org/assets/img/dtdc<?= $m['image']; ?>" class="img-thumbnail" />
+                </a>
+            </td> -->
 
-                                    </tbody>
-
-                                <?php endforeach; ?>
-                                <tfoot>
-                                    <tr>
-
-                                        <th class="text-center">Total</th>
-                                        <?php for ($k = 0; $k < $i; ++$k) {
-                                            echo "<th class='text-center'>" . $total[$k] . "</td>";
-                                        } ?>
-                                    </tr>
-                                </tfoot>
+                                            <td><?= $m['name'] ?></td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -86,7 +86,7 @@
                 </div>
                 <!-- /.col -->
             </div>
-            <br><a href="<?= base_url('potensi/dtdc/'); ?>">
+            <br><a href="<?= base_url('potensi/kec/' . $kec); ?>">
                 <i class="fas fa-arrow-left"></i> Kembali<a>
         </div><!--/. container-fluid -->
     </section>

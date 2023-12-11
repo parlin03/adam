@@ -97,7 +97,7 @@
                                     <tbody>
                                         <tr>
                                             <td><?= $i; ?></td>
-                                            <td><a href="<?= base_url('potensi/tps/') . $cp['namakec']; ?>"><?= $cp['namakec']; ?></a></td>
+                                            <td><a href="<?= base_url('potensi/kec/') . strtolower($cp['namakec']); ?>"><?= ucfirst($cp['namakec']); ?></a></td>
                                             <td class="text-center"><?= $cp['total']; ?></td>
                                             <td class="text-center"><?= $cp['totaldpt']; ?></td>
                                             <td class="text-center"><?= number_format((($cp['total'] * 100) / $cp['totaldpt']), 2); ?> %</td>

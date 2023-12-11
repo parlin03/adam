@@ -153,7 +153,7 @@ class Potensi extends CI_Controller
 
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
-    public function tps()
+    public function kec()
     {
         $data['title'] = 'Pasukan Timur';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
@@ -161,6 +161,34 @@ class Potensi extends CI_Controller
         $data['kec'] = $this->uri->segment(3);
         $data['kelurahan'] = $this->dtdc->getKelurahan($data['kec']);
         $data['PencapaianKec'] = $this->dtdc->getPencapaianKec($data['kec']); //array banyak
+        // load library pagination
+        $this->load->library('pagination');
+
+        // ambil data keyword
+        // if ($this->input->post('submit')) {
+        //     $data['keyword'] = $this->input->post('keyword');
+        //     $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
+        // } else {
+        //     $data['keyword'] =  $this->session->userdata('keyword');
+        // }
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/kec', $data);
+        $this->load->view('templates/footer');
+    }
+    public function tps()
+    {
+        $data['title'] = 'Pasukan Timur';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+
+        $data['kec'] = $this->uri->segment(3);
+        $data['kel'] = preg_replace('/%20/', ' ', $this->uri->segment(4));
+        $data['tps'] = $this->uri->segment(5);
+        $data['PencapaianTps'] = $this->dtdc->getPencapaianTps($data['kec'], $data['kel'], $data['tps']); //array banyak
         // load library pagination
         $this->load->library('pagination');
 
