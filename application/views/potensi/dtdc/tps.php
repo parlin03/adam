@@ -46,9 +46,9 @@
                                 <tbody>
                                     <?php if (empty($PencapaianTps)) : ?>
                                         <tr>
-                                            <td colspan="7">
+                                            <td class="text-center" colspan="7">
                                                 <div class="alert alert-danger" role="alert">
-                                                    data not found!
+                                                    <b>Belum ada dukungan yang terdaftar</b>
                                                 </div>
                                             </td>
                                         </tr>
