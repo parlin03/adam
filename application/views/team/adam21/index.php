@@ -24,76 +24,70 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
-
-                        </div>
                         <div class="card-body">
-                            <div class="row justify-content-center">
-                                <div class="info-box mb-10">
-                                    <div class="table table-responsive">
-                                        <table class="table table-bordered table-striped table-hover ">
-                                            <thead class="text-center text-dark">
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">PIP</th>
-                                                    <th scope="col">KIP</th>
-                                                    <th scope="col">BPUM</th>
-                                                    <th scope="col">Bedah Rumah</th>
-                                                    <th scope="col">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $i = 1;
-                                                $jpip = 0;
-                                                $jkip = 0;
-                                                $jbpum = 0;
-                                                $jbr = 0;
-                                                ?>
+                            <div class="card-body table-responsive p-0">
 
-                                                <?php foreach ($adam21 as $a) : ?>
+                                <table class="table table-hover text-nowrap" align="center">
+                                    <thead class="text-center text-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">PIP</th>
+                                            <th scope="col">KIP</th>
+                                            <th scope="col">BPUM</th>
+                                            <th scope="col">Bedah Rumah</th>
+                                            <th scope="col">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $i = 1;
+                                        $jpip = 0;
+                                        $jkip = 0;
+                                        $jbpum = 0;
+                                        $jbr = 0;
+                                        ?>
 
-                                                    <tr>
-                                                        <th class="text-center" scope="row"><?= $i; ?>
-                                                        </th>
-                                                        <td><?= $a['username']; ?></td>
-                                                        <td class="text-center"><?= $a['pip']; ?></td>
-                                                        <td class="text-center"><?= $a['kip']; ?></td>
-                                                        <td class="text-center"><?= $a['bpum']; ?></td>
-                                                        <td class="text-center"><?= $a['br']; ?></td>
-                                                        <td class="text-center">
-                                                            <?= $a['kip'] + $a['pip'] + $a['bpum'] + $a['br']; ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                                    $i++;
-                                                    $jpip += $a['pip'];
-                                                    $jkip += $a['kip'];
-                                                    $jbpum += $a['bpum'];
-                                                    $jbr += $a['br'];
-                                                endforeach;
-                                                ?>
+                                        <?php foreach ($adam21 as $a) : ?>
 
-                                            </tbody>
-                                            <tfoot>
-                                                <tr class="text-center">
-                                                    <th class="border" colspan="2">Total</th>
-                                                    <th class="border"><?= $jpip; ?></th>
-                                                    <th class="border"><?= $jkip; ?></th>
-                                                    <th class="border"><?= $jbpum; ?></th>
-                                                    <th class="border"><?= $jbr; ?></th>
-                                                    <th class="border"><?= $jpip + $jkip + $jbpum + $jbr; ?></th>
+                                            <tr>
+                                                <th class="text-center" scope="row"><?= $i; ?>
+                                                </th>
+                                                <td><?= $a['username']; ?></td>
+                                                <td class="text-center"><?= $a['pip']; ?></td>
+                                                <td class="text-center"><?= $a['kip']; ?></td>
+                                                <td class="text-center"><?= $a['bpum']; ?></td>
+                                                <td class="text-center"><?= $a['br']; ?></td>
+                                                <td class="text-center">
+                                                    <?= $a['kip'] + $a['pip'] + $a['bpum'] + $a['br']; ?>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                            $i++;
+                                            $jpip += $a['pip'];
+                                            $jkip += $a['kip'];
+                                            $jbpum += $a['bpum'];
+                                            $jbr += $a['br'];
+                                        endforeach;
+                                        ?>
 
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="text-center">
+                                            <th class="border" colspan="2">Total</th>
+                                            <th class="border"><?= $jpip; ?></th>
+                                            <th class="border"><?= $jkip; ?></th>
+                                            <th class="border"><?= $jbpum; ?></th>
+                                            <th class="border"><?= $jbr; ?></th>
+                                            <th class="border"><?= $jpip + $jkip + $jbpum + $jbr; ?></th>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
+                            <!-- /.info-box-content -->
                         </div>
+                        <!-- /.info-box -->
                     </div>
                     <!-- /.card -->
                 </div>
