@@ -10,13 +10,13 @@ class Adam21 extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        $this->load->model('Tim_model', 'tim_model');
     }
 
     public function index()
     {
         $data['title'] = 'Data Pencapaian Tim Adam21';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        $this->load->model('Tim_model', 'tim_model');
         $data['adam21'] = $this->tim_model->getAdam21();
         $this->load->helper('url');
         $this->load->view('templates/header', $data);
