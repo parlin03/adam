@@ -267,6 +267,51 @@
 </div>
 <!-- /.content-wrapper -->
 
+<script type="text/javascript">
+    // memanggil plugin magnific popup
+    $('.portfolio-popup').magnificPopup({
+        type: 'image',
+        removalDelay: 300,
+        mainClass: 'mfp-fade',
+        gallery: {
+            enabled: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300,
+            easing: 'ease-in-out',
+            opener: function(openerElement) {
+                return openerElement.is('img') ? openerElement : openerElement.find('img');
+            }
+        }
+    });
+    // memanggil datatable membuat callback datatable pada magnific popup agar gambar 
+    // yang di munculkan sesuai pada saat pindah paginasi dari 1 ke 2 
+    // dan seterusnya
+    $(document).ready(function() {
+        var table = $('#example').dataTable({
+            "fnDrawCallback": function() {
+                $('.portfolio-popup').magnificPopup({
+                    type: 'image',
+                    removalDelay: 300,
+                    mainClass: 'mfp-fade',
+                    gallery: {
+                        enabled: true
+                    },
+                    zoom: {
+                        enabled: true,
+                        duration: 300,
+                        easing: 'ease-in-out',
+                        opener: function(openerElement) {
+                            return openerElement.is('img') ? openerElement : openerElement.find('img');
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 <!-- load library jquery dan highcharts -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
