@@ -239,6 +239,11 @@
                                                     <img src="public_html/dtdc.sonsofadam.org/assets/img/dtdc<?= $m['image']; ?>" class="img-thumbnail" />
                                                 </a>
                                             </td> -->
+                                            <td style="width: 150px">
+                                                <a href="<?= base_url('assets/img/dtdc/') . $m['image']; ?>" class="portfolio-popup">
+                                                    <img src="<?= base_url('assets/img/dtdc/') . $m['image']; ?> " class="img-thumbnail" />
+                                                </a>
+                                            </td>
 
                                             <td><?= $m['name'] ?></td>
                                         </tr>
