@@ -45,21 +45,22 @@
    <script src="<?= base_url('assets/') ?>dist/js/adminlte.js"></script>
 
    <!-- OPTIONAL SCRIPTS -->
-   <script src="<?= base_url('assets/') ?>dist/js/demo.js"></script>
+   <!-- <script src="<?= base_url('assets/') ?>dist/js/demo.js"></script> -->
 
    <!-- PAGE PLUGINS -->
    <!-- jQuery Mapael -->
    <script src="<?= base_url('assets/') ?>plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-   <script src="<?= base_url('assets/') ?>plugins/raphael/raphael.min.js"></script>
+   <!-- <script src="<?= base_url('assets/') ?>plugins/raphael/raphael.min.js"></script>
    <script src="<?= base_url('assets/') ?>plugins/jquery-mapael/jquery.mapael.min.js"></script>
-   <script src="<?= base_url('assets/') ?>plugins/jquery-mapael/maps/usa_states.min.js"></script>
+   <script src="<?= base_url('assets/') ?>plugins/jquery-mapael/maps/usa_states.min.js"></script> -->
    <!-- ChartJS -->
    <script src="<?= base_url('assets/') ?>plugins/chart.js/Chart.min.js"></script>
 
    <!-- PAGE SCRIPTS -->
-   <script src="<?= base_url('assets/') ?>dist/js/pages/dashboard2.js"></script>
+   <!-- <script src="<?= base_url('assets/') ?>dist/js/pages/dashboard2.js"></script> -->
 
-   
+
+
 
    </body>
 

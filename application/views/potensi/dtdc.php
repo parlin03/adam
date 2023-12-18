@@ -97,7 +97,7 @@
                                     <tbody>
                                         <tr>
                                             <td><?= $i; ?></td>
-                                            <td><a href="<?= base_url('potensi/kec/') . strtolower($cp['namakec']); ?>"><?= ucfirst($cp['namakec']); ?></a></td>
+                                            <td><a href="<?= base_url('potensi/kec/') . strtolower($cp['namakec']); ?>"><?= ucwords(strtolower($cp['namakec'])); ?></a></td>
                                             <td class="text-center"><?= $cp['total']; ?></td>
                                             <td class="text-center"><?= $cp['totaldpt']; ?></td>
                                             <td class="text-center"><?= number_format((($cp['total'] * 100) / $cp['totaldpt']), 2); ?> %</td>
@@ -137,7 +137,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Kecamatan</th>
+                                        <th>PIC</th>
                                         <th class="text-center">Jumlah</th>
                                     </tr>
                                 </thead>
@@ -148,7 +148,7 @@
                                     <tbody>
                                         <tr>
                                             <td><?= $i; ?></td>
-                                            <td><?= $ct['name']; ?></td>
+                                            <td><?= ucwords($ct['name']); ?></td>
                                             <td class="text-center"><?= $ct['total']; ?></td>
                                         </tr>
 
@@ -229,7 +229,7 @@
                                             <td><?= ++$start; ?></td>
                                             <td><?= $m['noktp']; ?>
                                                 <br><b><?= $m['nama']; ?></b>
-                                                <br><?= $m['alamat']; ?> RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> Kel. <?= $m['namakel']; ?> Kec. <?= $m['namakec']; ?>
+                                                <br><?= $m['alamat']; ?> RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> Kel. <?= ucwords(strtolower($m['namakel'])); ?> Kec. <?= ucwords(strtolower($m['namakec'])); ?>
                                                 <b>TPS. <?= $m['tps']; ?></b>
                                                 <br>No. Telpon : <?= $m['nohp']; ?>
                                             </td>

@@ -189,6 +189,12 @@ class Potensi extends CI_Controller
         $data['title'] = 'Pasukan Timur';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
+        $data['uid'] = $this->uri->segment(3);
+        $data['grafik'] = $this->dtdc->getTeamGraph($data['uid']);
+        $data['TotalDaftar'] = $this->dtdc->getTotalDaftar($data['uid']); //single array
+        $data['TotalDpt'] = $this->dtdc->getTotalDpt(); //array banyak
+        $data['pencapaian'] = $this->dtdc->getTeamPencapaian($data['uid']); //array banyak
+        // $data['dtdc'] = $this->dtdc->getLksDtdc(); //array banyak
         $data['pencapaiantimall'] = $this->dtdc->getPencapaianTimAll(); //array banyak
 
         $this->load->view('templates/header', $data);

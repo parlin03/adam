@@ -31,13 +31,19 @@
     <!-- <script src="<?= base_url('assets/') ?>js/sb-admin-2.js"></script> -
     <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script> -->
 
-    <script src="<?php echo base_url('assets/jquery/jquery-2.2.3.min.js') ?>"></script>
+
     <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-2.2.3.min.js'); ?>"></script>
+    <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
+    <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 
 </head>
 
-<body class="hold-transition skin-blue fixed sidebar-mini sidebar-mini-expand-feature layout-fixed layout-navbar-fixed layout-footer-fixed" style=" height: auto; min-height: 100%;">
+<body class="hold-transition skin-blue fixed sidebar-mini sidebar-colapse sidebar-mini-expand-feature layout-fixed layout-navbar-fixed layout-footer-fixed" style=" height: auto; min-height: 100%;">
     <div class="wrapper">

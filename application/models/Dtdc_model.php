@@ -26,7 +26,7 @@ class Dtdc_model extends CI_Model
     {
         $this->db->select('dpt.namakec, count(lks_dtdc.id) as total');
         $this->db->from('dpt');
-        $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id');
+        $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id', 'left');
         $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('dpt.namakec');
         $this->db->order_by('kec.idkec', 'ASC');
@@ -144,9 +144,70 @@ class Dtdc_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getTeamGraph($uid)
+    {
+        $this->db->select('user.name,count(lks_dtdc.id) as total, lks_dtdc.date_created');
+        $this->db->from('lks_dtdc');
+        $this->db->join('user', 'lks_dtdc.user_id = user.id');
+        if (!empty($uid)) {
+            $this->db->where('lks_dtdc.user_id', $uid);
+        }
+        $this->db->group_by('date_created');
+        $this->db->order_by('date_created', 'ASC');
+
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $data) {
+                $hasil[] = $data;
+            }
+            return $hasil;
+        }
+    }
+    public function getTotalDaftar($uid)
+    {
+        $this->db->select('count(lks_dtdc.noktp) as totaldaftar');
+        $this->db->from('lks_dtdc');
+        if (!empty($uid)) {
+            $this->db->where('lks_dtdc.user_id', $uid);
+        }
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getTotalDpt()
+    {
+        $this->db->select('count(dpt.id) as totaldpt');
+        $this->db->from('dpt');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getTeamPencapaian($uid)
+    {
+        $this->db->select('lks_dtdc.id, dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, count(lks_dtdc.noktp) as total');
+        $this->db->from('dpt');
+        $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id');
+        if (!empty($uid)) {
+            $this->db->where('lks_dtdc.user_id', $uid);
+        }
+        $this->db->group_by('namakec');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function getLksDtdc()
+    {
+        $this->db->select('lks_dtdc.id, dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, lks_dtdc.nohp, image');
+        $this->db->from('dpt');
+        $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id');
+        // $this->db->where('lks_dtdc.user_id', $this->session->userdata('user_id'));
+        $this->db->order_by('lks_dtdc.id', 'DESC');
+        $this->db->limit(5);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     public function getPencapaianTimAll()
     {
-        $this->db->select('user.name, count(lks_dtdc.id) as total');
+        $this->db->select('user.id,user.name, count(lks_dtdc.id) as total');
         $this->db->from('lks_dtdc');
         $this->db->join('user', 'lks_dtdc.user_id = user.id');
         $this->db->group_by('user.id');
