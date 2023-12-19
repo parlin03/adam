@@ -34,7 +34,7 @@
      <!-- Right navbar links -->
      <ul class="navbar-nav ml-auto">
          <?php
-            $date = strtotime("February 14, 2024 8:00 AM");
+            $date = strtotime("February 14, 2024 4:01 AM");
             $remaining = $date - time();
             $days_remaining = floor($remaining / 86400);
             $hours_remaining = floor(($remaining % 86400) / 3600);
