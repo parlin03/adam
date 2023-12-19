@@ -55,7 +55,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="container" style=" height: 460px; margin: 0 auto">
+                                    <div class="container" style=" height: 430px; margin: 0 auto">
                                         <div id="container"></div>
                                     </div>
                                 </div>
@@ -142,7 +142,6 @@
                                     </tr>
                                 </thead>
                                 <?php $i = 1; ?>
-                                <?php $total = 0; ?>
 
                                 <?php foreach ($pencapaiantim as $ct) : ?>
                                     <tbody>
@@ -155,16 +154,8 @@
 
                                     </tbody>
                                     <?php $i++; ?>
-                                    <?php $total += $ct['total']; ?>
                                 <?php endforeach; ?>
-                                <tfoot>
-                                    <tr>
 
-                                        <th colspan="2" class="text-center">Total</th>
-
-                                        <th class="text-center"><?= $total; ?></th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                         <!-- /.card-body -->
