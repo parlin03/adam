@@ -201,6 +201,8 @@
                                 <thead>
                                     <TH>#</th>
                                     <TH>DPT</th>
+                                    <TH>No. HP</th>
+                                    <TH>Foto KTP</th>
                                     <th>PIC</th>
                                 </thead>
                                 <tbody>
@@ -222,8 +224,8 @@
                                                 <br><b><?= $m['nama']; ?></b>
                                                 <br><?= $m['alamat']; ?> RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> Kel. <?= ucwords(strtolower($m['namakel'])); ?> Kec. <?= ucwords(strtolower($m['namakec'])); ?>
                                                 <b>TPS. <?= $m['tps']; ?></b>
-                                                <br>No. Telpon : <?= $m['nohp']; ?>
                                             </td>
+                                            <td> <?= $m['nohp']; ?></td>
                                             <!-- <td style="width: 150px">
 
                                                 <a href="https://dtdc.sonsofadam.org/assets/img/dtdc/<?= $m['image']; ?>" class="portfolio-popup">
