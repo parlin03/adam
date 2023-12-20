@@ -9,7 +9,7 @@
     <title><?= $title; ?></title>
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="<?= base_url('assets/') ?>css/fix-head-1stcoloum-table.css">
+   
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">

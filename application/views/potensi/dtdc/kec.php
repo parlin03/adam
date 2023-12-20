@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?= base_url('assets/') ?>css/fix-head-1stcoloum-table.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,7 +33,7 @@
                         <div class="card-header " style="justify-content: center;">
                             <h3 class="card-title">Capaian Dukungan Tiap Kelurahan Di Kecamatan <?= ucfirst($kec); ?></h3>
                         </div>
-                        <!-- <div class="card-body table-responsive p-0">
+                        <!-- <div class="card-body table-responsive table-scroll" p-0">
                             <table class="table table-sm table-hover text-nowrap"> -->
                         <div id="table-scroll" class="table-scroll">
                             <table id="main-table" class="main-table">
