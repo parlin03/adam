@@ -39,7 +39,7 @@
                             <table id="main-table" class="main-table">
                                 <thead>
                                     <tr>
-                                        <th>TPS</th>
+                                        <th class="text-center">TPS</th>
                                         <?php $i = 0; ?>
                                         <?php foreach ($kelurahan as $kel) : ?>
                                             <th class="text-center"><?= $kel['namakel']; ?></th>
@@ -55,7 +55,7 @@
                                     <?php $total[1] = 0; ?>
                                     <?php foreach ($PencapaianKec as $pt) : ?>
                                         <tr>
-                                            <th><?= $pt['tps']; ?></th>
+                                            <th class="text-center"><?= $pt['tps']; ?></th>
                                             <?php for ($k = 0; $k < $i; ++$k) {
                                                 echo "<td class='text-center'><a href='" . base_url('potensi/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . $pt['C' . $k] . "</td>";
                                                 $total[$k] += $pt['C' . $k];
