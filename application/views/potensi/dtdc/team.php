@@ -46,7 +46,9 @@
                             if (!empty($grafik)) {
                                 /* Mengambil query report*/
                                 foreach ($grafik as $result) {
-                                    $name = $result->name;
+                                    if (!empty($uid)) {
+                                        $name = $result->name;
+                                    }else{$name='';}
                                     $date[] = $result->date_created; //ambil bulan
                                     $value[] = (float) $result->total; //ambil nilai
                                 }
