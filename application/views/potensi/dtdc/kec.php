@@ -32,8 +32,10 @@
                         <div class="card-header " style="justify-content: center;">
                             <h3 class="card-title">Capaian Dukungan Tiap Kelurahan Di Kecamatan <?= ucfirst($kec); ?></h3>
                         </div>
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-sm table-hover text-nowrap">
+                        <!-- <div class="card-body table-responsive p-0">
+                            <table class="table table-sm table-hover text-nowrap"> -->
+                        <div id="table-scroll" class="table-scroll">
+                            <table id="main-table" class="main-table">
                                 <thead>
                                     <tr>
                                         <th>TPS</th>
@@ -45,24 +47,21 @@
                                         <?php endforeach; ?>
                                     </tr>
                                 </thead>
-                                <?php for ($l = 0; $l < $i; ++$l) {
-                                    $total[$l] = 0;
-                                } ?>
-                                <?php $total[1] = 0; ?>
-                                <?php foreach ($PencapaianKec as $pt) : ?>
-                                    <tbody>
+                                <tbody>
+                                    <?php for ($l = 0; $l < $i; ++$l) {
+                                        $total[$l] = 0;
+                                    } ?>
+                                    <?php $total[1] = 0; ?>
+                                    <?php foreach ($PencapaianKec as $pt) : ?>
                                         <tr>
-                                            <td><?= $pt['tps']; ?></td>
+                                            <th><?= $pt['tps']; ?></th>
                                             <?php for ($k = 0; $k < $i; ++$k) {
                                                 echo "<td class='text-center'><a href='" . base_url('potensi/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . $pt['C' . $k] . "</td>";
                                                 $total[$k] += $pt['C' . $k];
                                             } ?>
                                         </tr>
-
-
-                                    </tbody>
-
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
                                 <tfoot>
                                     <tr class="text-center">
 

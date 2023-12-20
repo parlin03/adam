@@ -9,6 +9,7 @@
     <title><?= $title; ?></title>
 
     <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="<?= base_url('assets/') ?>css/fix-head-1stcoloum-table.css">
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -19,7 +20,7 @@
 
 
 
-    <link href="<?php echo base_url('assets/datatables/css/jquery.dataTables.min.css') ?>" rel="stylesheet"> -->
+    <link href="<?php echo base_url('assets/datatables/css/jquery.dataTables.min.css') ?>" rel="stylesheet">
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url('assets/') ?>vendor/jquery/jquery.min.js"></script>
     <!-- <script src="<?= base_url('assets/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
