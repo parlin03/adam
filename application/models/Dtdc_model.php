@@ -50,7 +50,8 @@ class Dtdc_model extends CI_Model
     }
     public function getKelurahan($kec)
     {
-        $query = "SELECT namakel FROM `kel` join kec on kec.idkec = kel.idkec WHERE namakec = '$kec'";
+        // $query = "SELECT namakel FROM `kel` join kec on kec.idkec = kel.idkec WHERE namakec = '$kec'";
+        $query = "SELECT namakel, count(DISTINCT(tps)) as jtps FROM `dpt` WHERE namakec = '$kec' GROUP by namakel order by iddesa";
         return  $this->db->query($query)->result_array();
     }
     public function getPencapaianKec($kec)

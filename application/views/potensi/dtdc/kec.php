@@ -39,10 +39,10 @@
                             <table id="main-table" class="main-table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">TPS</th>
+                                        <th class="align-middle text-center">TPS</th>
                                         <?php $i = 0; ?>
                                         <?php foreach ($kelurahan as $kel) : ?>
-                                            <th class="text-center"><?= $kel['namakel']; ?></th>
+                                            <th class="text-center"><?= $kel['namakel'] . ' <br><font size="2">(' . $kel['jtps'] . ' TPS)</font>'; ?></th>
                                             <?php $i++; ?>
                                             <?php $j[] = $kel['namakel']; ?>
                                         <?php endforeach; ?>
