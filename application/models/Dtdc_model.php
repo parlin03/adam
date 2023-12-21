@@ -69,8 +69,8 @@ class Dtdc_model extends CI_Model
                 count(if(dummy_table.namakel= 'Karuwisi Utara',dtdcktp,NULL)) AS 'C8',
                 count(if(dummy_table.namakel= 'Sinrijala',dtdcktp,NULL)) AS 'C9',
                 count(if(dummy_table.namakel= 'Paropo',dtdcktp,NULL)) AS 'C10'
-                FROM(SELECT kel.iddesa as idkel, dpt.namakel, dpt.namakec, dpt.tps, lks_dtdc.noktp as dtdcktp 
-                FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp join kel on kel.namakel = dpt.namakel) 
+                FROM(SELECT dpt.namakel, dpt.namakec, dpt.tps, lks_dtdc.noktp as dtdcktp 
+                FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp ) 
                 as dummy_table WHERE namakec ='Panakkukang' group by dummy_table.tps ORDER by tps asc";
         }
         if ($kec == 'biringkanaya') {
@@ -86,8 +86,8 @@ class Dtdc_model extends CI_Model
         count(if(dummy_table.namakel= 'Berua',dtdcktp,NULL)) AS 'C8',
         count(if(dummy_table.namakel= 'Katimbang',dtdcktp,NULL)) AS 'C9',
         count(if(dummy_table.namakel= 'Bakung',dtdcktp,NULL)) AS 'C10'
-        FROM(SELECT kel.iddesa as idkel, dpt.namakel, dpt.namakec, dpt.tps, lks_dtdc.noktp as dtdcktp 
-        FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp join kel on kel.namakel = dpt.namakel) 
+        FROM(SELECT dpt.namakel, dpt.namakec, dpt.tps, lks_dtdc.noktp as dtdcktp 
+        FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp) 
         as dummy_table WHERE namakec ='BIRINGKANAYA' group by dummy_table.tps ORDER by tps asc";
         }
         if ($kec == 'manggala') {
@@ -100,8 +100,8 @@ class Dtdc_model extends CI_Model
         count(if(dummy_table.namakel= 'Borong',dtdcktp,NULL)) AS 'C5',
         count(if(dummy_table.namakel= 'Biring Romang',dtdcktp,NULL)) AS 'C6',
         count(if(dummy_table.namakel= 'Bitowa',dtdcktp,NULL)) AS 'C7'
-        FROM(SELECT kel.iddesa as idkel, dpt.namakel, dpt.namakec, dpt.tps, lks_dtdc.noktp as dtdcktp 
-        FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp join kel on kel.namakel = dpt.namakel) 
+        FROM(SELECT dpt.namakel, dpt.namakec, dpt.tps, lks_dtdc.noktp as dtdcktp 
+        FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp) 
         as dummy_table WHERE namakec ='MANGGALA' group by dummy_table.tps ORDER by tps asc";
         }
         if ($kec == 'tamalanrea') {
@@ -114,8 +114,8 @@ class Dtdc_model extends CI_Model
         count(if(dummy_table.namakel= 'Tamalanrea Jaya',dtdcktp,NULL)) AS 'C5',
         count(if(dummy_table.namakel= 'Buntusu',dtdcktp,NULL)) AS 'C6',
         count(if(dummy_table.namakel= 'Kapasa Raya',dtdcktp,NULL)) AS 'C7'
-        FROM(SELECT kel.iddesa as idkel, dpt.namakel, dpt.namakec, dpt.tps, lks_dtdc.noktp as dtdcktp 
-        FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp join kel on kel.namakel = dpt.namakel) 
+        FROM(SELECT dpt.namakel, dpt.namakec, dpt.tps, lks_dtdc.noktp as dtdcktp 
+        FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp) 
         as dummy_table WHERE namakec ='tamalanrea' group by dummy_table.tps ORDER by tps asc";
         }
         return  $this->db->query($query)->result_array();

@@ -6,7 +6,7 @@
             <div class="row mb-2 ju">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark"><?= $title; ?></h1>
-                    <br><a href="<?= base_url('potensi/kec/' . $kec); ?>">
+                    <br><a href="<?= base_url('potensi/dtdc/kec/' . $kec); ?>">
                         <i class="fas fa-arrow-left"></i> Kembali<a>
                 </div><!-- /.col -->
                 <!-- <div class="col-sm-6">
@@ -86,7 +86,7 @@
                 </div>
                 <!-- /.col -->
             </div>
-            <br><a href="<?= base_url('potensi/kec/' . $kec); ?>">
+            <br><a href="<?= base_url('potensi/dtdc/kec/' . $kec); ?>">
                 <i class="fas fa-arrow-left"></i> Kembali<a>
         </div><!--/. container-fluid -->
     </section>

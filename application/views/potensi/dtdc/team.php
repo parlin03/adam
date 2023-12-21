@@ -48,7 +48,9 @@
                                 foreach ($grafik as $result) {
                                     if (!empty($uid)) {
                                         $name = $result->name;
-                                    }else{$name='';}
+                                    } else {
+                                        $name = '';
+                                    }
                                     $date[] = $result->date_created; //ambil bulan
                                     $value[] = (float) $result->total; //ambil nilai
                                 }
@@ -125,7 +127,7 @@
                                     <tbody>
                                         <tr>
                                             <td><?= $i; ?></td>
-                                            <td><a href="<?= base_url('potensi/team/' . $ct['id']); ?>"><?= ucwords($ct['name']); ?></td>
+                                            <td><a href="<?= base_url('potensi/dtdc/team/' . $ct['id']); ?>"><?= ucwords($ct['name']); ?></td>
                                             <td class="text-center"><?= $ct['total']; ?></td>
                                         </tr>
 
@@ -185,7 +187,7 @@
                 }
             },
             title: {
-                text: 'Laporan Suara Terdaftar <b>' + <?php echo json_encode(ucwords($name)); ?> + '</b>',
+                text: 'Laporan Suara Terdaftar <b>' + <?= json_encode(ucwords($name)); ?> + '</b>',
                 style: {
                     fontSize: '18px',
                     fontFamily: 'Verdana, sans-serif'
@@ -207,7 +209,7 @@
                 enabled: false
             },
             xAxis: {
-                categories: <?php echo json_encode($date); ?>
+                categories: <?= json_encode($date); ?>
             },
             exporting: {
                 enabled: false
@@ -228,7 +230,7 @@
             series: [{
 
                 name: '',
-                data: <?php echo json_encode($value); ?>,
+                data: <?= json_encode($value); ?>,
                 shadow: true,
                 dataLabels: {
                     enabled: true,

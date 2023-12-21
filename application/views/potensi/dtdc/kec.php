@@ -57,7 +57,7 @@
                                         <tr>
                                             <th class="text-center"><?= $pt['tps']; ?></th>
                                             <?php for ($k = 0; $k < $i; ++$k) {
-                                                echo "<td class='text-center'><a href='" . base_url('potensi/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . $pt['C' . $k] . "</td>";
+                                                echo "<td class='text-center'><a href='" . base_url('potensi/dtdc/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . $pt['C' . $k] . "</td>";
                                                 $total[$k] += $pt['C' . $k];
                                             } ?>
                                         </tr>

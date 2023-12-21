@@ -97,7 +97,7 @@
                                     <tbody>
                                         <tr>
                                             <td><?= $i; ?></td>
-                                            <td><a href="<?= base_url('potensi/kec/') . strtolower($cp['namakec']); ?>"><?= ucwords(strtolower($cp['namakec'])); ?></a></td>
+                                            <td><a href="<?= base_url('potensi/dtdc/kec/') . strtolower($cp['namakec']); ?>"><?= ucwords(strtolower($cp['namakec'])); ?></a></td>
                                             <td class="text-center"><?= $cp['total']; ?></td>
                                             <td class="text-center"><?= $cp['totaldpt']; ?></td>
                                             <td class="text-center"><?= number_format((($cp['total'] * 100) / $cp['totaldpt']), 2); ?> %</td>
@@ -127,7 +127,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><a href="<?= base_url('potensi/team'); ?>">Capaian Tim</a></h3>
+                            <h3 class="card-title"><a href="<?= base_url('potensi/dtdc/team'); ?>">Capaian Tim</a></h3>
                         </div>
                         <!-- /.card-header -->
 
@@ -173,7 +173,7 @@
                             <!-- <h5 class="card-title">Monthly Recap Report</h5> -->
                             <div class="row">
                                 <div class="col-md-3">
-                                    <form action=" <?= base_url('potensi/dtdc')  ?>" method="POST">
+                                    <form action=" <?= base_url('potensi/dtdc/')  ?>" method="POST">
                                         <div class="input-group mb-2">
                                             <input type="text" class="form-control" placeholder="Search NIK" name="keyword" autocomplete="off" autofocus>
                                             <div class="input-group-append">
@@ -314,7 +314,7 @@
     $(function() {
         var chart;
         $(document).ready(function() {
-            $.getJSON("<?php echo site_url('potensi/Dtdc_list'); ?>", function(json) {
+            $.getJSON("<?php echo site_url('potensi/dtdc/Dtdc_list'); ?>", function(json) {
 
                 chart0 = new Highcharts.Chart({
                     chart: {
