@@ -9,7 +9,7 @@
     <title><?= $title; ?></title>
 
     <!-- Font Awesome Icons -->
-   
+
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
@@ -22,27 +22,22 @@
 
     <link href="<?php echo base_url('assets/datatables/css/jquery.dataTables.min.css') ?>" rel="stylesheet">
     <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url('assets/') ?>vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="<?= base_url('assets/') ?>vendor/jquery/jquery.min.js"></script> -->
     <!-- <script src="<?= base_url('assets/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- Core plugin JavaScript-->
-    <script src="<?= base_url('assets/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- <script src="<?= base_url('assets/') ?>vendor/jquery-easing/jquery.easing.min.js"></script> -->
 
     <!-- Custom scripts for all pages-->
     <!-- <script src="<?= base_url('assets/') ?>js/sb-admin-2.js"></script> -
     <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script> -->
 
 
-    <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js') ?>"></script>
-    <script src="<?php echo base_url('assets/js/jquery-2.2.3.min.js'); ?>"></script>
-    <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
-    <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
+    <!-- <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js') ?>"></script> -->
+   
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+    
 
 </head>
 

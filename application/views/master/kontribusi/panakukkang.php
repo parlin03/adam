@@ -63,6 +63,9 @@
                          renderTo: 'container',
                          type: 'column'
                      },
+                     accessibility: {
+                         enabled: false
+                     },
                      title: {
                          text: 'Kontribusi Pemilih Terhadap Target Suara'
                      },

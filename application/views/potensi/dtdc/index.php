@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -306,7 +307,7 @@
 </script>
 
 <!-- load library jquery dan highcharts -->
-<script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery-3.7.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
 <!-- end load library -->
@@ -314,12 +315,15 @@
     $(function() {
         var chart;
         $(document).ready(function() {
-            $.getJSON("<?php echo site_url('potensi/dtdc/Dtdc_list'); ?>", function(json) {
+            $.getJSON("<?php echo site_url('potensi/dtdc/list'); ?>", function(json) {
 
                 chart0 = new Highcharts.Chart({
                     chart: {
                         renderTo: 'container',
                         type: 'column'
+                    },
+                    accessibility: {
+                        enabled: false
                     },
                     title: {
                         text: 'Capaian Suara Terdaftar Terhadap Target Suara'

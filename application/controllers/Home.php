@@ -30,8 +30,6 @@ class Home extends CI_Controller
         $this->load->model('Dashboard_model', 'mdh');
 
         $dpt = $this->mdh->getDataDpt();
-        // $categories = array();
-        // $categories['name'] = '';
         $rows = array();
         $rows['name'] = 'Total DPT';
         $rows['type'] = 'column';

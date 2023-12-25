@@ -10,9 +10,7 @@ class Dtdc extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        $this->load->model('Potensi_model', 'chart');
-        $this->load->model('Dtdc_model', 'dtdc');
-        $this->load->model('Verifikasi_model', 'verifikasi');
+        $this->load->model('Dtdc_model', 'dtdc_m');
     }
 
     public function index()
@@ -21,8 +19,8 @@ class Dtdc extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
 
-        $data['pencapaian'] = $this->dtdc->getPencapaian(); //array banyak
-        $data['pencapaiantim'] = $this->dtdc->getPencapaianTim(); //array banyak
+        $data['pencapaian'] = $this->dtdc_m->getPencapaian(); //array banyak
+        $data['pencapaiantim'] = $this->dtdc_m->getPencapaianTim(); //array banyak
         // load library pagination
         $this->load->library('pagination');
 
@@ -36,7 +34,7 @@ class Dtdc extends CI_Controller
 
         // config pagination
         $config['base_url'] = base_url('potensi/dtdc/index/');
-        $config['total_rows'] = $this->dtdc->countAll($data['keyword']);
+        $config['total_rows'] = $this->dtdc_m->countAll($data['keyword']);
         $data['total_rows'] = $config['total_rows'];
         $config['per_page'] = 5;
 
@@ -45,7 +43,7 @@ class Dtdc extends CI_Controller
 
         // echo $this->pagination->create_links();
         $data['start'] = $this->uri->segment(4);
-        $data['dtdc'] = $this->dtdc->getDtdc($config['per_page'], $data['start'], $data['keyword']);
+        $data['dtdc'] = $this->dtdc_m->getDtdc($config['per_page'], $data['start'], $data['keyword']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -53,39 +51,41 @@ class Dtdc extends CI_Controller
         $this->load->view('potensi/dtdc/index', $data);
         $this->load->view('templates/footer');
     }
-    public function Dtdc_list()
-    {
 
-        $target = $this->dtdc->getDataTarget();
-        $rows1 = array();
-        $rows1['name'] = 'Target';
-        $rows1['type'] = 'column';
+    public function list()
+    {
+        $this->load->model('Dtdc_model', 'dtdc_model');
+        $target = $this->dtdc_model->getDataTarget();
+        $rows = array();
+        $rows['name'] = 'Target';
+        $rows['type'] = 'column';
         foreach ($target as $t) {
-            $rows1['data'][] =  $t->total;
+            $rows['data'][] =  $t->total;
         }
-        $Capaian = $this->dtdc->getDataCapaian();
-        $rows2 = array();
-        $rows2['name'] = 'Capaian';
-        $rows2['type'] = 'line';
+        $Capaian = $this->dtdc_model->getDataCapaian();
+        $rows1 = array();
+        $rows1['name'] = 'Capaian';
+        $rows1['type'] = 'line';
         foreach ($Capaian as $c) {
-            $rows2['data'][] =  $c->total;
+            $rows1['data'][] =  $c->total;
         }
 
         $result = array();
 
+        array_push($result, $rows);
         array_push($result, $rows1);
-        array_push($result, $rows2);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
+
     public function kec()
     {
         $data['title'] = 'Pasukan Timur';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $data['kec'] = $this->uri->segment(4);
-        $data['kelurahan'] = $this->dtdc->getKelurahan($data['kec']);
-        $data['PencapaianKec'] = $this->dtdc->getPencapaianKec($data['kec']); //array banyak
+        $data['kelurahan'] = $this->dtdc_m->getKelurahan($data['kec']);
+        $data['PencapaianKec'] = $this->dtdc_m->getPencapaianKec($data['kec']); //array banyak
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -101,7 +101,7 @@ class Dtdc extends CI_Controller
         $data['kec'] = $this->uri->segment(4);
         $data['kel'] = preg_replace('/%20/', ' ', $this->uri->segment(5));
         $data['tps'] = $this->uri->segment(6);
-        $data['PencapaianTps'] = $this->dtdc->getPencapaianTps($data['kec'], $data['kel'], $data['tps']); //array banyak
+        $data['PencapaianTps'] = $this->dtdc_m->getPencapaianTps($data['kec'], $data['kel'], $data['tps']); //array banyak
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -115,12 +115,12 @@ class Dtdc extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $data['uid'] = $this->uri->segment(4);
-        $data['grafik'] = $this->dtdc->getTeamGraph($data['uid']);
-        $data['TotalDaftar'] = $this->dtdc->getTotalDaftar($data['uid']); //single array
-        $data['TotalDpt'] = $this->dtdc->getTotalDpt(); //array banyak
-        $data['pencapaian'] = $this->dtdc->getTeamPencapaian($data['uid']); //array banyak
+        $data['grafik'] = $this->dtdc_m->getTeamGraph($data['uid']);
+        $data['TotalDaftar'] = $this->dtdc_m->getTotalDaftar($data['uid']); //single array
+        $data['TotalDpt'] = $this->dtdc_m->getTotalDpt(); //array banyak
+        $data['pencapaian'] = $this->dtdc_m->getTeamPencapaian($data['uid']); //array banyak
         // $data['dtdc'] = $this->dtdc->getLksDtdc(); //array banyak
-        $data['pencapaiantimall'] = $this->dtdc->getPencapaianTimAll(); //array banyak
+        $data['pencapaiantimall'] = $this->dtdc_m->getPencapaianTimAll(); //array banyak
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

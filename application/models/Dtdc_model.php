@@ -1,23 +1,25 @@
 <?php
+
+use LDAP\Result;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dtdc_model extends CI_Model
 {
 
-    // public function __construct()
-    // {
-    //     parent::__construct();
-    //     // $this->load->database();
-    //     // $namakec = 'panakukkang';
-    // }
+    public function __construct()
+    {
+        $this->load->database();
+    }
 
     public function getDataTarget()
     {
-        $this->db->select('dpt.namakec, round((count(*)*8)/100,0) as total');
+        $this->db->select('dpt.namakec, round((count(id)*8)/100,0) as total');
+        // $this->db->select('dpt.namakec, count(id) as total');
         $this->db->from('dpt');
-        $this->db->join('kec', 'kec.namakec = dpt.namakec');
+        // $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('namakec');
-        $this->db->order_by('kec.idkec', 'ASC');
+        $this->db->order_by('idkec', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -26,10 +28,10 @@ class Dtdc_model extends CI_Model
     {
         $this->db->select('dpt.namakec, count(lks_dtdc.id) as total');
         $this->db->from('dpt');
-        $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id', 'left');
-        $this->db->join('kec', 'kec.namakec = dpt.namakec');
+        $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id');
+        // $this->db->join('kec', 'kec.namakec = dpt.namakec');
         $this->db->group_by('dpt.namakec');
-        $this->db->order_by('kec.idkec', 'ASC');
+        $this->db->order_by('idkec', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }

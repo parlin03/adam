@@ -161,6 +161,9 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/js/accessibility.js"></script> -->
+<!-- <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script> -->
 <!-- end load library -->
 <script type="text/javascript">
     $(function() {
@@ -172,6 +175,9 @@
                     chart: {
                         renderTo: 'mygraph',
                         type: 'column'
+                    },
+                    accessibility: {
+                        enabled: false
                     },
                     title: {
                         text: 'Kontribusi Pemilih Terhadap Target Suara'
