@@ -1,4 +1,3 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -261,6 +260,12 @@
 </div>
 <!-- /.content-wrapper -->
 
+<!-- load library jquery dan highcharts -->
+<script src="<?php echo base_url(); ?>assets/js/jquery-3.7.1.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
+<!-- end load library -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 <script type="text/javascript">
     // memanggil plugin magnific popup
     $('.portfolio-popup').magnificPopup({
@@ -306,11 +311,7 @@
     });
 </script>
 
-<!-- load library jquery dan highcharts -->
-<script src="<?php echo base_url(); ?>assets/js/jquery-3.7.1.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
-<!-- end load library -->
+
 <script type="text/javascript">
     $(function() {
         var chart;
