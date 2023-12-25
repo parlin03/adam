@@ -49,7 +49,7 @@
 
 
  <!-- load library jquery dan highcharts -->
- <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
+ <script src="<?php echo base_url(); ?>assets/js/jquery-3.7.1.min.js"></script>
  <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
  <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
  <!-- end load library -->
