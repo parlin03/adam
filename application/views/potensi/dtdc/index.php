@@ -208,6 +208,7 @@
                                 <thead>
                                     <TH>#</th>
                                     <TH>DPT</th>
+                                    <TH>Program</th>
                                     <TH>No. HP</th>
                                     <TH>Foto KTP</th>
                                     <th>PIC</th>
@@ -232,6 +233,7 @@
                                                 <br><?= $m['alamat']; ?> RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> Kel. <?= ucwords(strtolower($m['namakel'])); ?> Kec. <?= ucwords(strtolower($m['namakec'])); ?>
                                                 <b>TPS. <?= $m['tps']; ?></b>
                                             </td>
+                                            <td> <?= $m['program']; ?></td>
                                             <td> <?= $m['nohp']; ?></td>
                                             <!-- <td style="width: 150px">
 

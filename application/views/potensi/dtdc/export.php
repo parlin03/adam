@@ -39,6 +39,7 @@
                                         <TH>Nama</th>
                                         <TH>Alamat</th>
                                         <TH>TPS</th>
+                                        <TH>Program</th>
                                         <TH>No. HP</th>
                                         <!-- <TH>Foto KTP</th> -->
                                         <th>PIC</th>
@@ -68,6 +69,7 @@
                                                 <b><?= $m['tps']; ?></b>
 
                                             </td>
+                                            <td> <?= $m['program']; ?></td>
                                             <td> <?= $m['nohp']; ?></td>
                                             <!-- 
                                                     <td style="width: 150px">
