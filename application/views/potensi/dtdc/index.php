@@ -183,7 +183,14 @@
                                     </form>
 
                                 </div>
-                                <div class="col-md-9 ">
+                                <div class="col-md-3 ">
+                                    <div class="input-group">
+                                        <button type="submit" class="btn btn-warning">
+                                            <a href="<?= base_url('potensi/dtdc/export'); ?>">Export</a>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
                                     <div class="card-tools">
                                         <div class="input-group input-group-sm d-flex justify-content-end">
                                             <h5>Total DTDC Terdaftar: <?= $total_rows; ?></h5>
@@ -334,7 +341,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'Total DPT'
+                            text: 'Jumlah DPT'
                         }
                     },
                     labels: {

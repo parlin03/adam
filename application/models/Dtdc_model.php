@@ -246,4 +246,17 @@ class Dtdc_model extends CI_Model
 
         return $this->db->count_all_results('lks_dtdc');
     }
+
+    public function getDtdcExport()
+    {
+        $this->db->select('lks_dtdc.id, dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, lks_dtdc.nohp, user.name, lks_dtdc.image');
+        $this->db->join('dpt', 'lks_dtdc.dpt_id = dpt.id');
+        $this->db->join('user', 'lks_dtdc.user_id = user.id');
+
+
+        $this->db->order_by('lks_dtdc.id', 'DESC');
+
+
+        return $this->db->get('lks_dtdc')->result_array();
+    }
 }

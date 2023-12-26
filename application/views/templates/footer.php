@@ -6,8 +6,7 @@
            <b>Version</b> 3.0
        </div>
    </footer>
-   <!-- </div> -->
-
+   </div>
    <!-- End of Page Wrapper -->
 
    <!-- Scroll to Top Button-->

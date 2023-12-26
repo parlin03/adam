@@ -52,6 +52,22 @@ class Dtdc extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function export()
+    {
+        $data['title'] = 'Potensi Suara Terdaftar';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+
+        $data['pencapaian'] = $this->dtdc_m->getPencapaian(); //array banyak
+        $data['pencapaiantim'] = $this->dtdc_m->getPencapaianTim(); //array banyak
+        // load library pagination
+        $data['export'] = $this->dtdc_m->getDtdcExport();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/export', $data);
+        $this->load->view('templates/footer');
+    }
     public function list()
     {
         $this->load->model('Dtdc_model', 'dtdc_model');
