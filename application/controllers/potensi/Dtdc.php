@@ -44,6 +44,7 @@ class Dtdc extends CI_Controller
         // echo $this->pagination->create_links();
         $data['start'] = $this->uri->segment(4);
         $data['dtdc'] = $this->dtdc_m->getDtdc($config['per_page'], $data['start'], $data['keyword']);
+        $data['duplicate'] = $this->dtdc_m->getDtdcDuplicate();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

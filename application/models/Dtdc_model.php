@@ -259,4 +259,9 @@ class Dtdc_model extends CI_Model
 
         return $this->db->get('lks_dtdc')->result_array();
     }
+    public function getDtdcDuplicate()
+    {
+        $query = $this->db->query("SELECT noktp, count(noktp) as total from lks_dtdc group by noktp having count(noktp) > 1");
+        return $query->result_array();
+    }
 }

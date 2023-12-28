@@ -263,6 +263,44 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+
+            <?php if (!empty($duplicate)) : ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body table-responsive p-0">
+
+                                <table class="table table-hover text-nowrap" align="center">
+
+                                    <thead>
+                                        <TH>#</th>
+                                        <TH>NIK</th>
+                                        <TH>Duplikat</th>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php $i = 1; ?>
+                                        <?php
+                                        foreach ($duplicate as $d) : ?>
+                                            <tr>
+                                                <td><?= $i; ?></td>
+                                                <td><?= $d['noktp']; ?></td>
+                                                <td> <?= $d['total']; ?></td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.info-box-content -->
+
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            <?php endif; ?>
         </div><!--/. container-fluid -->
     </section>
     <!-- /.content -->
