@@ -38,6 +38,7 @@
                                         <TH>NIK</th>
                                         <TH>Nama</th>
                                         <TH>Alamat</th>
+                                        <TH>Kel/Kec</th>
                                         <TH>TPS</th>
                                         <TH>Program</th>
                                         <TH>No. HP</th>
@@ -63,11 +64,13 @@
                                             <td><?= $m['noktp']; ?></td>
                                             <td><b><?= $m['nama']; ?></b></td>
                                             <td>
-                                                <?= $m['alamat']; ?> RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?> Kel. <?= ucwords(strtolower($m['namakel'])); ?> Kec. <?= ucwords(strtolower($m['namakec'])); ?>
+                                                <?= $m['alamat']; ?> RT. <?= $m['rt']; ?> RW. <?= $m['rw']; ?>
+                                            </td>
+                                            <td>
+                                                <?= ucwords(strtolower($m['namakel'])); ?>/<?= ucwords(strtolower($m['namakec'])); ?>
                                             </td>
                                             <td>
                                                 <b><?= $m['tps']; ?></b>
-
                                             </td>
                                             <td> <?= $m['program']; ?></td>
                                             <td> <?= $m['nohp']; ?></td>
@@ -139,8 +142,10 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     });
 </script>
+
+<!-- "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"] -->
