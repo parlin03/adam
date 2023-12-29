@@ -11,7 +11,6 @@ class Verifikasi extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model('Potensi_model', 'chart');
-        $this->load->model('Dtdc_model', 'dtdc');
         $this->load->model('Verifikasi_model', 'verifikasi');
     }
 
@@ -21,6 +20,7 @@ class Verifikasi extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $data['potensi'] = $this->chart->getDataPotensi();
+        $data['export'] = $this->verifikasi->getDataExport();
         // load library pagination
         $this->load->helper('url');
         $this->load->library('pagination');

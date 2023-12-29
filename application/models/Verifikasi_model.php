@@ -10,6 +10,15 @@ class Verifikasi_model extends CI_Model
     //     // $this->load->database();
     //     // $namakec = 'panakukkang';
     // }
+
+    public function getDataExport()
+    {
+
+        // $this->db->join('kec', 'lks_vjp.namakec = kec.idkec');
+        $this->db->join('user', 'lks_vjp.user_id = user.id');
+        return $this->db->get('lks_vjp')->result_array();
+    }
+
     public function getVerifikasi($limit, $start, $keyword = null)
     {
         // if ($namakec == 'panakkukang') {

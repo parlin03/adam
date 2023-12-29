@@ -91,83 +91,69 @@
             <!-- /.row -->
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-12">
+
                     <div class="card">
-                        <div class="card-header">
-                            <!-- <h5 class="card-title">Monthly Recap Report</h5> -->
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <form action=" <?= base_url('potensi/verifikasi')  ?>" method="POST">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Search NIK & Name..." name="keyword" autocomplete="off" autofocus>
-                                            <div class="input-group-append">
-                                                <input class="btn btn-primary" type="submit" name="submit">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- <div class="card-header">
+                                    <h3 class="card-title">DataTable with default features</h3>
+                                </div> -->
+                        <!-- /.card-header -->
                         <div class="card-body">
-                            <h5>Result: <?= $total_rows; ?></h5>
-                            <div class="row justify-content-center">
-                                <div class="info-box mb-10">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover text-dark  ">
-                                            <thead class="text-center">
-                                                <th class="border">#</th>
-                                                <th class="border">NIK</th>
-                                                <th class="border">Nama</th>
-                                                <th class="border">Alamat</th>
-                                                <th class="border">Kelurahan</th>
-                                                <th class="border">Kecamatan</th>
-                                                <th class="border">Telepon</th>
-                                                <th class="border">Jaring Program</th>
-                                                <th class="border">Tanggapan</th>
-                                                <th class="border">Rekomendasi</th>
-                                                <!-- <th class="border">REKOMENDASI</th> -->
-                                                <!-- <th class="border">Action</th> -->
-                                            </thead>
-                                            <tbody>
-                                                <?php if (empty($verifikasi)) : ?>
-                                                    <tr>
-                                                        <td colspan="7">
-                                                            <div class="alert alert-danger" role="alert">
-                                                                data not found!
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php endif; ?>
-                                                <?php
-                                                foreach ($verifikasi as $row) : ?>
-                                                    <tr class="text-center">
-
-                                                        <!-- Number -->
-                                                        <td class="border"> <?= ++$start; ?></td>
-                                                        <td class="border"><?= $row['nik'] ?></td>
-                                                        <td class="border"><?= $row['nama'] ?></td>
-                                                        <td class="border"><?= $row['alamat'] ?></td>
-                                                        <td class="border"><?= $row['namakel'] ?></td>
-
-                                                        <td class="border"><?= $row['namakec'] ?></td>
-                                                        <td class="border"><?= $row['nohp'] ?></td>
-                                                        <td class="border"><?= $row['program'] ?></td>
-                                                        <td class="border"><?= $row['tanggapan'] ?></td>
-                                                        <td class="border"><?= $row['name'] ?></td>
-                                                        <!-- <td class="border text-center">
-                                                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#detailModal<?= $row['id'] ?>">Details</a>
-                                                        </td> -->
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                        <?= $this->pagination->create_links(); ?>
-                                    </div>
-                                    <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                            </div>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>NIK</th>
+                                        <th>Nama</th>
+                                        <th>Alamat</th>
+                                        <th>Kelurahan</th>
+                                        <th>Kecamatan</th>
+                                        <th>Telepon</th>
+                                        <th>Jaring Program</th>
+                                        <th>Tanggapan</th>
+                                        <th>Rekomendasi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (empty($export)) : ?>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div class="alert alert-danger" role="alert">
+                                                    data not found!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <?php $i = 1; ?>
+                                    <?php
+                                    foreach ($export as $row) : ?>
+                                        <tr>
+                                            <td><?= $i; ?></td>
+                                            <td><?= $row['nik'] ?></td>
+                                            <td><?= $row['nama'] ?></td>
+                                            <td><?= $row['alamat'] ?></td>
+                                            <td><?= $row['namakel'] ?></td>
+                                            <td><?= $row['namakec'] ?></td>
+                                            <td><?= $row['nohp'] ?></td>
+                                            <td><?= $row['program'] ?></td>
+                                            <td><?= $row['tanggapan'] ?></td>
+                                            <td><?= $row['name'] ?></td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                <!-- <tfoot>
+                                            <tr>
+                                                <th>Rendering engine</th>
+                                                <th>Browser</th>
+                                                <th>Platform(s)</th>
+                                                <th>Engine version</th>
+                                                <th>CSS grade</th>
+                                            </tr>
+                                        </tfoot> -->
+                            </table>
                         </div>
+                        <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
                 </div>
@@ -185,6 +171,30 @@
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
 <!-- end load library -->
+
+
+<!-- jQuery -->
+<script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<!-- <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script> -->
+<!-- AdminLTE for demo purposes -->
+<!-- <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script> -->
+<!-- Page specific script -->
 <script type="text/javascript">
     $(document).ready(function() {
         var options = {
@@ -228,6 +238,21 @@
             options.series[0].data = json;
             chart = new Highcharts.Chart(options);
         });
+
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", {
+                extend: 'pdf',
+                orientation: 'landscape'
+            }, "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     });
 </script>
