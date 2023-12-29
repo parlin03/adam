@@ -204,6 +204,9 @@
                 plotBorderWidth: null,
                 plotShadow: false
             },
+            accessibility: {
+                enabled: false
+            },
             title: {
                 text: 'Potensi Jaring Suara'
             },
