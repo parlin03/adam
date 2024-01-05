@@ -43,7 +43,6 @@ class Jaring extends CI_Controller
         foreach ($target as $t) {
             $rows0['data'][] =  $t->total;
         }
-        $result = array();
 
         $pip = $this->jaring->getDataPip();
         $rows1 = array();
@@ -73,6 +72,36 @@ class Jaring extends CI_Controller
         foreach ($rumah as $r) {
             $rows4['data'][] = $r->total;
         }
+        $dtdc_pip = $this->jaring->getDataDtdc('Beasiswa PIP');
+        $rows5 = array();
+        $rows5['name'] = 'Beasiswa PIP (DTDC)';
+        $rows5['type'] = 'line';
+        foreach ($dtdc_pip as $r) {
+            $rows5['data'][] = $r->total;
+        }
+        $dtdc_kip = $this->jaring->getDataDtdc('Beasiswa KIP');
+        $rows6 = array();
+        $rows6['name'] = 'Beasiswa KIP (DTDC)';
+        $rows6['type'] = 'line';
+        foreach ($dtdc_kip as $r) {
+            $rows6['data'][] = $r->total;
+        }
+        $dtdc_bpum = $this->jaring->getDataDtdc('BPUM');
+        $rows7 = array();
+        $rows7['name'] = 'BPUM (DTDC)';
+        $rows7['type'] = 'line';
+        foreach ($dtdc_bpum as $r) {
+            $rows7['data'][] = $r->total;
+        }
+        $dtdc_BedahRumah = $this->jaring->getDataDtdc('Bedah Rumah');
+        $rows8 = array();
+        $rows8['name'] = 'Bedah Rumah (DTDC)';
+        $rows8['type'] = 'line';
+        foreach ($dtdc_BedahRumah as $r) {
+            $rows8['data'][] = $r->total;
+        }
+
+        $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
         array_push($result, $rows0);
@@ -80,6 +109,10 @@ class Jaring extends CI_Controller
         array_push($result, $rows2);
         array_push($result, $rows3);
         array_push($result, $rows4);
+        array_push($result, $rows5);
+        array_push($result, $rows6);
+        array_push($result, $rows7);
+        array_push($result, $rows8);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
     }

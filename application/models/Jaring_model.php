@@ -20,6 +20,16 @@ class Jaring_model extends CI_Model
         return $query->result();
     }
 
+    public function getDataTarget()
+    {
+        $this->db->select('namakec, round((count(*)*8)/100,0) as total');
+        $this->db->from('dpt');
+        $this->db->group_by('namakec');
+        $this->db->order_by('idkec');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function getDataPip()
     {
         $this->db->select('kec_siswa, count(nama_siswa) as total');
@@ -65,15 +75,23 @@ class Jaring_model extends CI_Model
         return $query->result();
     }
 
-    public function getDataTarget()
+    public function getDataDtdc($program)
     {
-        $this->db->select('namakec, round((count(*)*8)/100,0) as total');
+        $this->db->select('namakec, count(lks_dtdc.id) as total');
         $this->db->from('dpt');
+        $this->db->join('lks_dtdc', 'dpt.id=lks_dtdc.dpt_id', 'left');
+        $this->db->where('program', $program);
         $this->db->group_by('namakec');
         $this->db->order_by('idkec');
         $query = $this->db->get();
         return $query->result();
     }
+
+
+
+
+
+
 
     public function getDataDptKec($namakec)
     {
