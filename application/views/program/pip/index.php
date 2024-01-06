@@ -24,222 +24,142 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
-                            <!-- <h5 class="card-title">Monthly Recap Report</h5> -->
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <form action=" <?= base_url('program/pip/' . $namakec)  ?>" method="POST">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Cari Nama/Sekolah..." name="keyword" autocomplete="off" autofocus>
-                                            <div class="input-group-append">
-                                                <input class="btn btn-primary" type="submit" name="submit">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card-body">
-                            <h5>Result: <?= $total_rows; ?></h5>
-                            <div class="row justify-content-center">
-                                <div class="info-box mb-10">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover text-dark  ">
+                            <div class="row ">
+                                <div class="container" style="margin-top:20px">
+                                    <div>
+                                        <div class="panel panel-primary">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-8">
 
-                                            <thead class="text-center">
-                                                <th class="border">#</th>
-                                                <th class="border">NAMA SISWA</th>
-                                                <!-- <th class="border">NISN</th> -->
-                                                <th class="border">SEKOLAH</th>
-                                                <th class="border">NAMA SEKOLAH</th>
-                                                <!-- <th class="border">KECAMATAN SEKOLAH</th> -->
-                                                <!-- <th class="border">KELAS</th> -->
-                                                <!-- <th class="border">NAMA IBU</th> -->
-                                                <!-- <th class="border">NAMA AYAH</th> -->
-                                                <!-- <th class="border">TGL LAHIR SISWA</th> -->
-                                                <th class="border">ALAMAT SISWA</th>
-                                                <th class="border">KELURAHAN SISWA</th>
-                                                <th class="border">KECAMATAN SISWA</th>
-                                                <th class="border">NO TELPON</th>
-                                                <!-- <th class="border">NIK ORANG TUA</th> -->
-                                                <th class="border">Action</th>
-                                            </thead>
+                                                        <div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered table-striped table-hover text-dark  ">
+                                                                <thead class="text-center">
+                                                                    <th class="border">Kecamatan</th>
+                                                                    <th class="border">Jumlah</th>
+                                                                    <!-- <th class="border">REKOMENDASI</th> -->
+                                                                    <!-- <th class="border">Action</th> -->
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php if (empty($summary)) : ?>
+                                                                        <tr>
+                                                                            <td colspan="7">
+                                                                                <div class="alert alert-danger" role="alert">
+                                                                                    data not found!
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php endif; ?>
+                                                                    <?php
+                                                                    $jtotal = 0;
+                                                                    foreach ($summary as $row) : ?>
+                                                                        <tr class="text-center">
 
-                                            <tbody>
-                                                <?php if (empty($pip)) : ?>
-                                                    <tr>
-                                                        <td colspan="7">
-                                                            <div class="alert alert-danger" role="alert">
-                                                                data not found!
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php endif; ?>
-                                                <?php
-                                                foreach ($pip as $row) : ?>
-                                                    <tr class="text-center">
+                                                                            <td class="border"><?= $row->kec_siswa; ?></td>
+                                                                            <td class="border"><?= $row->total; ?></td>
+                                                                        </tr>
+                                                                        <?php $jtotal += $row->total; ?>
+                                                                    <?php endforeach; ?>
 
-                                                        <!-- Number -->
-                                                        <td class="border"> <?= ++$start; ?></td>
-
-                                                        <!-- nama_siswa -->
-                                                        <td class="border"><?= $row['nama_siswa'] ?></td>
-
-                                                        <!-- nisn -->
-                                                        <!-- <td class="border"><?= $row['nisn'] ?></td> -->
-
-                                                        <!-- sekolah -->
-                                                        <td class="border"><?= $row['sekolah'] ?></td>
-
-                                                        <!-- nama_sekolah -->
-                                                        <td class="border"><?= $row['nama_sekolah'] ?></td>
-
-                                                        <!-- kec_sekolah -->
-                                                        <!-- <td class="border"><?= $row['kec_sekolah'] ?></td> -->
-
-                                                        <!-- kelas -->
-                                                        <!-- <td class="border"><?= $row['kelas'] ?></td> -->
-
-                                                        <!-- nama_ibu -->
-                                                        <!-- <td class="border"><?= $row['nama_ibu'] ?></td> -->
-
-                                                        <!-- nama_ayah -->
-                                                        <!-- <td class="border"><?= $row['nama_ayah'] ?></td> -->
-
-                                                        <!-- tgl_lahir -->
-                                                        <!-- <td class="border"><?= $row['tgl_lahir'] ?></td> -->
-
-                                                        <!-- alamat_siswa -->
-                                                        <td class="border"><?= $row['alamat_siswa'] ?></td>
-
-                                                        <!-- kel_siswa -->
-                                                        <td class="border"><?= $row['kel_siswa'] ?></td>
-
-                                                        <!-- telp -->
-                                                        <td class="border"><?= $row['kec_siswa'] ?></td>
-
-                                                        <!-- sekolah -->
-                                                        <td class="border"><?= $row['telp'] ?></td>
-
-                                                        <!-- nik_ortu -->
-                                                        <!-- <td class="border"><?= $row['nik_ortu'] ?></td> -->
-
-                                                        <td class="border text-center">
-                                                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#detailModal<?= $row['id'] ?>">Details</a>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- Modal detail -->
-                                                    <div class="modal fade" id="detailModal<?= $row['id'] ?>" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog  modal-dialog-centered">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="detailModalLabel"><?= $row['nama_siswa'] ?></h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form action="<?= base_url('menu'); ?>" method="POST">
-
-                                                                    <div class="modal-body">
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">NISN</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['nisn'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Sekolah</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['sekolah'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Nama Sekolah</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['nama_sekolah'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Kec. Sekolah</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['kec_sekolah'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Kelas</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['kelas'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Nama Ibu</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['nama_ibu'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Nama Ayah</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['nama_ayah'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Tanggal Lahir</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['tgl_lahir'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Alamat Siswa</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['alamat_siswa'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Kelurahan Siswa</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['kel_siswa'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">Kecamatan Siswa</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['kec_siswa'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">No Telpon</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['telp'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-sm-4 col-form-label">NIK Orang Tua</label>
-                                                                            <div class="col-sm-8">
-                                                                                <input type="text" class="form-control" placeholder="<?= $row['nik_ortu'] ?>" disabled>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                                                                    </div>
-                                                                </form>
-                                                            </div>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr class="text-center">
+                                                                        <th class="border">Total</th>
+                                                                        <th class="border"><?= $jtotal; ?></th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
                                                         </div>
                                                     </div>
-                                                    <!-- End Modal Detail -->
-
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                        <?= $this->pagination->create_links(); ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- /.info-box-content -->
                                 </div>
-                                <!-- /.info-box -->
                             </div>
                         </div>
+
+
+
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <!-- <div class="card-header">
+                                    <h3 class="card-title">DataTable with default features</h3>
+                                </div> -->
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>NAMA SISWA</th>
+                                        <th>NISN</th>
+                                        <th>SEKOLAH</th>
+                                        <th>NAMA SEKOLAH</th>
+                                        <th>KECAMATAN SEKOLAH</th>
+                                        <th>KELAS</th>
+                                        <th>NAMA IBU</th>
+                                        <th>NAMA. AYAH</th>
+                                        <th>TGL LAHIR SISWA</th>
+                                        <th>ALAMAT SISWA</th>
+                                        <th>KELURAHAN SISWA</th>
+                                        <th>KECAMATAN SISWA</th>
+                                        <th>NO TELPON </th>
+                                        <th>NO. WHATSAPP</th>
+                                        <th>NIK ORANG TUA</th>
+                                        <th>NIK ORANG TUA</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php foreach ($export as $key => $tbl) { ?>
+                                        <tr class="text-center">
+
+                                            <td><?= $key + 1 ?></td>
+                                            <td><?= $tbl['nama_siswa'] ?></td>
+                                            <td><?= $tbl['nisn'] ?></td>
+                                            <td><?= $tbl['sekolah'] ?></td>
+                                            <td><?= $tbl['nama_sekolah'] ?></td>
+                                            <td><?= $tbl['kec_sekolah'] ?></td>
+                                            <td><?= $tbl['kelas'] ?></td>
+                                            <td><?= $tbl['nama_ibu'] ?></td>
+                                            <td><?= $tbl['nama_ayah'] ?></td>
+                                            <td><?= $tbl['tgl_lahir'] ?></td>
+                                            <td><?= $tbl['alamat_siswa'] ?></td>
+                                            <td><?= $tbl['kel_siswa'] ?></td>
+                                            <td><?= $tbl['kec_siswa'] ?></td>
+                                            <td><?= $tbl['telp'] ?></td>
+                                            <td><?= $tbl['wa'] ?></td>
+                                            <td><?= $tbl['nik_ortu'] ?></td>
+                                            <td><?= $tbl['nik_ortu2'] ?></td>
+                                        </tr>
+                                    <?php } ?>
+
+                                    <!-- Empty State -->
+                                    <?php if (empty($export)) { ?>
+                                        <tr class="text-center">
+                                            <td colspan="6">Data not found</td>
+                                        </tr>
+                                    <?php } ?>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
                 </div>
@@ -251,3 +171,98 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+
+<!-- load library jquery dan highcharts -->
+<script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
+<!-- end load library -->
+
+
+<!-- jQuery -->
+<script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<!-- <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script> -->
+<!-- AdminLTE for demo purposes -->
+<!-- <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script> -->
+<!-- Page specific script -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var options = {
+            chart: {
+                renderTo: 'mygraph',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            accessibility: {
+                enabled: false
+            },
+            title: {
+                text: 'Jaring Program Beasiswa PIP'
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: 'green',
+                        formatter: function() {
+                            return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) + ' % ';
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: []
+            }]
+        }
+
+        $.getJSON("<?php echo site_url('program/pip/Graph_list'); ?>", function(json) {
+            options.series[0].data = json;
+            chart = new Highcharts.Chart(options);
+        });
+
+    });
+</script>
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", {
+                extend: 'pdf',
+                orientation: 'landscape'
+            }, "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    });
+</script>

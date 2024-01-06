@@ -13,6 +13,44 @@ class Pip extends CI_Controller
         $this->load->model('Pip_model', 'pip');
     }
 
+
+    public function Index()
+    {
+        $data['title'] = 'Jaring Program Beasiswa PIP';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['summary'] = $this->pip->getDataSummary();
+        $data['export'] = $this->pip->getDataExport();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('program/pip/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function Graph_list()
+    {
+
+
+        $graph = $this->pip->getDataGraph();
+        // $categories = array();
+        // $categories['name'] = '';
+        $rows = array();
+        foreach ($graph as $d) {
+            // $rows = array($d->tanggapan, $d->total);
+            // $categories['categories'][] = $d->namakec;
+            // $row[] = $d->tanggapan;
+            // $row[] = $d->total;
+            if ($d->kec_siswa == "") {
+                $d->kec_siswa = "Lain-Lain";
+            }
+            array_push($rows, array($d->kec_siswa, $d->total));
+        }
+        // array_push($rows, $row);
+        // array_push($result, $rows); 
+        print json_encode($rows, JSON_NUMERIC_CHECK);
+    }
     public function Panakkukang()
     {
         $data['namakec'] = 'panakkukang';
