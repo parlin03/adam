@@ -36,6 +36,14 @@ class Dtdc_model extends CI_Model
         return $query->result();
     }
 
+    public function getDataCapaianGraph()
+    {
+        $this->db->select('program, count(program) as total');
+        $this->db->from('lks_dtdc');
+        $this->db->group_by('program');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 
     public function getPencapaian()

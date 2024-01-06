@@ -110,6 +110,44 @@ class Dtdc extends CI_Controller
         $this->load->view('potensi/dtdc/kec', $data);
         $this->load->view('templates/footer');
     }
+
+    public function capaian()
+    {
+        $data['title'] = 'Verifikasi Potensi Jaring Program';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['program'] = $this->dtdc_m->getDataCapaianGraph();
+       
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/capaian', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function Capaian_list()
+    {
+
+
+        $graph = $this->dtdc_m->getDataCapaianGraph();
+        // $categories = array();
+        // $categories['name'] = '';
+        $rows = array();
+        foreach ($graph as $d) {
+            // $rows = array($d->tanggapan, $d->total);
+            // $categories['categories'][] = $d->namakec;
+            // $row[] = $d->tanggapan;
+            // $row[] = $d->total;
+            if ($d->program == "") {
+                $d->program = "Lain-Lain";
+            }
+            array_push($rows, array($d->program, $d->total));
+        }
+        // array_push($rows, $row);
+        // array_push($result, $rows); 
+        print json_encode($rows, JSON_NUMERIC_CHECK);
+    }
+
     public function tps()
     {
         $data['title'] = 'Pasukan Timur';
