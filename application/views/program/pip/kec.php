@@ -255,10 +255,19 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", {
+            "buttons": ["copy", "csv", {
+                extend: 'excel',
+                title: 'Jaring Program Beasiswa PIP Kecamatan ' + '<?= ucfirst($this->uri->segment(4)); ?>',
+                filename: 'Jaring Program Beasiswa PIP Kecamatan ' + '<?= ucfirst($this->uri->segment(4)); ?>'
+            }, {
                 extend: 'pdf',
+                title: 'Jaring Program Beasiswa PIP Kecamatan ' + '<?= ucfirst($this->uri->segment(4)); ?>',
+                filename: 'Jaring Program Beasiswa PIP Kecamatan ' + '<?= ucfirst($this->uri->segment(4)); ?>',
                 orientation: 'landscape'
-            }, "print"]
+            }, {
+                extend: 'print',
+                title: 'Jaring Program Beasiswa PIP Kecamatan ' + '<?= ucfirst($this->uri->segment(4)); ?>'
+            }]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     });
