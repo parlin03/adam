@@ -4,8 +4,10 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2 ju">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"><?= $menu . $title; ?></h1>
+                <div class="col-sm-12">
+                    <h1 class="m-0 text-dark"><?= $menu . $title . $subtitle; ?></h1>
+                    <br><a href="<?= base_url('program/pip/'); ?>">
+                        <i class="fas fa-arrow-left"></i> Kembali<a>
                 </div><!-- /.col -->
                 <!-- <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -39,7 +41,7 @@
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered table-striped table-hover text-dark  ">
                                                                 <thead class="text-center">
-                                                                    <th class="border">Kecamatan</th>
+                                                                    <th class="border">Kelurahan</th>
                                                                     <th class="border">Jumlah</th>
                                                                     <!-- <th class="border">REKOMENDASI</th> -->
                                                                     <!-- <th class="border">Action</th> -->
@@ -59,7 +61,7 @@
                                                                     foreach ($summary as $row) : ?>
                                                                         <tr class="text-center">
 
-                                                                            <td class="border"><a href="<?= base_url('program/pip/kec/') . strtolower($row->kec_siswa); ?>"><?= $row->kec_siswa; ?></a></td>
+                                                                            <td class="border"><?= $row->kel_siswa; ?></td>
                                                                             <td class="border"><?= $row->total; ?></td>
                                                                         </tr>
                                                                         <?php $jtotal += $row->total; ?>
@@ -96,7 +98,7 @@
                                 </div> -->
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="tabeljaringpip" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -119,6 +121,38 @@
                                     </tr>
                                 </thead>
 
+                                <tbody>
+                                    <?php foreach ($export as $key => $tbl) { ?>
+                                        <tr class="text-center">
+
+                                            <td><?= $key + 1 ?></td>
+                                            <td><?= $tbl['nama_siswa'] ?></td>
+                                            <td><?= $tbl['nisn'] ?></td>
+                                            <td><?= $tbl['sekolah'] ?></td>
+                                            <td><?= $tbl['nama_sekolah'] ?></td>
+                                            <td><?= $tbl['kec_sekolah'] ?></td>
+                                            <td><?= $tbl['kelas'] ?></td>
+                                            <td><?= $tbl['nama_ibu'] ?></td>
+                                            <td><?= $tbl['nama_ayah'] ?></td>
+                                            <td><?= $tbl['tgl_lahir'] ?></td>
+                                            <td><?= $tbl['alamat_siswa'] ?></td>
+                                            <td><?= $tbl['kel_siswa'] ?></td>
+                                            <td><?= $tbl['kec_siswa'] ?></td>
+                                            <td><?= $tbl['telp'] ?></td>
+                                            <td><?= $tbl['wa'] ?></td>
+                                            <td><?= $tbl['nik_ortu'] ?></td>
+                                            <td><?= $tbl['nik_ortu2'] ?></td>
+                                        </tr>
+                                    <?php } ?>
+
+                                    <!-- Empty State -->
+                                    <?php if (empty($export)) { ?>
+                                        <tr class="text-center">
+                                            <td colspan="6">Data not found</td>
+                                        </tr>
+                                    <?php } ?>
+
+                                </tbody>
 
                             </table>
                         </div>
@@ -178,7 +212,7 @@
                 enabled: false
             },
             title: {
-                text: 'Jaring Program Beasiswa PIP'
+                text: 'Jaring Program Beasiswa PIP Kecamatan ' + '<?= ucfirst($this->uri->segment(4)); ?>'
             },
             tooltip: {
                 formatter: function() {
@@ -207,7 +241,7 @@
             }]
         }
 
-        $.getJSON("<?php echo site_url('program/pip/Graph_list'); ?>", function(json) {
+        $.getJSON("<?php echo site_url('program/pip/GraphKec_list/'); ?>", function(json) {
             options.series[0].data = json;
             chart = new Highcharts.Chart(options);
         });
@@ -217,86 +251,15 @@
 
 <script>
     $(function() {
-        $("#tabeljaringpip").DataTable({
+        $("#example1").DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "processing": true,
-
-            "order": [],
-            "ajax": {
-                //panggil method ajax list dengan ajax
-                "url": 'ajax_list',
-                "type": "POST"
-            },
-            "buttons": [{
-                "extend": 'copy',
-                "action": newexportaction
-            }, {
-                "extend": 'csv',
-                "action": newexportaction
-            }, {
-                "extend": 'excel',
-                "text": 'Excel',
-                "titleAttr": 'Excel',
-                "action": newexportaction
-            }, {
-                "extend": 'pdf',
-                "action": newexportaction,
-                "orientation": 'landscape'
-            }, {
-                "extend": 'print',
-                "text": 'Print',
-                "titleAttr": 'Print',
-                "action": newexportaction
-            }],
-            "dom": 'Bfrtip',
-            "select": true,
-            "serverSide": true
-
-        }).buttons().container().appendTo('#tabeljaringpip_wrapper .col-md-6:eq(0)');
-
-        function newexportaction(e, dt, button, config) {
-            var self = this;
-            var oldStart = dt.settings()[0]._iDisplayStart;
-            dt.one('preXhr', function(e, s, data) {
-                // Just this once, load all data from the server...
-                data.start = 0;
-                data.length = 2147483647;
-                dt.one('preDraw', function(e, settings) {
-                    // Call the original action function
-                    if (button[0].className.indexOf('buttons-copy') >= 0) {
-                        $.fn.dataTable.ext.buttons.copyHtml5.action.call(self, e, dt, button, config);
-                    } else if (button[0].className.indexOf('buttons-excel') >= 0) {
-                        $.fn.dataTable.ext.buttons.excelHtml5.available(dt, config) ?
-                            $.fn.dataTable.ext.buttons.excelHtml5.action.call(self, e, dt, button, config) :
-                            $.fn.dataTable.ext.buttons.excelFlash.action.call(self, e, dt, button, config);
-                    } else if (button[0].className.indexOf('buttons-csv') >= 0) {
-                        $.fn.dataTable.ext.buttons.csvHtml5.available(dt, config) ?
-                            $.fn.dataTable.ext.buttons.csvHtml5.action.call(self, e, dt, button, config) :
-                            $.fn.dataTable.ext.buttons.csvFlash.action.call(self, e, dt, button, config);
-                    } else if (button[0].className.indexOf('buttons-pdf') >= 0) {
-                        $.fn.dataTable.ext.buttons.pdfHtml5.available(dt, config) ?
-                            $.fn.dataTable.ext.buttons.pdfHtml5.action.call(self, e, dt, button, config) :
-                            $.fn.dataTable.ext.buttons.pdfFlash.action.call(self, e, dt, button, config);
-                    } else if (button[0].className.indexOf('buttons-print') >= 0) {
-                        $.fn.dataTable.ext.buttons.print.action(e, dt, button, config);
-                    }
-                    dt.one('preXhr', function(e, s, data) {
-                        // DataTables thinks the first item displayed is index 0, but we're not drawing that.
-                        // Set the property to what it was before exporting.
-                        settings._iDisplayStart = oldStart;
-                        data.start = oldStart;
-                    });
-                    // Reload the grid with the original page. Otherwise, API functions like table.cell(this) don't work properly.
-                    setTimeout(dt.ajax.reload, 0);
-                    // Prevent rendering of the full data to the DOM
-                    return false;
-                });
-            });
-            // Requery the server with the new one-time export settings
-            dt.ajax.reload();
-        }
+            "buttons": ["copy", "csv", "excel", {
+                extend: 'pdf',
+                orientation: 'landscape'
+            }, "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     });
 </script>
