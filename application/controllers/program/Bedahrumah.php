@@ -10,38 +10,18 @@ class Bedahrumah extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->library('session');
         $this->load->model('Bedahrumah_model', 'bedahrumah');
     }
 
-    public function Panakkukang()
+
+    public function Index()
     {
-        $data['namakec'] = 'panakkukang';
-        $data['title'] = 'Jaring Program Bedah Rumah Kec. ' . ucfirst($data['namakec']);
+        $data['menu'] = 'Jaring Program ';
+        $data['title'] = 'Bedah Rumah';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
-        // load library pagination
-        $this->load->library('pagination');
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
-        }
-
-        // config pagination
-        $config['base_url'] = base_url('program/bedahrumah/' . $data['namakec']);
-        $config['total_rows'] = $this->bedahrumah->countAllBedahrumah($data['namakec'], $data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 5;
-
-        // initialize pagination
-        $this->pagination->initialize($config);
-
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(4);
-        $data['bedahrumah'] = $this->bedahrumah->getBedahrumahKecamatan($config['per_page'], $data['start'], $data['namakec'], $data['keyword']);
+        $data['summary'] = $this->bedahrumah->getDataSummary();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -50,114 +30,87 @@ class Bedahrumah extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function Manggala()
+    public function Graph_list()
     {
-        $data['namakec'] = 'manggala';
-        $data['title'] = 'Jaring Program Bedah Rumah Kec. ' . ucfirst($data['namakec']);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        $graph = $this->bedahrumah->getDataGraph();
 
-        // load library pagination
-        $this->load->library('pagination');
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
+        $rows = array();
+        foreach ($graph as $d) {
+            array_push($rows, array($d->kecamatan, $d->total));
         }
 
-        // config pagination
-        $config['base_url'] = base_url('program/bedahrumah/' . $data['namakec']);
-        $config['total_rows'] = $this->bedahrumah->countAllBedahrumah($data['namakec'], $data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 5;
+        print json_encode($rows, JSON_NUMERIC_CHECK);
+    }
 
-        // initialize pagination
-        $this->pagination->initialize($config);
+    public function ajax_list()
+    {
+        header('Content-Type: application/json');
+        $list = $this->bedahrumah->get_datatables();
+        $data = array();
+        $no = $this->input->post('start');
+        //looping data mahasiswa
+        foreach ($list as $list) {
+            $no++;
+            $row = array();
+            //row pertama akan kita gunakan untuk btn edit dan delete
+            $row[] =  $no;
+            $row[] = $list->nik;
+            $row[] = $list->nama;
+            $row[] = $list->tempat_lahir;
+            $row[] = $list->tanggal_lahir;
+            $row[] = $list->status;
+            $row[] = $list->jenis_kelamin;
+            $row[] = $list->alamat;
+            $row[] = $list->rt;
+            $row[] = $list->rw;
+            $row[] = $list->tps;
+            $row[] = $list->kecamatan;
+            $row[] = $list->kelurahan;
+            $row[] = $list->nohp;
+            $row[] = $list->periode;
 
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(4);
-        $data['bedahrumah'] = $this->bedahrumah->getBedahrumahKecamatan($config['per_page'], $data['start'], $data['namakec'], $data['keyword']);
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->bedahrumah->count_all(),
+            "recordsFiltered" => $this->bedahrumah->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        $this->output->set_output(json_encode($output));
+    }
+
+    public function Kec()
+    {
+        $data['kec'] = $this->uri->segment(4);
+        $data['menu'] = 'Jaring Program ';
+        $data['title'] = 'Bedah Rumah';
+        $data['subtitle'] = ' Kecamatan ' . ucfirst($data['kec']);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['summary'] = $this->bedahrumah->getDataSummaryKec($data['kec']);
+        $data['export'] = $this->bedahrumah->getDataExport($data['kec']);
+        $this->session->set_flashdata('kec', $data['kec']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('program/bedahrumah/index', $data);
+        $this->load->view('program/bedahrumah/kec', $data);
         $this->load->view('templates/footer');
     }
 
-    public function Biringkanaya()
+    public function GraphKec_list()
     {
-        $data['namakec'] = 'biringkanaya';
-        $data['title'] = 'Jaring Program Bedah Rumah Kec. ' . ucfirst($data['namakec']);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        $data['kec'] = $this->session->flashdata('kec');
 
-        // load library pagination
-        $this->load->library('pagination');
+        $graph = $this->bedahrumah->getDataGraphKec($data['kec']);
 
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
+        $rows = array();
+        foreach ($graph as $d) {
+            array_push($rows, array($d->kelurahan, $d->total));
         }
 
-        // config pagination
-        $config['base_url'] = base_url('program/bedahrumah/' . $data['namakec']);
-        $config['total_rows'] = $this->bedahrumah->countAllBedahrumah($data['namakec'], $data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 5;
-
-        // initialize pagination
-        $this->pagination->initialize($config);
-
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(4);
-        $data['bedahrumah'] = $this->bedahrumah->getBedahrumahKecamatan($config['per_page'], $data['start'], $data['namakec'], $data['keyword']);
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('program/bedahrumah/index', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function Tamalanrea()
-    {
-        $data['namakec'] = 'tamalanrea';
-        $data['title'] = 'Jaring Program Bedah Rumah Kec. ' . ucfirst($data['namakec']);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
-        // load library pagination
-        $this->load->library('pagination');
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
-        }
-
-        // config pagination
-        $config['base_url'] = base_url('program/bedahrumah/' . $data['namakec']);
-        $config['total_rows'] = $this->bedahrumah->countAllBedahrumah($data['namakec'], $data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 5;
-
-        // initialize pagination
-        $this->pagination->initialize($config);
-
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(4);
-        $data['bedahrumah'] = $this->bedahrumah->getBedahrumahKecamatan($config['per_page'], $data['start'], $data['namakec'], $data['keyword']);
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('program/bedahrumah/index', $data);
-        $this->load->view('templates/footer');
+        print json_encode($rows, JSON_NUMERIC_CHECK);
     }
 }

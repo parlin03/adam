@@ -7,6 +7,7 @@ class Import_model extends CI_Model
     var $tbl_pip = 'tbl_pip';
     var $tbl_kip = 'tbl_kip';
     var $tbl_bpum = 'tbl_bpum';
+    var $tbl_bedahrumah = 'tbl_bedahrumah';
     var $tbl_dtdcpip = 'lks_dtdc_pip';
     var $tbl_dtdckip = 'lks_dtdc_kip';
 
@@ -120,7 +121,7 @@ class Import_model extends CI_Model
 
     /*
     |-------------------------------------------------------------------
-    | Fetch All Jaring Kip Data
+    | Fetch All Jaring BPUM Data
     |-------------------------------------------------------------------
     | 
     */
@@ -141,7 +142,7 @@ class Import_model extends CI_Model
 
     /*
     |-------------------------------------------------------------------
-    | Insert Batch Kip Data
+    | Insert Batch BPUM Data
     |-------------------------------------------------------------------
     |
     | @param $data  pips Array Data
@@ -150,6 +151,42 @@ class Import_model extends CI_Model
     function insert_jaringbpum_batch($data)
     {
         $this->db->insert_on_duplicate_update_batch($this->tbl_bpum, $data);
+        //$this->db->insert_batch($this->tbl_pip, $data);
+
+    }
+
+     /*
+    |-------------------------------------------------------------------
+    | Fetch All Jaring bedah rumah Data
+    |-------------------------------------------------------------------
+    | 
+    */
+    public function fetch_jaringbedahrumah()
+    {
+        /* Filter */
+        // $filter = $this->input->post('filter');
+        // if ($filter == 1) {
+        //     $fsek = $this->input->post('filter-sekolah');
+        //     $this->db->where('sekolah', $fsek);
+        // }
+        /* Query */
+        //    $this->db->select("*, (price*qty) as total");
+
+        $query = $this->db->get($this->tbl_bedahrumah);
+        return $query->result_array();
+    }
+
+    /*
+    |-------------------------------------------------------------------
+    | Insert Batch bedah rumah Data
+    |-------------------------------------------------------------------
+    |
+    | @param $data  pips Array Data
+    |
+    */
+    function insert_jaringbedahrumah_batch($data)
+    {
+        $this->db->insert_on_duplicate_update_batch($this->tbl_bedahrumah, $data);
         //$this->db->insert_batch($this->tbl_pip, $data);
 
     }
