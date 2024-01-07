@@ -212,7 +212,7 @@
                 enabled: false
             },
             title: {
-                text: 'Jaring Program Beasiswa PIP Kecamatan ' + '<?= ucfirst($this->uri->segment(4)); ?>'
+                text: 'Sebaran Beasiswa PIP Kecamatan ' + '<?= ucfirst($this->uri->segment(4)); ?>'
             },
             tooltip: {
                 formatter: function() {

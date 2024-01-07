@@ -178,7 +178,7 @@
                 enabled: false
             },
             title: {
-                text: 'Jaring Program Beasiswa PIP'
+                text: 'Sebaran Beasiswa PIP Makassar Timur'
             },
             tooltip: {
                 formatter: function() {
