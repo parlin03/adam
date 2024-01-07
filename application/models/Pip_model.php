@@ -79,7 +79,7 @@ class Pip_model extends CI_Model
     public function getDataGraph()
     {
         $this->db->select('kec_siswa, count(id) as total');
-        $this->db->from('tbl_pip');
+        $this->db->from($this->table);
         $this->db->group_by('kec_siswa');
         $query = $this->db->get();
         return $query->result();
@@ -88,7 +88,7 @@ class Pip_model extends CI_Model
     public function getDataSummary()
     {
         $this->db->select('kec_siswa, count(id) as total');
-        $this->db->from('tbl_pip');
+        $this->db->from($this->table);
         $this->db->join('kec', 'kec.namakec=tbl_pip.kec_siswa');
         $this->db->group_by('kec_siswa');
         $this->db->order_by('idkec');
@@ -102,7 +102,7 @@ class Pip_model extends CI_Model
     public function getDataGraphKec($kec)
     {
         $this->db->select('kel_siswa, count(id) as total');
-        $this->db->from('tbl_pip');
+        $this->db->from($this->table);
         $this->db->where('kec_siswa', $kec);
         $this->db->group_by('kel_siswa');
         $query = $this->db->get();
@@ -112,7 +112,7 @@ class Pip_model extends CI_Model
     public function getDataSummaryKec($kec)
     {
         $this->db->select('kel_siswa, count(tbl_pip.id) as total');
-        $this->db->from('tbl_pip');
+        $this->db->from($this->table);
         $this->db->join('kel', 'kel.namakel=tbl_pip.kel_siswa');
         $this->db->where('kec_siswa', $kec);
         $this->db->group_by('kel_siswa');
@@ -124,6 +124,6 @@ class Pip_model extends CI_Model
     public function getDataExport($kec)
     {
         $this->db->where('kec_siswa', $kec);
-        return $this->db->get('tbl_pip')->result_array();
+        return $this->db->get($this->table)->result_array();
     }
 }
