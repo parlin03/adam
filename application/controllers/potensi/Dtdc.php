@@ -211,7 +211,7 @@ class Dtdc extends CI_Controller
     }
     public function unregpip()
     {
-        $data['title'] = 'Data Belum Terdaftar';
+        $data['title'] = 'Data PIP Belum Terdaftar';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $data['unreg'] = $this->dtdc_m->getUnregPip();
@@ -224,7 +224,7 @@ class Dtdc extends CI_Controller
     }
     public function unregkip()
     {
-        $data['title'] = 'Data Belum Terdaftar';
+        $data['title'] = 'Data KIP Belum Terdaftar';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $data['unreg'] = $this->dtdc_m->getUnregKip();
@@ -237,7 +237,7 @@ class Dtdc extends CI_Controller
     }
     public function unregbpum()
     {
-        $data['title'] = 'Data Belum Terdaftar';
+        $data['title'] = 'Data BPUM Belum Terdaftar';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $data['unreg'] = $this->dtdc_m->getUnregBpum(); //single array
@@ -250,7 +250,7 @@ class Dtdc extends CI_Controller
     }
     public function unregbedahrumah()
     {
-        $data['title'] = 'Data Belum Terdaftar';
+        $data['title'] = 'Data Bedah Rumah Belum Terdaftar';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $data['unreg'] = $this->dtdc_m->getUnregBedahrumah(); //array banyak
