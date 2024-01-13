@@ -18,6 +18,10 @@ class Dtdc extends CI_Controller
         $data['title'] = 'DTDC Potensi Jaring Program';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
+        $data['unreg'] = $this->db->query("SELECT id FROM `tbl_pip` WHERE `nik_ortu` not in (SELECT `noktp` FROM `lks_dtdc`) and `nik_ortu2` not in (SELECT `noktp` FROM `lks_dtdc`)")->num_rows() +
+            $this->db->query("SELECT id FROM `tbl_kip` WHERE `noktp` not in (SELECT `noktp` FROM `lks_dtdc`)")->num_rows() +
+            $this->db->query("SELECT id FROM `tbl_bpum` WHERE `nik` not in (SELECT `noktp` FROM `lks_dtdc`)")->num_rows() +
+            $this->db->query("SELECT id FROM `tbl_bedahrumah` WHERE `nik` not in (SELECT `noktp` FROM `lks_dtdc`)")->num_rows();
 
         $data['pencapaian'] = $this->dtdc_m->getPencapaian(); //array banyak
         $data['pencapaiantim'] = $this->dtdc_m->getPencapaianTim(); //array banyak
@@ -117,7 +121,7 @@ class Dtdc extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         $data['program'] = $this->dtdc_m->getDataCapaianGraph();
-       
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -181,6 +185,81 @@ class Dtdc extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('potensi/dtdc/team', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function unreg()
+    {
+        $data['title'] = 'Data Belum Terdaftar';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['jpip'] = $this->db->query("SELECT id from `tbl_pip`")->num_rows();
+        $data['jupip'] = $this->db->query("SELECT id FROM `tbl_pip` WHERE `nik_ortu` not in (SELECT `noktp` FROM `lks_dtdc`) and `nik_ortu2` not in (SELECT `noktp` FROM `lks_dtdc`)")->num_rows();
+        $data['jkip'] = $this->db->query("SELECT id from `tbl_kip`")->num_rows();
+        $data['jukip'] = $this->db->query("SELECT id FROM `tbl_kip` WHERE `noktp` not in (SELECT `noktp` FROM `lks_dtdc`)")->num_rows();
+        $data['jbpum'] = $this->db->query("SELECT id from `tbl_bpum`")->num_rows();
+        $data['jubpum'] = $this->db->query("SELECT id FROM `tbl_bpum` WHERE `nik` not in (SELECT `noktp` FROM `lks_dtdc`)")->num_rows();
+        $data['jbr'] = $this->db->query("SELECT id from `tbl_bedahrumah`")->num_rows();
+        $data['jubr'] = $this->db->query("SELECT id FROM `tbl_bedahrumah` WHERE `nik` not in (SELECT `noktp` FROM `lks_dtdc`)")->num_rows();
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/unreg', $data);
+        $this->load->view('templates/footer');
+    }
+    public function unregpip()
+    {
+        $data['title'] = 'Data Belum Terdaftar';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['unreg'] = $this->dtdc_m->getUnregPip();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/unregpip', $data);
+        $this->load->view('templates/footer');
+    }
+    public function unregkip()
+    {
+        $data['title'] = 'Data Belum Terdaftar';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['unreg'] = $this->dtdc_m->getUnregKip();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/unregkip', $data);
+        $this->load->view('templates/footer');
+    }
+    public function unregbpum()
+    {
+        $data['title'] = 'Data Belum Terdaftar';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['unreg'] = $this->dtdc_m->getUnregBpum(); //single array
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/unregbpum', $data);
+        $this->load->view('templates/footer');
+    }
+    public function unregbedahrumah()
+    {
+        $data['title'] = 'Data Belum Terdaftar';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        $data['unreg'] = $this->dtdc_m->getUnregBedahrumah(); //array banyak
+        // $data['new'] = $this->dtdc_m->getTeamPencapaian($data['uid']); //array banyak
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('potensi/dtdc/unregbedahrumah', $data);
         $this->load->view('templates/footer');
     }
 }

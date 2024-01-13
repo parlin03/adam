@@ -272,4 +272,25 @@ class Dtdc_model extends CI_Model
         $query = $this->db->query("SELECT noktp, count(noktp) as total from lks_dtdc group by noktp having count(noktp) > 1");
         return $query->result_array();
     }
+
+    public function getUnregPip()
+    {
+        $query = "SELECT nama_siswa, nama_sekolah, nama_ibu, nama_ayah, telp, nik_ortu, nik_ortu2 FROM `tbl_pip` WHERE `nik_ortu` not in (SELECT `noktp` FROM `lks_dtdc`) and `nik_ortu2` not in (SELECT `noktp` FROM `lks_dtdc`)";
+        return  $this->db->query($query)->result_array();
+    }
+    public function getUnregKip()
+    {
+        $query = "SELECT * FROM `tbl_kip` WHERE `noktp` not in (SELECT `noktp` FROM `lks_dtdc`)";
+        return  $this->db->query($query)->result_array();
+    }
+    public function getUnregBpum()
+    {
+        $query = "SELECT * FROM `tbl_bpum` WHERE `nik` not in (SELECT `noktp` FROM `lks_dtdc`)";
+        return  $this->db->query($query)->result_array();
+    }
+    public function getUnregBedahrumah()
+    {
+        $query = "SELECT * FROM `tbl_bedahrumah` WHERE `nik` not in (SELECT `noktp` FROM `lks_dtdc`)";
+        return  $this->db->query($query)->result_array();
+    }
 }

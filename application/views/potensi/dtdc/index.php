@@ -172,7 +172,7 @@
                         <div class="card-header">
                             <!-- <h5 class="card-title">Monthly Recap Report</h5> -->
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-sm-4">
                                     <form action=" <?= base_url('potensi/dtdc/')  ?>" method="POST">
                                         <div class="input-group mb-2">
                                             <input type="text" class="form-control" placeholder="Search NIK" name="keyword" autocomplete="off" autofocus>
@@ -183,18 +183,26 @@
                                     </form>
 
                                 </div>
-                                <div class="col-md-3 ">
+                                <div class="col-sm-5 ">
                                     <div class="input-group">
                                         <button type="submit" class="btn btn-warning">
                                             <a href="<?= base_url('potensi/dtdc/export'); ?>">Export</a>
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-md-6 ">
-                                    <div class="card-tools">
-                                        <div class="input-group input-group-sm d-flex justify-content-end">
-                                            <h5>Total DTDC Terdaftar: <?= $total_rows; ?></h5>
-
+                                <div class="col-sm-3 ">
+                                    <div class="row">
+                                        <div class="card-tools">
+                                            <div class="input-group input-group-sm d-flex justify-content-end">
+                                                <h5>Total DTDC Terdaftar: <?= $total_rows; ?></h5> <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="card-tools">
+                                            <div class="input-group input-group-sm d-flex justify-content-end">
+                                                <h5>Total Belum Terdaftar: <a href="<?= base_url('/potensi/dtdc/unreg'); ?>"><?= $unreg; ?></a></h5> <br>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
