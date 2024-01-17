@@ -19,7 +19,8 @@ class Rekapitulasi extends CI_Controller
 
     public function Index()
     {
-        $data['title'] = 'Rekapitulasi Perhitungan Suara';
+        $data['menu'] = 'Rekapitulasi ';
+        $data['title'] = 'Perhitungan Suara';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
         // $data['head'] = 'Kecamatan';
