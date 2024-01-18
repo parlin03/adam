@@ -230,7 +230,7 @@
 
             plotOptions: {
                 pie: {
-                    colors: ['#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+                    colors: ['#B8860B', '#42afee', '#9932CC', '#F0E68C', '#006400', '#FF69B4', '#000080'],
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
