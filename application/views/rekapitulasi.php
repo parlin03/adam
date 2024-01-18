@@ -31,11 +31,11 @@
                                         <div class="panel panel-primary">
                                             <div class="panel-body">
                                                 <div class="row">
-                                                    <div class="col-md-7">
+                                                    <div class="col-md-6">
 
                                                         <div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
                                                     </div>
-                                                    <div class="col-md-5">
+                                                    <div class="col-md-6">
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered table-striped text-nowrap table-hover text-dark  ">
                                                                 <thead class="text-center">
