@@ -36,10 +36,10 @@
                                                         <div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered table-striped text-nowrap table-hover text-dark  ">
+                                                        <div class="table">
+                                                            <table style="width:100%" class="table table-bordered table-striped table-hover text-dark  ">
                                                                 <thead class="text-center">
-                                                                    <th class="border">Nama Calon</th>
+                                                                    <th class="align-middle text-center">Nama Calon</th>
                                                                     <th class="border">Jumlah Suara</th>
                                                                     <!-- <th class="border">REKOMENDASI</th> -->
                                                                     <!-- <th class="border">Action</th> -->
