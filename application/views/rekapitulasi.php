@@ -214,7 +214,7 @@
                 renderTo: 'mygraph',
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
-                plotShadow: false
+                plotShadow: false,
             },
             accessibility: {
                 enabled: false
@@ -227,13 +227,15 @@
                     return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
                 }
             },
+
             plotOptions: {
                 pie: {
+                    colors: ['#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        color: '#000000',
+                        // color: '#000000',
                         connectorColor: 'green',
                         formatter: function() {
                             return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) + ' % ';
