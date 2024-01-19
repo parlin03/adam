@@ -16,7 +16,7 @@ class Rekapitulasi_model extends CI_Model
     public function getDataHasil($kec = null, $kel = null)
     {
         if ($kec && $kel) {
-            $head = 'tps as head, ';
+            $head = '(select distinct(id_tps) from rekap_suara where rekap_suara.id_tps = tbl_tps.id_tps) as id_tps , jml_sah, jml_rusak, tps as head, ';
             $group = 'id_tps';
             $this->db->where('namakel', $kel);
             $this->db->where('namakec', $kec);
@@ -33,6 +33,6 @@ class Rekapitulasi_model extends CI_Model
         $this->db->group_by($group);
         $this->db->order_by($group);
         $query = $this->db->get();
-        return $query->result();
+        return $query->result_array();
     }
 }
