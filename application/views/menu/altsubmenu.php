@@ -142,3 +142,4 @@
     </div>
 </div>
 <!-- End Modal Add New altsubMenu -->
+<script src="<?= base_url('assets/') ?>plugins/jquery/jquery.min.js"></script>

@@ -112,3 +112,4 @@
     </div>
 </div>
 <!-- End Modal Add New Role -->
+<script src="<?= base_url('assets/') ?>plugins/jquery/jquery.min.js"></script>
