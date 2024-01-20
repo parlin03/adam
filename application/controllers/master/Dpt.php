@@ -44,16 +44,10 @@ class Dpt extends CI_Controller
             $row[] =  $no;
             $row[] = $list->noktp;
             $row[] = $list->nama;
-            $row[] = $list->t4_lahir;
-            $row[] = $list->tgl_lahir;
-            $row[] = $list->status;
-            $row[] = $list->sex;
-            $row[] = $list->alamat;
-            $row[] = $list->rt;
-            $row[] = $list->rw;
             $row[] = $list->tps;
-            $row[] = $list->namakec;
-            $row[] = $list->namakel;
+            $row[] = $list->alamat;
+            $row[] = $list->rt . '/' . $list->rw;
+            $row[] = $list->namakel . '/' . $list->namakec;
 
             $data[] = $row;
         }

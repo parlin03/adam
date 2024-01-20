@@ -35,17 +35,10 @@
                                         <th>#</th>
                                         <th>NIK</th>
                                         <th>NAMA</th>
-                                        <th>TMPTLHR</th>
-                                        <th>TGLLHR</th>
-                                        <th>STATUS</th>
-                                        <th>JENIS_KELAMIN</th>
-                                        <th>ALAMAT</th>
-                                        <th>RT</th>
-                                        <th>RW</th>
                                         <th>TPS</th>
-                                        <th>KECAMATAN</th>
-                                        <th>KEL/DESA</th>
-
+                                        <th>ALAMAT</th>
+                                        <th>RT/RW</th>
+                                        <th>KEL/KEC</th>
                                     </tr>
                                 </thead>
 
@@ -96,7 +89,7 @@
 <script>
     $(function() {
         $("#tabelDPT").DataTable({
-            "iDisplayLength": 5,
+            "iDisplayLength": 10,
             "iDisplayStart": 0,
             "responsive": true,
             "lengthChange": false,

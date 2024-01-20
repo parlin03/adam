@@ -7,12 +7,12 @@ class Dpt_model extends CI_Model
     var $table = 'dpt';
     //set kolom order, kolom pertama saya null untuk kolom edit dan hapus
     var $column_order = array(
-        null, 'noktp', 'nama', 't4_lahir', 'tgl_lahir', 'status', 'sex',
+        null, 'noktp', 'nama', 
         'alamat', 'rt', 'rw', 'tps', 'namakel', 'namakec'
     );
 
     var $column_search = array(
-        'noktp', 'nama', 't4_lahir', 'tgl_lahir', 'status', 'sex',
+        'noktp', 'nama', 
         'alamat', 'rt', 'rw', 'tps', 'namakel', 'namakec'
     );
     // default order 
