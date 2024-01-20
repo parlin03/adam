@@ -10,38 +10,18 @@ class Dpt extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->library('session');
+        $this->load->model('Dpt_model', 'dpt_m');
     }
 
-    public function Panakkukang()
+
+    public function Index()
     {
-        $data['namakec'] = 'panakkukang';
-        $data['title'] = 'DPT Kec. ' . ucfirst($data['namakec']);
+
+        $data['title'] = 'DPT Makassar B';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-        $this->load->model('Dpt_model', 'dpt');
 
-        // load library pagination
-        $this->load->library('pagination');
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
-        }
-
-        // config pagination
-        $config['base_url'] = base_url() . 'master/dpt/' . $data['namakec'];
-        $config['total_rows'] = $this->dpt->countAllDpt($data['namakec'], $data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
-
-        // initialize pagination
-        $this->pagination->initialize($config);
-
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(4);
-        $data['dpt'] = $this->dpt->getDptKecamatan($config['per_page'], $data['start'], $data['namakec'], $data['keyword']);
+        // $data['summary'] = $this->dpt_m->getDataSummary();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -50,117 +30,40 @@ class Dpt extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function Manggala()
+    public function ajax_list()
     {
-        $data['namakec'] = 'manggala';
-        $data['title'] = 'DPT Kec. ' . ucfirst($data['namakec']);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-        $this->load->model('Dpt_model', 'dpt');
+        header('Content-Type: application/json');
+        $list = $this->dpt_m->get_datatables();
+        $data = array();
+        $no = $this->input->post('start');
+        //looping data mahasiswa
+        foreach ($list as $list) {
+            $no++;
+            $row = array();
+            //row pertama akan kita gunakan untuk btn edit dan delete
+            $row[] =  $no;
+            $row[] = $list->noktp;
+            $row[] = $list->nama;
+            $row[] = $list->t4_lahir;
+            $row[] = $list->tgl_lahir;
+            $row[] = $list->status;
+            $row[] = $list->sex;
+            $row[] = $list->alamat;
+            $row[] = $list->rt;
+            $row[] = $list->rw;
+            $row[] = $list->tps;
+            $row[] = $list->namakec;
+            $row[] = $list->namakel;
 
-        // load library pagination
-        $this->load->library('pagination');
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
+            $data[] = $row;
         }
-
-        // config pagination
-        $config['base_url'] = base_url() . 'master/dpt/' . $data['namakec'];
-        $config['total_rows'] = $this->dpt->countAllDpt($data['namakec'], $data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
-
-        // initialize pagination
-        $this->pagination->initialize($config);
-
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(4);
-        $data['dpt'] = $this->dpt->getDptKecamatan($config['per_page'], $data['start'],  $data['namakec'], $data['keyword']);
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('master/dpt/index', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function Biringkanaya()
-    {
-        $data['namakec'] = 'biringkanaya';
-        $data['title'] = 'DPT Kec. ' . ucfirst($data['namakec']);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-        $this->load->model('Dpt_model', 'dpt');
-
-        // load library pagination
-        $this->load->library('pagination');
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
-        }
-
-        // config pagination
-        $config['base_url'] = base_url() . 'master/dpt/' . $data['namakec'];
-        $config['total_rows'] = $this->dpt->countAllDpt($data['namakec'], $data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
-
-        // initialize pagination
-        $this->pagination->initialize($config);
-
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(4);
-        $data['dpt'] = $this->dpt->getDptKecamatan($config['per_page'], $data['start'],  $data['namakec'], $data['keyword']);
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('master/dpt/index', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function Tamalanrea()
-    {
-        $data['namakec'] = 'tamalanrea';
-        $data['title'] = 'DPT Kec. ' . ucfirst($data['namakec']);
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-        $this->load->model('Dpt_model', 'dpt');
-
-        // load library pagination
-        $this->load->library('pagination');
-
-        // ambil data keyword
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']); //simpan pencarian di session
-        } else {
-            $data['keyword'] =  $this->session->userdata('keyword');
-        }
-
-        // config pagination
-        $config['base_url'] = base_url() . 'master/dpt/' . $data['namakec'];
-        $config['total_rows'] = $this->dpt->countAllDpt($data['namakec'], $data['keyword']);
-        $data['total_rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
-
-        // initialize pagination
-        $this->pagination->initialize($config);
-
-        // echo $this->pagination->create_links();
-        $data['start'] = $this->uri->segment(4);
-        $data['dpt'] = $this->dpt->getDptKecamatan($config['per_page'], $data['start'],  $data['namakec'], $data['keyword']);
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('master/dpt/index', $data);
-        $this->load->view('templates/footer');
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->dpt_m->count_all(),
+            "recordsFiltered" => $this->dpt_m->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        $this->output->set_output(json_encode($output));
     }
 }
