@@ -102,8 +102,6 @@
                 "url": '<?php echo base_url(); ?>master/dpt/ajax_list',
                 "type": "POST"
             },
-
-            "dom": 'Bfrtip',
             "select": true,
             "serverSide": true
         })
