@@ -6,7 +6,7 @@
             <div class="row mb-2 ju">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark"><?= $title; ?></h1>
-                    <br><a href="<?= base_url('potensi/dtdc/kec/' . $kec); ?>">
+                    <br><a href="<?= base_url('potensi/tim50/kec/' . $kec); ?>">
                         <i class="fas fa-arrow-left"></i> Kembali<a>
                 </div><!-- /.col -->
                 <!-- <div class="col-sm-6">
@@ -64,13 +64,6 @@
                                                 <b>TPS. <?= $m['tps']; ?></b>
                                                 <br>No. Telpon : <?= $m['nohp']; ?>
                                             </td>
-                                            <!-- <td style="width: 150px">
-
-                <a href="https://dtdc.sonsofadam.org/assets/img/dtdc/<?= $m['image']; ?>" class="portfolio-popup">
-                    <img src="public_html/dtdc.sonsofadam.org/assets/img/dtdc<?= $m['image']; ?>" class="img-thumbnail" />
-                </a>
-            </td> -->
-
                                             <td><?= $m['name'] ?></td>
                                         </tr>
                                         <?php $i++; ?>
@@ -86,7 +79,7 @@
                 </div>
                 <!-- /.col -->
             </div>
-            <br><a href="<?= base_url('potensi/dtdc/kec/' . $kec); ?>">
+            <br><a href="<?= base_url('potensi/tim50/kec/' . $kec); ?>">
                 <i class="fas fa-arrow-left"></i> Kembali<a>
         </div><!--/. container-fluid -->
     </section>

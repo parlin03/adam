@@ -20,7 +20,6 @@ class Tim50 extends CI_Controller
 
 
         $data['pencapaian'] = $this->tim50_m->getPencapaian(); //array banyak
-        $data['pencapaiantim'] = $this->tim50_m->getPencapaianTim(); //array banyak
         $data['export'] = $this->tim50_m->getTim50Export();
 
         $this->load->view('templates/header', $data);
@@ -30,22 +29,6 @@ class Tim50 extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function export()
-    {
-        $data['title'] = 'Potensi Suara Terdaftar';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
-
-        $data['pencapaian'] = $this->tim50_m->getPencapaian(); //array banyak
-        $data['pencapaiantim'] = $this->tim50_m->getPencapaianTim(); //array banyak
-        // load library pagination
-        $data['export'] = $this->tim50_m->getTim50Export();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('potensi/tim50/export', $data);
-        $this->load->view('templates/footer');
-    }
     public function list()
     {
         $this->load->model('Tim50_model', 'tim50_model');
@@ -98,43 +81,7 @@ class Tim50 extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function capaian()
-    {
-        $data['title'] = 'Verifikasi Potensi Jaring Program';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
-        $data['program'] = $this->tim50_m->getDataCapaianGraph();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('potensi/tim50/capaian', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function Capaian_list()
-    {
-
-
-        $graph = $this->tim50_m->getDataCapaianGraph();
-        // $categories = array();
-        // $categories['name'] = '';
-        $rows = array();
-        foreach ($graph as $d) {
-            // $rows = array($d->tanggapan, $d->total);
-            // $categories['categories'][] = $d->namakec;
-            // $row[] = $d->tanggapan;
-            // $row[] = $d->total;
-            if ($d->program == "") {
-                $d->program = "Lain-Lain";
-            }
-            array_push($rows, array($d->program, $d->total));
-        }
-        // array_push($rows, $row);
-        // array_push($result, $rows); 
-        print json_encode($rows, JSON_NUMERIC_CHECK);
-    }
-
+   
     public function tps()
     {
         $data['title'] = 'Pasukan Timur';
@@ -151,23 +98,5 @@ class Tim50 extends CI_Controller
         $this->load->view('potensi/tim50/tps', $data);
         $this->load->view('templates/footer');
     }
-    public function team()
-    {
-        $data['title'] = 'Pasukan Timur';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
-
-        $data['uid'] = $this->uri->segment(4);
-        $data['grafik'] = $this->tim50_m->getTeamGraph($data['uid']);
-        $data['TotalDaftar'] = $this->tim50_m->getTotalDaftar($data['uid']); //single array
-        $data['TotalDpt'] = $this->tim50_m->getTotalDpt(); //array banyak
-        $data['pencapaian'] = $this->tim50_m->getTeamPencapaian($data['uid']); //array banyak
-        // $data['tim50'] = $this->tim50->getLksTim50(); //array banyak
-        $data['pencapaiantimall'] = $this->tim50_m->getPencapaianTimAll(); //array banyak
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('potensi/tim50/team', $data);
-        $this->load->view('templates/footer');
-    }
+    
 }

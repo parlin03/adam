@@ -19,7 +19,7 @@ html {
     z-index: 1;
     margin: auto;
     overflow: auto;
-    height: 350px;
+    height: 600px;
 }
 
 .table-scroll table {

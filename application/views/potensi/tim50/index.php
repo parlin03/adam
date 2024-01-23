@@ -55,7 +55,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="container" style=" height: 430px; margin: 0 auto">
+                                    <div class="container" style=" height: 470px; margin: 0 auto">
                                         <div id="container"></div>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><a href="<?= base_url('potensi/tim50/capaian'); ?>">Capaian Dukungan</a></h3>
+                            <h3 class="card-title">Capaian Dukungan</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
@@ -99,8 +99,8 @@
                                             <td><?= $i; ?></td>
                                             <td><a href="<?= base_url('potensi/tim50/kec/') . strtolower($cp['namakec']); ?>"><?= ucwords(strtolower($cp['namakec'])); ?></a></td>
                                             <td class="text-center"><?= $cp['total']; ?></td>
-                                            <td class="text-center"><?= $cp['namakec'] == 'panakkukang' || $cp['namakec'] == 'biringkanaya' ? '5500' : '4500'; ?></td>
-                                            <td class="text-center"><?= number_format((($cp['total'] * 100) / ($cp['namakec'] == 'panakkukang' || $cp['namakec'] == 'biringkanaya' ? '5500' : '4500')), 2); ?> %</td>
+                                            <td class="text-center"><?= $cp['namakec'] == 'Panakkukang' || $cp['namakec'] == 'Biringkanaya' ? '5500' : '4500'; ?></td>
+                                            <td class="text-center"><?= number_format((($cp['total'] * 100) / ($cp['namakec'] == 'Panakkukang' || $cp['namakec'] == 'Biringkanaya' ? '5500' : '4500')), 2); ?> %</td>
                                         </tr>
 
 
@@ -340,7 +340,7 @@
                         // color: '#000000',
                         connectorColor: 'green',
                         formatter: function() {
-                            return '<b>' + this.point.name + '</b>: ' + this.y + ' (' + Highcharts.numberFormat(this.percentage, 2) + ' %)';
+                            return '<b>' + this.point.name + '</b>: <br>' + this.y + ' <small>(' + Highcharts.numberFormat(this.percentage, 2) + ' %)</small>';
                         }
                     },
                     showInLegend: true

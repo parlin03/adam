@@ -7,7 +7,7 @@
             <div class="row mb-2 ju">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark"><?= $title; ?></h1>
-                    <br><a href="<?= base_url('potensi/dtdc/'); ?>">
+                    <br><a href="<?= base_url('potensi/tim50/'); ?>">
                         <i class="fas fa-arrow-left"></i> Kembali<a>
                 </div><!-- /.col -->
                 <!-- <div class="col-sm-6">
@@ -35,7 +35,7 @@
                         </div>
                         <!-- <div class="card-body table-responsive table-scroll" p-0">
                             <table class="table table-sm table-hover text-nowrap"> -->
-                        <div id="table-scroll" class="table-scroll">
+                        <div id="table-scroll" class="table-scroll height: 600px" style="height: 600px;">
                             <table id="main-table" class="main-table">
                                 <thead>
                                     <tr>
@@ -57,7 +57,7 @@
                                         <tr>
                                             <th class="text-center"><?= $pt['tps']; ?></th>
                                             <?php for ($k = 0; $k < $i; ++$k) {
-                                                echo "<td class='text-center'><a href='" . base_url('potensi/dtdc/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . $pt['C' . $k] . "</td>";
+                                                echo "<td class='text-center'><a href='" . base_url('potensi/tim50/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . $pt['C' . $k] . "</td>";
                                                 $total[$k] += $pt['C' . $k];
                                             } ?>
                                         </tr>
@@ -82,7 +82,7 @@
                 </div>
                 <!-- /.col -->
             </div>
-            <br><a href="<?= base_url('potensi/dtdc/'); ?>">
+            <br><a href="<?= base_url('potensi/tim50/'); ?>">
                 <i class="fas fa-arrow-left"></i> Kembali<a>
         </div><!--/. container-fluid -->
     </section>
