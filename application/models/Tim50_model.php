@@ -147,7 +147,7 @@ class Tim50_model extends CI_Model
 
     public function getPencapaianTps($kec, $kel, $tps)
     {
-        $this->db->select('lks_tim50.id, noktp, nama, alamat, namakel, namakec, rt, rw, tps, lks_tim50.nohp, user.name');
+        $this->db->select('lks_tim50.id, noktp, nama, alamat, namakel, namakec, rt, rw, tps, lks_tim50.nohp, user.name, status');
         $this->db->from('lks_tim50');
         $this->db->join('user', 'lks_tim50.user_id = user.id');
         $this->db->where(array('namakec' => $kec, 'namakel' => $kel, 'tps' => $tps));

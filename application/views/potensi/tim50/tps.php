@@ -34,14 +34,14 @@
                         </div>
                         <!-- /.card-header -->
 
-                        <div class="card-body table-responsive p-0">
-
-                            <table class="table table-hover text-nowrap" align="center">
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
 
                                 <thead>
                                     <TH>#</th>
                                     <TH>DPT</th>
                                     <th>PIC</th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
                                     <?php if (empty($PencapaianTps)) : ?>
@@ -65,6 +65,7 @@
                                                 <br>No. Telpon : <?= $m['nohp']; ?>
                                             </td>
                                             <td><?= $m['name'] ?></td>
+                                            <td style="width: 0.1em" class="<?= $m['status'] == 'Terdaftar DPT' ? 'bg-green' : 'bg-red'; ?>"></td>
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>
@@ -87,8 +88,35 @@
 </div>
 <!-- /.content-wrapper -->
 
-<!-- load library jquery dan highcharts -->
-<script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
-<!-- end load library -->
+<!-- jQuery -->
+<script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", {
+                extend: 'pdf',
+                orientation: 'landscape'
+            }, "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    });
+</script>
