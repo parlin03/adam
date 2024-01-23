@@ -169,6 +169,7 @@
                                         <TH>TPS</th>
                                         <TH>No. HP</th>
                                         <TH>PIC</th>
+                                        <TH></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -197,6 +198,7 @@
                                             <td><b><?= $m['tps']; ?></b></td>
                                             <td> <?= $m['nohp']; ?></td>
                                             <td><?= $m['name'] ?></td>
+                                            <td style="width: 0.1em" class="<?= $m['status'] == 'Terdaftar DPT' ? 'bg-green' : 'bg-red'; ?>"></td>
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>

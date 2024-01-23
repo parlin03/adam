@@ -259,7 +259,7 @@ class Tim50_model extends CI_Model
 
     public function getTim50Export()
     {
-        $this->db->select('lks_tim50.id, noktp, nama, alamat, namakel, namakec, rt, rw, tps,  lks_tim50.nohp, user.name');
+        $this->db->select('lks_tim50.id, noktp, nama, alamat, namakel, namakec, rt, rw, tps,  lks_tim50.nohp, user.name, status');
 
         $this->db->join('user', 'lks_tim50.user_id = user.id');
 
