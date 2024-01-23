@@ -107,16 +107,16 @@
                                     </tbody>
                                     <?php $i++; ?>
                                     <?php $total += $cp['total']; ?>
-                                    <?php $totaldpt += $cp['totaldpt']; ?>
                                 <?php endforeach; ?>
+                                <?php $ttltgt = 10000; ?>
                                 <tfoot>
                                     <tr>
 
                                         <th colspan="2" class="text-center">Total</th>
 
                                         <th class="text-center"><?= $total; ?></th>
-                                        <th class="text-center"><?= $totaldpt; ?></th>
-                                        <th class="text-center"><?= number_format((($total * 100) / $totaldpt), 2); ?> %</th>
+                                        <th class="text-center"><?= $ttltgt; ?></th>
+                                        <th class="text-center"><?= number_format((($total * 100) / $ttltgt), 2); ?> %</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -124,19 +124,20 @@
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="container">
+                                    <div>
+                                        <div class="panel panel-primary">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
 
-                    <div class="card-body">
-                        <div class="row ">
-                            <div class="container" style="margin-top:20px">
-                                <div>
-                                    <div class="panel panel-primary">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-sm-12">
+                                                        <div id="mygraph" style="min-width: 200px; height: 260px; margin: 0 auto"></div>
+                                                    </div>
 
-                                                    <div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -167,6 +168,7 @@
                                         <TH>Kel/Kec</th>
                                         <TH>TPS</th>
                                         <TH>No. HP</th>
+                                        <TH>PIC</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -192,17 +194,8 @@
                                             <td>
                                                 <?= ucwords(strtolower($m['namakel'])); ?>/<?= ucwords(strtolower($m['namakec'])); ?>
                                             </td>
-                                            <td>
-                                                <b><?= $m['tps']; ?></b>
-                                            </td>
+                                            <td><b><?= $m['tps']; ?></b></td>
                                             <td> <?= $m['nohp']; ?></td>
-                                            <!-- 
-                                                    <td style="width: 150px">
-                                                        <a href="<?= base_url('assets/img/dtdc/') . $m['image']; ?>" class="portfolio-popup">
-                                                            <img src="<?= base_url('assets/img/dtdc/') . $m['image']; ?> " class="img-thumbnail" />
-                                                        </a>
-                                                    </td> -->
-
                                             <td><?= $m['name'] ?></td>
                                         </tr>
                                         <?php $i++; ?>
@@ -238,9 +231,6 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.7.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/highcharts-more.js"></script>
-<!-- end load library -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
-
 
 <script type="text/javascript">
     $(function() {
@@ -316,7 +306,7 @@
             },
             tooltip: {
                 formatter: function() {
-                    return '<b>' + this.point.name + '</b>: ' + this. + this.percentage + ' %';
+                    return '<b>' + this.point.name + '</b>: <br>' + this.y + ' (' + this.percentage + ' %)';
                 }
             },
 
@@ -330,7 +320,7 @@
                         // color: '#000000',
                         connectorColor: 'green',
                         formatter: function() {
-                            return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) + ' % ';
+                            return '<b>' + this.point.name + '</b>: ' + this.y + ' (' + Highcharts.numberFormat(this.percentage, 2) + ' %)';
                         }
                     },
                     showInLegend: true
