@@ -45,6 +45,7 @@
                                             <th class="text-center"><?= $kel['namakel'] . ' <br><font size="2">(' . $kel['jtps'] . ' TPS)</font>'; ?></th>
                                             <?php $i++; ?>
                                             <?php $j[] = $kel['namakel']; ?>
+                                            <?php $m[] = $kel['jtps']; ?>
                                         <?php endforeach; ?>
                                     </tr>
                                 </thead>
@@ -57,7 +58,7 @@
                                         <tr>
                                             <th class="text-center"><?= $pt['tps']; ?></th>
                                             <?php for ($k = 0; $k < $i; ++$k) {
-                                                echo "<td class='text-center'><a href='" . base_url('potensi/tim50/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . $pt['C' . $k] . "</td>";
+                                                echo "<td class='text-center'><a href='" . base_url('potensi/tim50/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . ($m[$k] >= $pt['tps']   ? $pt['C' . $k] : null)  . "</td>";
                                                 $total[$k] += $pt['C' . $k];
                                             } ?>
                                         </tr>
