@@ -35,7 +35,7 @@
                         </div>
                         <!-- <div class="card-body table-responsive table-scroll" p-0">
                             <table class="table table-sm table-hover text-nowrap"> -->
-                        <div id="table-scroll" class="table-scroll height: 600px" style="height: 600px;">
+                        <div id="table-scroll" class="table-scroll height: 400px" style="height: 400px;">
                             <table id="main-table" class="main-table">
                                 <thead>
                                     <tr>
