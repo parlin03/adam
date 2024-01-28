@@ -74,8 +74,8 @@
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-vote-yea"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Saksi</span>
-                            <span class="info-box-number">0</span>
+                            <span class="info-box-text">Tim 50</span>
+                            <span class="info-box-number"><?= number_format($this->db->get_Where('lks_tim50', array())->num_rows()); ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

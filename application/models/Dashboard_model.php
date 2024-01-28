@@ -57,12 +57,12 @@ class Dashboard_model extends CI_Model
         return $query->result();
     }
 
-    public function getDataSaksi()
+    public function getDataTim50()
     {
-        $this->db->select('saksi.namakec, count(*) as total');
-        $this->db->from('saksi');
-        $this->db->join('kec', 'kec.namakec = saksi.namakec');
-        $this->db->group_by('saksi.namakec');
+        $this->db->select('kec.namakec, count(lks_tim50.id) as total');
+        $this->db->from('lks_tim50');
+        $this->db->join('kec', 'kec.namakec = lks_tim50.namakec', 'right');
+        $this->db->group_by('kec.namakec');
         $this->db->order_by('idkec');
         $query = $this->db->get();
         return $query->result();

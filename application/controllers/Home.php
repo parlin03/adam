@@ -53,11 +53,11 @@ class Home extends CI_Controller
         foreach ($potensi as $p) {
             $rows1['data'][] =  $p->total;
         }
-        $saksi = $this->mdh->getDataSaksi();
+        $tim50 = $this->mdh->getDataTim50();
         $rows2 = array();
-        $rows2['name'] = 'Saksi';
+        $rows2['name'] = 'Tim 50';
         $rows2['type'] = 'column';
-        foreach ($saksi as $s) {
+        foreach ($tim50 as $s) {
             $rows2['data'][] =  $s->total;
         }
         $rps = $this->mdh->getDataRps();
