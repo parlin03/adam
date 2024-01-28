@@ -35,7 +35,7 @@
                         </div>
                         <!-- <div class="card-body table-responsive table-scroll" p-0">
                             <table class="table table-sm table-hover text-nowrap"> -->
-                        <div id="table-scroll" class="table-scroll">
+                        <div id="table-scroll" class="table-scroll height: 400px" style="height: 400px;">
                             <table id="main-table" class="main-table">
                                 <thead>
                                     <tr>
@@ -45,6 +45,7 @@
                                             <th class="text-center"><?= $kel['namakel'] . ' <br><font size="2">(' . $kel['jtps'] . ' TPS)</font>'; ?></th>
                                             <?php $i++; ?>
                                             <?php $j[] = $kel['namakel']; ?>
+                                            <?php $m[] = $kel['jtps']; ?>
                                         <?php endforeach; ?>
                                     </tr>
                                 </thead>
@@ -57,7 +58,7 @@
                                         <tr>
                                             <th class="text-center"><?= $pt['tps']; ?></th>
                                             <?php for ($k = 0; $k < $i; ++$k) {
-                                                echo "<td class='text-center'><a href='" . base_url('potensi/dtdc/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . $pt['C' . $k] . "</td>";
+                                                echo "<td class='text-center'><a href='" . base_url('potensi/dtdc/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $pt['tps']) . "'>" . ($m[$k] >= $pt['tps']   ? $pt['C' . $k] : null)  . "</td>";
                                                 $total[$k] += $pt['C' . $k];
                                             } ?>
                                         </tr>
