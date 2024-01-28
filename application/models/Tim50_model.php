@@ -47,10 +47,10 @@ class Tim50_model extends CI_Model
 
     public function getPencapaian()
     {
-        $this->db->select('lks_tim50.namakec, count(lks_tim50.noktp) as total, totaldpt');
+        $this->db->select('kec.namakec, kec.target_tim50 as target, count(lks_tim50.noktp) as total');
         $this->db->from('lks_tim50');
-        $this->db->join('kec', 'kec.namakec = lks_tim50.namakec');
-        $this->db->join('(select namakec, count(dpt.id) as totaldpt from dpt group by namakec) as a', 'a.namakec = lks_tim50.namakec');
+        $this->db->join('kec', 'kec.namakec = lks_tim50.namakec', 'right');
+        // $this->db->join('(select namakec, count(dpt.id) as totaldpt from dpt group by namakec) as a', 'a.namakec = lks_tim50.namakec');
         $this->db->group_by('namakec');
         $this->db->order_by('kec.idkec', 'ASC');
         $query = $this->db->get();

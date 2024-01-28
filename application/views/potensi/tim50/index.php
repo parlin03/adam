@@ -91,32 +91,29 @@
                                 </thead>
                                 <?php $i = 1; ?>
                                 <?php $total = 0; ?>
-                                <?php $totaldpt = 0; ?>
-
+                                <?php $target = 0; ?>
                                 <?php foreach ($pencapaian as $cp) : ?>
                                     <tbody>
                                         <tr>
                                             <td><?= $i; ?></td>
                                             <td><a href="<?= base_url('potensi/tim50/kec/') . strtolower($cp['namakec']); ?>"><?= ucwords(strtolower($cp['namakec'])); ?></a></td>
                                             <td class="text-center"><?= $cp['total']; ?></td>
-                                            <td class="text-center"><?= $cp['namakec'] == 'Panakkukang' || $cp['namakec'] == 'Biringkanaya' ? '5500' : '4500'; ?></td>
-                                            <td class="text-center"><?= number_format((($cp['total'] * 100) / ($cp['namakec'] == 'Panakkukang' || $cp['namakec'] == 'Biringkanaya' ? '5500' : '4500')), 2); ?> %</td>
+                                            <td class="text-center"><?= $cp['target']; ?></td>
+                                            <td class="text-center"><?= number_format((($cp['total'] * 100) / ($cp['target'])), 2); ?> %</td>
                                         </tr>
-
-
                                     </tbody>
                                     <?php $i++; ?>
                                     <?php $total += $cp['total']; ?>
+                                    <?php $target += $cp['target']; ?>
                                 <?php endforeach; ?>
-                                <?php $ttltgt = 10000; ?>
                                 <tfoot>
                                     <tr>
 
                                         <th colspan="2" class="text-center">Total</th>
 
                                         <th class="text-center"><?= $total; ?></th>
-                                        <th class="text-center"><?= $ttltgt; ?></th>
-                                        <th class="text-center"><?= number_format((($total * 100) / $ttltgt), 2); ?> %</th>
+                                        <th class="text-center"><?= $target; ?></th>
+                                        <th class="text-center"><?= number_format((($total * 100) / $target), 2); ?> %</th>
                                     </tr>
                                 </tfoot>
                             </table>
