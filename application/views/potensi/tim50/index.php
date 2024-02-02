@@ -150,9 +150,27 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <!-- <div class="card-header">
-                                    <h3 class="card-title">DataTable with default features</h3>
-                                </div> -->
+                        <form method="post" action="<?= site_url('potensi/tim50/index') ?>">
+                            <div class="card-header">
+                                <!-- <h3 class="card-title">DataTable with default features</h3> -->
+                                <div class="row justify-content-end">
+
+
+                                    <div>
+                                        <select id="filter" name="filter" class="form-control">
+                                            <option value="0">All Data</option>
+                                            <option value="1">Terdaftar DPT</option>
+                                            <option value="2">Tidak Terdaftar DPT</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
+
+                                        <button class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">

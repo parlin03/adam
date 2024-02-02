@@ -63,6 +63,12 @@ class Tim50_model extends CI_Model
 
         $this->db->join('user', 'lks_tim50.user_id = user.id');
 
+        $filter = $this->input->post('filter');
+        if ($filter == 1) {
+            $this->db->where('status', 'Terdaftar DPT');
+        } else if ($filter == 2) {
+            $this->db->where('status', 'Tidak Terdaftar DPT');
+        } 
 
         $this->db->order_by('lks_tim50.id', 'DESC');
 
