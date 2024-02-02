@@ -129,6 +129,7 @@
             },
             plotOptions: {
                 pie: {
+                    colors: ['#FF0000', '#00FFFF', '#FFA500', '#800080', '#008000', '#5865F2', '#FFFF00', '#00FF00', '#FF69B4', '#A52A2A', '#0000FF', '#7FFFD4', '#808000'],
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
