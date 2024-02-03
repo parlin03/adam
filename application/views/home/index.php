@@ -61,7 +61,7 @@
                         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tshirt"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Potensi</span>
+                            <span class="info-box-text">Potensi Suara</span>
                             <span class="info-box-number"><?= number_format($this->db->get_Where('lks_dtdc', array())->num_rows()); ?></span>
                         </div>
                         <!-- /.info-box-content -->
@@ -93,7 +93,7 @@
                         <div class="card-header">
                             <h5 class="card-title">Statistik Sebaran DPT Kota Makassar B</h5>
 
-                            <div class="card-tools">
+                            <!-- <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
@@ -112,7 +112,7 @@
                                 <button type="button" class="btn btn-tool" data-card-widget="remove">
                                     <i class="fas fa-times"></i>
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -206,7 +206,7 @@
                         '#0275d8',
                         '#5cb85c',
                         '#5bc0de',
-                        '#f0ad4e',
+                        // '#f0ad4e',
                         '#d9534f'
                     ],
                     series: json

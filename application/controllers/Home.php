@@ -38,13 +38,13 @@ class Home extends CI_Controller
             $rows['data'][] = $d->total;
         }
 
-        $team = $this->mdh->getDataTeam();
-        $rows0 = array();
-        $rows0['name'] = 'Tim';
-        $rows0['type'] = 'column';
-        foreach ($team as $t) {
-            $rows0['data'][] =  $t->total;
-        }
+        // $team = $this->mdh->getDataTeam();
+        // $rows0 = array();
+        // $rows0['name'] = 'Tim';
+        // $rows0['type'] = 'column';
+        // foreach ($team as $t) {
+        //     $rows0['data'][] =  $t->total;
+        // }
 
         $potensi = $this->mdh->getDataPotensi();
         $rows1 = array();
@@ -70,9 +70,9 @@ class Home extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
-        array_push($result, $rows0);
-        array_push($result, $rows1);
+        // array_push($result, $rows0);
         array_push($result, $rows2);
+        array_push($result, $rows1);
         array_push($result, $rows3);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
