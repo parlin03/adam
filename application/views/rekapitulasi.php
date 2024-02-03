@@ -186,7 +186,7 @@
                                                             </div>
                                                         </div>
                                                         <form action="<?= base_url('rekapitulasi/edit/') . $row['id_tps']; ?>" method="POST" enctype="multipart/form-data">
-                                                            <div class="card-body ">
+                                                            <div class="card-body " id="editTPS">
                                                                 <!-- <input type="hidden" readonly value="<?= $kel; ?>" name="iddesa" class="form-control">
                                                                 <input type="hidden" readonly value="<?= $kec->idkec; ?>" name="idkec" class="form-control"> -->
 
@@ -207,43 +207,43 @@
                                                                 <div class="form-group row">
                                                                     <label for="jml_suara_00" class="col-sm-9 col-form-label">Suara Partai</label>
                                                                     <div class="col-sm-3">
-                                                                        <input type="text" class="form-control" id="jml_suara_00" onkeyup="sum();" name="jml_suara_00" value="<?= $row['jml_suara_00']; ?>">
+                                                                        <input type="text" class="form-control" id="jml_suara_00" name="jml_suara_00" value="<?= $row['jml_suara_00']; ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="jml_suara_01" class="col-sm-9 col-form-label">1. H. ADAM MUHAMMAD, ST, M.SI</label>
                                                                     <div class="col-sm-3">
-                                                                        <input type="text" class="form-control" id="jml_suara_01" onkeyup="sum();" name="jml_suara_01" value="<?= $row['jml_suara_01']; ?>">
+                                                                        <input type="text" class="form-control" id="jml_suara_01" name="jml_suara_01" value="<?= $row['jml_suara_01']; ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="jml_suara_02" class="col-sm-9 col-form-label">2. A M IRWAN PATAWARI, S.Si</label>
                                                                     <div class="col-sm-3">
-                                                                        <input type="text" class="form-control" id="jml_suara_02" onkeyup="sum();" name="jml_suara_02" value="<?= $row['jml_suara_02']; ?>">
+                                                                        <input type="text" class="form-control" id="jml_suara_02" name="jml_suara_02" value="<?= $row['jml_suara_02']; ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="jml_suara_03" class="col-sm-9 col-form-label">3. Hj. NURIMBAYANI DASSIR, S.S</label>
                                                                     <div class="col-sm-3">
-                                                                        <input type="text" class="form-control" id="jml_suara_03" onkeyup="sum();" name="jml_suara_03" value="<?= $row['jml_suara_03']; ?>">
+                                                                        <input type="text" class="form-control" id="jml_suara_03" name="jml_suara_03" value="<?= $row['jml_suara_03']; ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="jml_suara_04" class="col-sm-9 col-form-label">4. HENRY BATARA</label>
                                                                     <div class="col-sm-3">
-                                                                        <input type="text" class="form-control" id="jml_suara_04" onkeyup="sum();" name="jml_suara_04" value="<?= $row['jml_suara_04']; ?>">
+                                                                        <input type="text" class="form-control" id="jml_suara_04" name="jml_suara_04" value="<?= $row['jml_suara_04']; ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="jml_suara_05" class="col-sm-9 col-form-label">5. RESKI AMELIA, S. Farm</label>
                                                                     <div class="col-sm-3">
-                                                                        <input type="text" class="form-control" id="jml_suara_05" onkeyup="sum();" name="jml_suara_05" value="<?= $row['jml_suara_05']; ?>">
+                                                                        <input type="text" class="form-control" id="jml_suara_05" name="jml_suara_05" value="<?= $row['jml_suara_05']; ?>">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="jml_suara_06" class="col-sm-9 col-form-label">6. Dr. SYAMSUDDIN NUR, SH, MH, CPM</label>
                                                                     <div class="col-sm-3">
-                                                                        <input type="text" class="form-control" id="jml_suara_06" onkeyup="sum();" name="jml_suara_06" value="<?= $row['jml_suara_06']; ?>">
+                                                                        <input type="text" class="form-control" id="jml_suara_06" name="jml_suara_06" value="<?= $row['jml_suara_06']; ?>">
                                                                     </div>
                                                                 </div>
                                                                 <hr>
@@ -297,23 +297,6 @@
 </div>
 <!-- /.content-wrapper -->
 
-<script>
-    function sum() {
-        var jmlSuara0 = document.getElementById('jml_suara0').value;
-        var jmlSuara1 = document.getElementById('jml_suara1').value;
-        var jmlSuara2 = document.getElementById('jml_suara2').value;
-        var jmlSuara3 = document.getElementById('jml_suara3').value;
-        var jmlSuara4 = document.getElementById('jml_suara4').value;
-        var jmlSuara5 = document.getElementById('jml_suara5').value;
-        var jmlSuara6 = document.getElementById('jml_suara6').value;
-        var result = parseInt(jmlSuara0) + parseInt(jmlSuara1) +
-            parseInt(jmlSuara2) + parseInt(jmlSuara3) + parseInt(jmlSuara4) +
-            parseInt(jmlSuara5) + parseInt(jmlSuara6);
-        if (!isNaN(result)) {
-            document.getElementById('jml_sah').value = result;
-        }
-    }
-</script>
 
 <!-- load library jquery dan highcharts -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-2.2.3.min.js"></script>
@@ -418,4 +401,15 @@
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     });
+</script>
+
+<script>
+   $('#editTPS').keyup(function(){
+       var jmlSuara0;
+       var jmlSuara1;
+       jmlSuara0 = parseFloat($('#jml_suara0').val());
+       jmlSuara1 = parseFloat($('#jml_suara1').val());
+       var result = jmlSuara0 + jmlSuara1;
+       $('#jml_sah').val(result.toFixed(2));
+   });
 </script>
