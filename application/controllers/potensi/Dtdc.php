@@ -62,17 +62,65 @@ class Dtdc extends CI_Controller
         $data['title'] = 'Potensi Suara Terdaftar';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
+        $data['filter'] = $this->input->post('filter');
 
-        $data['pencapaian'] = $this->dtdc_m->getPencapaian(); //array banyak
-        $data['pencapaiantim'] = $this->dtdc_m->getPencapaianTim(); //array banyak
+        // $data['pencapaian'] = $this->dtdc_m->getPencapaian(); //array banyak
+        // $data['pencapaiantim'] = $this->dtdc_m->getPencapaianTim(); //array banyak
         // load library pagination
-        $data['export'] = $this->dtdc_m->getDtdcExport();
+        // $data['export'] = $this->dtdc_m->getDtdcExport();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('potensi/dtdc/export', $data);
         $this->load->view('templates/footer');
     }
+
+    public function export_list()
+    {
+        header('Content-Type: application/json');
+        // $data['filter'] = $this->input->post('filter');
+        $list = $this->dtdc_m->get_datatables();
+        $data = array();
+        $no = $this->input->post('start');
+        if (isset($_POST['start']) && isset($_POST['draw'])) {
+            $no = $_POST['start'];
+        } else {
+            die();
+        };
+        //looping data mahasiswa
+        foreach ($list as $list) {
+            $no++;
+            $row = array();
+            //row pertama akan kita gunakan untuk btn edit dan delete
+            $row[] =  $no;
+            $row[] = $list->noktp;
+            $row[] = $list->nama;
+            $row[] = $list->alamat;
+            $row[] = $list->namakel;
+            $row[] = $list->namakec;
+            $row[] = $list->tps;
+            $row[] = $list->program;
+            $row[] = $list->hp;
+            $row[] = $list->name;
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->dtdc_m->count_all(),
+            "recordsFiltered" => $this->dtdc_m->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        $this->output->set_output(json_encode($output));
+    }
+    public function getdataprog()
+    {
+        $searchTerm = $this->input->post('searchTerm');
+        $response   = $this->dtdc_m->getprog($searchTerm);
+        echo json_encode($response);
+    }
+
     public function list()
     {
         $this->load->model('Dtdc_model', 'dtdc_model');

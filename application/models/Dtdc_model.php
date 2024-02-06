@@ -6,11 +6,106 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dtdc_model extends CI_Model
 {
+    //set nama tabel yang akan kita tampilkan datanya
+    var $table = 'lks_dtdc';
+    //set kolom order, kolom pertama saya null untuk kolom edit dan hapus
+    var $column_order = array(
+        null, 'dpt.noktp', 'dpt.nama', 'dpt.alamat', 'namakel', 'namakec',  'tps', 'lks_dtdc.program', 'lks_dtdc.nohp', 'user.name'
+    );
+
+    var $column_search = array(
+        'dpt.noktp', 'dpt.nama', 'dpt.alamat', 'namakel', 'tps', 'lks_dtdc.program', 'lks_dtdc.nohp', 'user.name'
+    );
+    // default order 
+    var $order = array('lks_dtdc.id' => 'desc');
 
     public function __construct()
     {
         $this->load->database();
     }
+
+    private function _get_datatables_query()
+    {
+        if ($this->input->post('filter')) {
+            $this->db->where('lks_dtdc.program', $this->input->post('filter'));
+        }
+
+
+
+        $this->db->select('dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, lks_dtdc.program, lks_dtdc.nohp as hp, user.name');
+
+        $this->db->from($this->table);
+        $this->db->join('dpt', 'lks_dtdc.dpt_id = dpt.id');
+        $this->db->join('user', 'lks_dtdc.user_id = user.id');
+        // var_dump($filter);
+        // die;
+        // $this->db->where('program', $filter);
+
+        $i = 0;
+        foreach ($this->column_search as $item) // loop kolom 
+        {
+            if ($this->input->post('search')['value']) // jika datatable mengirim POST untuk search
+            {
+                if ($i === 0) // looping pertama
+                {
+                    $this->db->group_start();
+                    $this->db->like($item, $this->input->post('search')['value']);
+                } else {
+                    $this->db->or_like($item, $this->input->post('search')['value']);
+                }
+                if (count($this->column_search) - 1 == $i) //looping terakhir
+                    $this->db->group_end();
+            }
+            $i++;
+        }
+
+        // jika datatable mengirim POST untuk order
+        if ($this->input->post('order')) {
+            $this->db->order_by($this->column_order[$this->input->post('order')['0']['column']], $this->input->post('order')['0']['dir']);
+        } else if (isset($this->order)) {
+            $order = $this->order;
+            $this->db->order_by(key($order), $order[key($order)]);
+        }
+    }
+
+    function get_datatables()
+    {
+        $this->_get_datatables_query();
+        if ($this->input->post('length') != -1)
+            $this->db->limit($this->input->post('length'), $this->input->post('start'));
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function count_filtered()
+    {
+        $this->_get_datatables_query();
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_all()
+    {
+        $this->db->from($this->table);
+        return $this->db->count_all_results();
+    }
+
+    function getprog($searchTerm = "")
+    {
+        $this->db->select('program');
+        $this->db->where("program like '%" . $searchTerm . "%' ");
+        $this->db->group_by('program');
+        $this->db->order_by('program', 'asc');
+        $fetched_records = $this->db->get($this->table);
+        $dataprog = $fetched_records->result_array();
+
+        $data = array();
+        foreach ($dataprog as $prog) {
+            $data[] = array("id" => $prog['program'], "text" => $prog['program']);
+        }
+        return $data;
+    }
+    ##########################################
 
     public function getDataTarget()
     {
@@ -257,10 +352,15 @@ class Dtdc_model extends CI_Model
 
     public function getDtdcExport()
     {
-        $this->db->select('lks_dtdc.id, dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, lks_dtdc.program, lks_dtdc.nohp, user.name, lks_dtdc.image');
+        $this->db->select('lks_dtdc.id, dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, lks_dtdc.program, lks_dtdc.nohp, user.name');
         $this->db->join('dpt', 'lks_dtdc.dpt_id = dpt.id');
         $this->db->join('user', 'lks_dtdc.user_id = user.id');
-
+        $filter = $this->input->post('filter');
+        var_dump($filter);
+        // die;
+        if ($filter != null) {
+            $this->db->where('program', $filter);
+        }
 
         $this->db->order_by('lks_dtdc.id', 'DESC');
 

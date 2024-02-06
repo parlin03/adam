@@ -154,8 +154,6 @@
                             <div class="card-header">
                                 <!-- <h3 class="card-title">DataTable with default features</h3> -->
                                 <div class="row justify-content-end">
-
-
                                     <div>
                                         <select id="filter" name="filter" class="form-control">
                                             <option value="0">All Data</option>
