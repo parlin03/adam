@@ -16,7 +16,7 @@ class Rekapitulasi_model extends CI_Model
     public function getDataHasil($kec = null, $kel = null)
     {
         if ($kec && $kel) {
-            $head = '(select distinct(id_tps) from rekap_suara where rekap_suara.id_tps = tbl_tps.id_tps) as id_tps , jml_sah, jml_rusak, tps as head, ';
+            $head = '(select distinct(id_tps) from rekap_suara where rekap_suara.id_tps = tbl_tps.id_tps) as id_tps , jml_sah,  tps as head, ';
             $group = 'id_tps';
             $this->db->where('namakel', $kel);
             $this->db->where('namakec', $kec);
@@ -28,10 +28,20 @@ class Rekapitulasi_model extends CI_Model
             $head = 'namakec as head, ';
             $group = 'idkec';
         }
-        $this->db->select($head . 'sum(jml_dpt) as jml_dpt,sum(jml_rusak) as jml_rusak,(select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=00) as jml_suara_00, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=01) as jml_suara_01, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=02) as jml_suara_02, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=03) as jml_suara_03, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=04) as jml_suara_04, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=05) as jml_suara_05, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=06) as jml_suara_06, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ') as jml_suara');
+        $this->db->select($head . 'sum(jml_dpt) as jml_dpt, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=00) as jml_suara_00, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=01) as jml_suara_01, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=02) as jml_suara_02, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=03) as jml_suara_03, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=04) as jml_suara_04, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=05) as jml_suara_05, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ' and rekap_suara.no_urut_calon=06) as jml_suara_06, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.' . $group . '=tbl_tps.' . $group . ') as jml_suara');
         $this->db->from('tbl_tps');
         $this->db->group_by($group);
-        $this->db->order_by($group);
+        $this->db->order_by($group, 'desc');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getDataTps($id_tps = null)
+    {
+
+        $this->db->select('tps, namakel, namakec, (select distinct(id_tps) from rekap_suara where rekap_suara.id_tps = tbl_tps.id_tps) as id_tps, (select rekap_suara.jml_suara from rekap_suara where rekap_suara.id_tps=tbl_tps.id_tps and rekap_suara.no_urut_calon=00) as jml_suara_00, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.id_tps=tbl_tps.id_tps and rekap_suara.no_urut_calon=01) as jml_suara_01, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.id_tps=tbl_tps.id_tps and rekap_suara.no_urut_calon=02) as jml_suara_02, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.id_tps=tbl_tps.id_tps and rekap_suara.no_urut_calon=03) as jml_suara_03, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.id_tps=tbl_tps.id_tps and rekap_suara.no_urut_calon=04) as jml_suara_04, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.id_tps=tbl_tps.id_tps and rekap_suara.no_urut_calon=05) as jml_suara_05, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.id_tps=tbl_tps.id_tps and rekap_suara.no_urut_calon=06) as jml_suara_06, (select sum(rekap_suara.jml_suara) from rekap_suara where rekap_suara.id_tps=tbl_tps.id_tps) as jml_suara');
+        $this->db->from('tbl_tps');
+        $this->db->where('id_tps', $id_tps);
         $query = $this->db->get();
         return $query->result_array();
     }

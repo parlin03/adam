@@ -50,7 +50,25 @@ class Rekapitulasi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('rekapitulasi', $data);
+        $this->load->view('rekapitulasi/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function Edit()
+    {
+        $data['menu'] = 'Rekapitulasi ';
+        $data['title'] = 'Perhitungan Suara';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+        // $data['head'] = 'Kecamatan';
+        $data['tps_id'] = $this->input->get('id');
+
+        $data['hasil'] = $this->rekapitulasi->getDataTps($data['tps_id']);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('rekapitulasi/edit', $data);
         $this->load->view('templates/footer');
     }
 
@@ -66,7 +84,7 @@ class Rekapitulasi extends CI_Controller
         print json_encode($rows, JSON_NUMERIC_CHECK);
     }
 
-    public function edit($id_tps)
+    public function update($id_tps)
     {
         if (!isset($id_tps)) redirect('rekapitulasi');
         $data['title'] = 'Door to Door Campaign';
@@ -113,7 +131,7 @@ class Rekapitulasi extends CI_Controller
 
         $data = array(
             'jml_sah'       => $this->input->post('jml_sah'),
-            'jml_rusak'     => $this->input->post('jml_rusak'),
+            // 'jml_rusak'     => $this->input->post('jml_rusak'),
 
         );
 
@@ -123,6 +141,6 @@ class Rekapitulasi extends CI_Controller
         #####################################
 
         $this->session->set_flashdata('messagerekap', '<div class="alert alert-success" role="alert">Your Data has been updated! </div>');
-        redirect(base_url() . 'rekapitulasi?kec=' . $this->input->post('link'), 'refresh');
+        redirect(base_url() . 'rekapitulasi?' . $this->input->post('link'), 'refresh');
     }
 }
