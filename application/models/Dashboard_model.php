@@ -70,12 +70,11 @@ class Dashboard_model extends CI_Model
 
     public function getDataRps()
     {
-        $this->db->select('saksi.namakec, count(*) as total');
-        $this->db->from('saksi');
-        $this->db->join('kec', 'kec.namakec = saksi.namakec');
-        $this->db->group_by('saksi.namakec');
-        $this->db->order_by('idkec');
+        $this->db->select('sum(rekap_suara.jml_suara) as jml_suara_01');
+        $this->db->from('rekap_suara');
+        $this->db->where('no_urut_calon', '01');
         $query = $this->db->get();
-        return $query->result();
+        $row = $query->row_array();
+        return $row['jml_suara_01'];
     }
 }

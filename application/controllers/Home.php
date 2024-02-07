@@ -19,6 +19,10 @@ class Home extends CI_Controller
         $this->load->helper('url');
         // $data['maingraph'] = $this->dashboard->mainGraph();
         // $data['graphpanakukkang'] = $this->dashboard->graphPanakukkang();
+
+        $this->load->model('Dashboard_model');
+        $data['rps'] = $this->Dashboard_model->getDataRps();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
