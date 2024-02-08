@@ -21,7 +21,7 @@ class Home extends CI_Controller
         // $data['graphpanakukkang'] = $this->dashboard->graphPanakukkang();
 
         $this->load->model('Dashboard_model');
-        $data['rps'] = $this->Dashboard_model->getDataRps();
+        $data['rps'] = $this->Dashboard_model->getRps();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
