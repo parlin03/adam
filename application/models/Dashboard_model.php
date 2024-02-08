@@ -46,15 +46,6 @@ class Dashboard_model extends CI_Model
 
     public function getDataPotensi()
     {
-        /* verifikasi
-       $this->db->select('idkec, sum(if(`tanggapan`="Bersedia",1, 0)) AS total');
-        $this->db->from('kec');
-        $this->db->join('lks_vjp', 'kec.namakec = lks_vjp.namakec', 'left');
-        $this->db->group_by('kec.namakec');
-        $this->db->order_by('idkec');
-        $query = $this->db->get();
-        return $query->result(); 
-        */
 
         /* DTDC */
         $this->db->select('dpt.namakec, count(lks_dtdc.id) as total');
