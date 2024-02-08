@@ -77,7 +77,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">RPS 2024</span>
-                            <span class="info-box-number"><?= $rps; ?></span>
+                            <span class="info-box-number"><?= number_format($rps); ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
