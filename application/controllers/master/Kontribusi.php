@@ -40,7 +40,7 @@ class Kontribusi extends CI_Controller
         $rekap = $this->kontribusi->getDataRekap();
         $rows0 = array();
         $rows0['name'] = 'Rekap 2019';
-        $rows0['type'] = 'column';
+        $rows0['type'] = 'line';
         foreach ($rekap as $r) {
             $rows0['data'][] =  $r->total;
         }
@@ -69,9 +69,9 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
-        array_push($result, $rows0);
         array_push($result, $rows1);
-        array_push($result, $rows2);
+        array_push($result, $rows0);
+        // array_push($result, $rows2);
         array_push($result, $rows3);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
@@ -100,11 +100,11 @@ class Kontribusi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('master/kontribusi/panakukkang', $data);
+        $this->load->view('master/kontribusi/panakkukang', $data);
         $this->load->view('templates/footer');
     }
 
-    public function Panakukkang_list()
+    public function Panakkukang_list()
     {
         $namakec = 'panakkukang';
         $this->load->model('Kontribusi_model', 'kontribusi');
@@ -123,7 +123,7 @@ class Kontribusi extends CI_Controller
         $rekap = $this->kontribusi->getDataRekapKec($namakec);
         $rows0 = array();
         $rows0['name'] = 'Rekap 2019';
-        $rows0['type'] = 'column';
+        $rows0['type'] = 'line';
         foreach ($rekap as $r) {
             $rows0['data'][] =  $r->total;
         }
@@ -151,11 +151,10 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
-        array_push($result, $rows0);
         array_push($result, $rows1);
-        array_push($result, $rows2);
+        array_push($result, $rows0);
+        // array_push($result, $rows2);
         array_push($result, $rows3);
-
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
 
@@ -188,7 +187,7 @@ class Kontribusi extends CI_Controller
         $rekap = $this->kontribusi->getDataRekapKec($namakec);
         $rows0 = array();
         $rows0['name'] = 'Rekap 2019';
-        $rows0['type'] = 'column';
+        $rows0['type'] = 'line';
         foreach ($rekap as $r) {
             $rows0['data'][] =  $r->total;
         }
@@ -216,9 +215,9 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
-        array_push($result, $rows0);
         array_push($result, $rows1);
-        array_push($result, $rows2);
+        array_push($result, $rows0);
+        // array_push($result, $rows2);
         array_push($result, $rows3);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
@@ -253,7 +252,7 @@ class Kontribusi extends CI_Controller
         $rekap = $this->kontribusi->getDataRekapKec($namakec);
         $rows0 = array();
         $rows0['name'] = 'Rekap 2019';
-        $rows0['type'] = 'column';
+        $rows0['type'] = 'line';
         foreach ($rekap as $r) {
             $rows0['data'][] =  $r->total;
         }
@@ -281,9 +280,9 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
-        array_push($result, $rows0);
         array_push($result, $rows1);
-        array_push($result, $rows2);
+        array_push($result, $rows0);
+        // array_push($result, $rows2);
         array_push($result, $rows3);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
@@ -318,7 +317,7 @@ class Kontribusi extends CI_Controller
         $rekap = $this->kontribusi->getDataRekapKec($namakec);
         $rows0 = array();
         $rows0['name'] = 'Rekap 2019';
-        $rows0['type'] = 'column';
+        $rows0['type'] = 'line';
         foreach ($rekap as $r) {
             $rows0['data'][] =  $r->total;
         }
@@ -346,9 +345,9 @@ class Kontribusi extends CI_Controller
         $result = array();
         // array_push($result, $categories);
         array_push($result, $rows);
-        array_push($result, $rows0);
         array_push($result, $rows1);
-        array_push($result, $rows2);
+        array_push($result, $rows0);
+        // array_push($result, $rows2);
         array_push($result, $rows3);
 
         print json_encode($result, JSON_NUMERIC_CHECK);
