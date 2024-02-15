@@ -161,7 +161,13 @@
                                             <td class="align-middle text-center"><?= $row['jml_suara_05']; ?></td>
                                             <td class="align-middle text-center"><?= $row['jml_suara_06']; ?></td>
                                             <!-- <td class="align-middle text-center"><?= $row['jml_rusak']; ?></td> -->
-                                            <td class="align-middle text-center"><?= $row['jml_suara']; ?></td>
+                                            <td class="align-middle text-center">
+                                                <?= $row['jml_suara']; ?>
+
+                                                <?php if (!empty($row['id_tps'])) : ?>
+                                                    <span> <a href="<?= base_url('') . 'rekapitulasi/delete?kec=' . $link . '&id=' . $row['id_tps']; ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data <?= $report . ' TPS ' . $row['head']; ?> ?');" class="badge badge-danger badge-circle" data-popup="tooltip" data-placement="top" title="Hapus Data"><i class="fa fa-trash"></i></a></span>
+                                                <?php endif ?>
+                                            </td>
                                         </tr>
                                         <!-- <?php $jtotal += $row['total']; ?> -->
 

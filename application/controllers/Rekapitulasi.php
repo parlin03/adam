@@ -72,6 +72,7 @@ class Rekapitulasi extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+
     public function Graph_list()
     {
         $graph = $this->rekapitulasi->getDataGraph();
@@ -142,5 +143,20 @@ class Rekapitulasi extends CI_Controller
 
         $this->session->set_flashdata('messagerekap', '<div class="alert alert-success" role="alert">Your Data has been updated! </div>');
         redirect(base_url() . 'rekapitulasi?' . $this->input->post('link'), 'refresh');
+    }
+
+    public function delete()
+    {
+        $kec = $this->input->get('kec');
+        $kel = $this->input->get('kel');
+        $id_tps = $this->input->get('id');
+        if ($id_tps == "") {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role ="alert">Data Anda Gagal Di Hapus');
+        } else {
+            $this->db->where('id_tps', $id_tps);
+            $this->db->delete('rekap_suara');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role ="alert">Data Berhasil Dihapus');
+        }
+        redirect(base_url() . 'rekapitulasi?kec=' . $kec . '&kel=' . $kel, 'refresh');
     }
 }
