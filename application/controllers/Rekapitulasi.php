@@ -47,11 +47,39 @@ class Rekapitulasi extends CI_Controller
         $data['summary'] = $this->rekapitulasi->getDataGraph();
         $data['hasil'] = $this->rekapitulasi->getDataHasil($data['kec'], $data['kel']);
         $data['blank'] = $this->rekapitulasi->getDataTpsBlank();
+        $data['sbpanakkukang'] = $this->rekapitulasi->getSebaranTpsPanakkukang();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('rekapitulasi/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function Sebaran()
+    {
+        $data['menu'] = 'Sebaran';
+        $data['title'] = 'Sebaran Perolehan Suara';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+
+
+
+        $data['pk'] = $this->rekapitulasi->getKelurahan('Panakkukang');
+        $data['ps'] = $this->rekapitulasi->getSebaranTpsPanakkukang();
+
+        $data['bk'] = $this->rekapitulasi->getKelurahan('Biringkanaya');
+        $data['bs'] = $this->rekapitulasi->getSebaranTpsBiringkanaya();
+
+        $data['mk'] = $this->rekapitulasi->getKelurahan('Manggala');
+        $data['ms'] = $this->rekapitulasi->getSebaranTpsManggala();
+        $data['tk'] = $this->rekapitulasi->getKelurahan('Tamalanrea');
+        $data['ts'] = $this->rekapitulasi->getSebaranTpsTamalanrea();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('rekapitulasi/sebaran', $data);
         $this->load->view('templates/footer');
     }
 
