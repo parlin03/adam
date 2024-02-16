@@ -47,7 +47,7 @@ class Rekapitulasi extends CI_Controller
         $data['summary'] = $this->rekapitulasi->getDataGraph();
         $data['hasil'] = $this->rekapitulasi->getDataHasil($data['kec'], $data['kel']);
         $data['blank'] = $this->rekapitulasi->getDataTpsBlank();
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -156,6 +156,13 @@ class Rekapitulasi extends CI_Controller
         } else {
             $this->db->where('id_tps', $id_tps);
             $this->db->delete('rekap_suara');
+
+            $data = array(
+                'jml_sah'       => 0,
+            );
+            $this->db->where('id_tps', $id_tps);
+            $this->db->update('tbl_tps', $data);
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role ="alert">Data Berhasil Dihapus');
         }
         redirect(base_url() . 'rekapitulasi?kec=' . $kec . '&kel=' . $kel, 'refresh');
