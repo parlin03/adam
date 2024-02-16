@@ -59,7 +59,7 @@ class Rekapitulasi extends CI_Controller
     public function Sebaran()
     {
         $data['menu'] = 'Sebaran';
-        $data['title'] = 'Sebaran Perolehan Suara';
+        $data['title'] = 'Sebaran Suara';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
 
