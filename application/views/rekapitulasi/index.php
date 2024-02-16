@@ -183,6 +183,64 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="d-flex justify-content-center">
+                                    <h3 class="card-title"><b>TPS yang belum terinput</b></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="blank" class="table table-bordered table-striped">
+                                <!-- <table class="table table-sm table-hover wrap-text" align="center" border="1"> -->
+                                <thead>
+                                    <tr>
+                                        <th class="align-middle text-center">#</th>
+                                        <th class="align-middle text-center">Kecamatan</th>
+                                        <th class="align-middle text-center">Kelurahan</th>
+                                        <th class="align-middle text-center">TPS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (empty($blank)) : ?>
+                                        <tr>
+                                            <td colspan="7">
+                                                <div class="alert alert-danger" role="alert">
+                                                    data not found!
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <?php
+                                    $i = 0;
+                                    foreach ($blank as $row) : ?>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <?= $i++ ?>
+                                            </td>
+                                            <td class="align-middle text-center"><?= $row['namakec']; ?></td>
+                                            <td class="align-middle text-center"><?= $row['namakel']; ?></td>
+                                            <td class="align-middle text-center"><?= $row['tps']; ?></td>
+                                        </tr>
+
+                                    <?php endforeach; ?>
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
         </div><!--/. container-fluid -->
     </section>
     <!-- /.content -->
@@ -294,6 +352,29 @@
                 title: 'Perhitungan Suara ' + '<?= $report; ?>'
             }]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        $("#blank").DataTable({
+            "order": [
+                [0, 'asc']
+            ],
+            "pageLength": 15,
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", {
+                extend: 'excel',
+                title: 'TPS yang belum terinput',
+                filename: 'TPS yang belum terinput'
+            }, {
+                extend: 'pdf',
+                title: 'TPS yang belum terinput',
+                filename: 'TPS yang belum terinput',
+                orientation: 'landscape'
+            }, {
+                extend: 'print',
+                title: 'TPS yang belum terinput'
+            }]
+        }).buttons().container().appendTo('#blank_wrapper .col-md-6:eq(0)');
 
     });
 </script>
