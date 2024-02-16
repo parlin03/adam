@@ -48,12 +48,12 @@ class Rekapitulasi_model extends CI_Model
 
     public function getDataTpsBlank()
     {
-        $this->db->SELECT('tps, namakel, namakec');
+        $this->db->SELECT('tps, namakel, namakec, jml_sah');
         $this->db->FROM('tbl_tps');
 
-        $this->db->where('jml_sah !=', 0);
-
+        // $this->db->where('jml_sah <', 1);
         $this->db->order_by('tbl_tps.id_tps');
+        $this->db->having('jml_sah', 0);
         $query = $this->db->get();
         return $query->result_array();
     }

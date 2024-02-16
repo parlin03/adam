@@ -218,10 +218,10 @@
                                         </tr>
                                     <?php endif; ?>
                                     <?php
-                                    $i = 0;
+                                    $i = 1;
                                     foreach ($blank as $row) : ?>
                                         <tr>
-                                            <td class="align-middle">
+                                            <td class="align-middle text-center">
                                                 <?= $i++ ?>
                                             </td>
                                             <td class="align-middle text-center"><?= $row['namakec']; ?></td>
@@ -357,7 +357,7 @@
             "order": [
                 [0, 'asc']
             ],
-            "pageLength": 15,
+            // "pageLength": 15,
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
