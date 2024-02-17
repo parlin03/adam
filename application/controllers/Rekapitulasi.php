@@ -64,22 +64,48 @@ class Rekapitulasi extends CI_Controller
 
 
 
+        $data['kec'] = $this->input->get('kec');
+        $data['kelurahan'] = $this->rekapitulasi->getKelurahan($data['kec']);
+        $data['sebaran'] = $this->rekapitulasi->getSebaranAdam($data['kec']);
 
-        $data['pk'] = $this->rekapitulasi->getKelurahan('Panakkukang');
-        $data['ps'] = $this->rekapitulasi->getSebaranTpsPanakkukang();
+        // $data['bk'] = $this->rekapitulasi->getKelurahan('Biringkanaya');
+        // $data['bs'] = $this->rekapitulasi->getSebaranTpsBiringkanaya();
 
-        $data['bk'] = $this->rekapitulasi->getKelurahan('Biringkanaya');
-        $data['bs'] = $this->rekapitulasi->getSebaranTpsBiringkanaya();
-
-        $data['mk'] = $this->rekapitulasi->getKelurahan('Manggala');
-        $data['ms'] = $this->rekapitulasi->getSebaranTpsManggala();
-        $data['tk'] = $this->rekapitulasi->getKelurahan('Tamalanrea');
-        $data['ts'] = $this->rekapitulasi->getSebaranTpsTamalanrea();
+        // $data['mk'] = $this->rekapitulasi->getKelurahan('Manggala');
+        // $data['ms'] = $this->rekapitulasi->getSebaranTpsManggala();
+        // $data['tk'] = $this->rekapitulasi->getKelurahan('Tamalanrea');
+        // $data['ts'] = $this->rekapitulasi->getSebaranTpsTamalanrea();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('rekapitulasi/sebaran', $data);
+        $this->load->view('templates/footer');
+    }
+    public function SebaranPartai()
+    {
+        $data['menu'] = 'Sebaran';
+        $data['title'] = 'Sebaran Suara Partai';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+
+
+        $data['kec'] = $this->input->get('kec');
+        $data['kelurahan'] = $this->rekapitulasi->getKelurahan($data['kec']);
+        $data['sebaran'] = $this->rekapitulasi->getSebaranPartai($data['kec']);
+
+        // $data['bk'] = $this->rekapitulasi->getKelurahan('Biringkanaya');
+        // $data['bs'] = $this->rekapitulasi->getSebaranTpsBiringkanaya();
+
+        // $data['mk'] = $this->rekapitulasi->getKelurahan('Manggala');
+        // $data['ms'] = $this->rekapitulasi->getSebaranTpsManggala();
+        // $data['tk'] = $this->rekapitulasi->getKelurahan('Tamalanrea');
+        // $data['ts'] = $this->rekapitulasi->getSebaranTpsTamalanrea();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('rekapitulasi/sebaranpartai', $data);
         $this->load->view('templates/footer');
     }
 
