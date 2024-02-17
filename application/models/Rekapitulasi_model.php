@@ -56,7 +56,8 @@ class Rekapitulasi_model extends CI_Model
       //  $this->db->having('jml_sah', '');
        // $query = $this->db->get();
 $query = "SELECT namakec, namakel, tps FROM `tbl_tps` where id_tps not in (SELECT id_tps from rekap_suara)";
-        return $query->result_array();
+      //  return $query->result_array();
+return  $this->db->query($query)->result_array();
     }
 
     public function getKelurahan($kec)
