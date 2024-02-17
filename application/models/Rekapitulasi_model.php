@@ -53,7 +53,7 @@ class Rekapitulasi_model extends CI_Model
 
         // $this->db->where('jml_sah <', 1);
         $this->db->order_by('tbl_tps.id_tps');
-        $this->db->having('jml_sah', 0);
+        $this->db->having('jml_sah', '');
         $query = $this->db->get();
         return $query->result_array();
     }
