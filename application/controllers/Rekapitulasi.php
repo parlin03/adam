@@ -47,7 +47,7 @@ class Rekapitulasi extends CI_Controller
         $data['summary'] = $this->rekapitulasi->getDataGraph();
         $data['hasil'] = $this->rekapitulasi->getDataHasil($data['kec'], $data['kel']);
         $data['blank'] = $this->rekapitulasi->getDataTpsBlank();
-        $data['sbpanakkukang'] = $this->rekapitulasi->getSebaranTpsPanakkukang();
+       // $data['sbpanakkukang'] = $this->rekapitulasi->getSebaranTpsPanakkukang();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
