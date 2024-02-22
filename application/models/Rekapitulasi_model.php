@@ -49,15 +49,15 @@ class Rekapitulasi_model extends CI_Model
     public function getDataTpsBlank()
     {
         //$this->db->SELECT('tps, namakel, namakec, jml_sah');
-       // $this->db->FROM('tbl_tps');
+        // $this->db->FROM('tbl_tps');
 
         // $this->db->where('jml_sah <', 1);
-  //$this->db->order_by('tbl_tps.id_tps');
-      //  $this->db->having('jml_sah', '');
-       // $query = $this->db->get();
-$query = "SELECT namakec, namakel, tps FROM `tbl_tps` where id_tps not in (SELECT id_tps from rekap_suara)";
-      //  return $query->result_array();
-return  $this->db->query($query)->result_array();
+        //$this->db->order_by('tbl_tps.id_tps');
+        //  $this->db->having('jml_sah', '');
+        // $query = $this->db->get();
+        $query = "SELECT namakec, namakel, tps FROM `tbl_tps` where id_tps not in (SELECT id_tps from rekap_suara)";
+        //  return $query->result_array();
+        return  $this->db->query($query)->result_array();
     }
 
     public function getKelurahan($kec)
@@ -195,6 +195,86 @@ return  $this->db->query($query)->result_array();
             SUM(if(dummy_table.namakel= 'Buntusu',jml_suara,NULL)) AS 'C6',
             SUM(if(dummy_table.namakel= 'Kapasa Raya',jml_suara,NULL)) AS 'C7'
             FROM(SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps WHERE no_urut_calon= '01' ORDER BY `tbl_tps`.`tps`) 
+            as dummy_table WHERE namakec ='tamalanrea' group by dummy_table.tps ORDER BY `dummy_table`.`tps`+0 asc";
+        }
+
+        return  $this->db->query($query)->result_array();
+    }
+
+    public function getMonev($kec)
+    {
+        if ($kec == 'panakkukang') {
+            $query = "select tps, 
+            sum(if(namakel= 'Karuwisi',dtdcktp,NULL)) AS 'C0', 
+            sum(if(namakel= 'Panaikang',dtdcktp,NULL)) AS 'C1', 
+            sum(if(namakel= 'Tello Baru',dtdcktp,NULL)) AS 'C2',
+            sum(if(namakel= 'Pampang',dtdcktp,NULL)) AS 'C3',
+            sum(if(namakel= 'Karampuang',dtdcktp,NULL)) AS 'C4', 
+            sum(if(namakel= 'Tamamaung',dtdcktp,NULL)) AS 'C5',
+            sum(if(namakel= 'Masale',dtdcktp,NULL)) AS 'C6',
+            sum(if(namakel= 'Pandang',dtdcktp,NULL)) AS 'C7',
+            sum(if(namakel= 'Karuwisi Utara',dtdcktp,NULL)) AS 'C8',
+            sum(if(namakel= 'Sinrijala',dtdcktp,NULL)) AS 'C9',
+            sum(if(namakel= 'Paropo',dtdcktp,NULL)) AS 'C10',
+            sum(if(namakel= 'Karuwisi',jml_suara,NULL)) AS 'D0', 
+            sum(if(namakel= 'Panaikang',jml_suara,NULL)) AS 'D1', 
+            sum(if(namakel= 'Tello Baru',jml_suara,NULL)) AS 'D2',
+            sum(if(namakel= 'Pampang',jml_suara,NULL)) AS 'D3',
+            sum(if(namakel= 'Karampuang',jml_suara,NULL)) AS 'D4', 
+            sum(if(namakel= 'Tamamaung',jml_suara,NULL)) AS 'D5',
+            sum(if(namakel= 'Masale',jml_suara,NULL)) AS 'D6',
+            sum(if(namakel= 'Pandang',jml_suara,NULL)) AS 'D7',
+            sum(if(namakel= 'Karuwisi Utara',jml_suara,NULL)) AS 'D8',
+            sum(if(namakel= 'Sinrijala',jml_suara,NULL)) AS 'D9',
+            sum(if(namakel= 'Paropo',jml_suara,NULL)) AS 'D10'
+            FROM (SELECT dpt.namakel, dpt.namakec, dpt.tps, count(lks_dtdc.noktp) AS dtdcktp, jml_suara FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp 
+            join (SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps WHERE no_urut_calon= '01' ORDER BY `tbl_tps`.`tps`) rekap_table 
+                   on concat(dpt.namakel,dpt.tps) = concat(rekap_table.namakel,rekap_table.tps) 
+                   WHERE dpt.namakec ='Panakkukang' group by dpt.namakel,dpt.tps) AS tbl GROUP by tbl.tps ORDER by tbl.tps+0 asc;";
+        }
+
+        if ($kec == 'biringkanaya') {
+            $query = "select tps, 
+            SUM(if(dummy_table.namakel= 'Paccerakkang',jml_suara,NULL)) AS 'C0', 
+            SUM(if(dummy_table.namakel= 'Daya',jml_suara,NULL)) AS 'C1', 
+            SUM(if(dummy_table.namakel= 'Pai',jml_suara,NULL)) AS 'C2',
+            SUM(if(dummy_table.namakel= 'Bulurokeng',jml_suara,NULL)) AS 'C3',
+            SUM(if(dummy_table.namakel= 'Sudiang',jml_suara,NULL)) AS 'C4', 
+            SUM(if(dummy_table.namakel= 'Sudiang Raya',jml_suara,NULL)) AS 'C5',
+            SUM(if(dummy_table.namakel= 'Untia',jml_suara,NULL)) AS 'C6',
+            SUM(if(dummy_table.namakel= 'Laikang',jml_suara,NULL)) AS 'C7',
+            SUM(if(dummy_table.namakel= 'Berua',jml_suara,NULL)) AS 'C8',
+            SUM(if(dummy_table.namakel= 'Katimbang',jml_suara,NULL)) AS 'C9',
+            SUM(if(dummy_table.namakel= 'Bakung',jml_suara,NULL)) AS 'C10'
+            FROM(SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps ORDER BY `tbl_tps`.`tps`) 
+            as dummy_table WHERE namakec ='BIRINGKANAYA' group by dummy_table.tps ORDER BY `dummy_table`.`tps`+0 asc";
+        }
+
+        if ($kec == 'manggala') {
+            $query = "select tps, 
+            SUM(if(dummy_table.namakel= 'Manggala',jml_suara,NULL)) AS 'C0', 
+            SUM(if(dummy_table.namakel= 'Bangkala',jml_suara,NULL)) AS 'C1', 
+            SUM(if(dummy_table.namakel= 'Tamangapa',jml_suara,NULL)) AS 'C2',
+            SUM(if(dummy_table.namakel= 'Antang',jml_suara,NULL)) AS 'C3',
+            SUM(if(dummy_table.namakel= 'Batua',jml_suara,NULL)) AS 'C4', 
+            SUM(if(dummy_table.namakel= 'Borong',jml_suara,NULL)) AS 'C5',
+            SUM(if(dummy_table.namakel= 'Biring Romang',jml_suara,NULL)) AS 'C6',
+            SUM(if(dummy_table.namakel= 'Bitowa',jml_suara,NULL)) AS 'C7'
+            FROM(SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps ORDER BY `tbl_tps`.`tps`) 
+            as dummy_table WHERE namakec ='MANGGALA' group by dummy_table.tps ORDER BY `dummy_table`.`tps`+0 asc";
+        }
+
+        if ($kec == 'tamalanrea') {
+            $query = "select tps, 
+            SUM(if(dummy_table.namakel= 'Tamalanrea',jml_suara,NULL)) AS 'C0', 
+            SUM(if(dummy_table.namakel= 'Kapasa',jml_suara,NULL)) AS 'C1', 
+            SUM(if(dummy_table.namakel= 'Tamalanrea Indah',jml_suara,NULL)) AS 'C2',
+            SUM(if(dummy_table.namakel= 'Parang Loe',jml_suara,NULL)) AS 'C3',
+            SUM(if(dummy_table.namakel= 'Bira',jml_suara,NULL)) AS 'C4', 
+            SUM(if(dummy_table.namakel= 'Tamalanrea Jaya',jml_suara,NULL)) AS 'C5',
+            SUM(if(dummy_table.namakel= 'Buntusu',jml_suara,NULL)) AS 'C6',
+            SUM(if(dummy_table.namakel= 'Kapasa Raya',jml_suara,NULL)) AS 'C7'
+            FROM(SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps ORDER BY `tbl_tps`.`tps`) 
             as dummy_table WHERE namakec ='tamalanrea' group by dummy_table.tps ORDER BY `dummy_table`.`tps`+0 asc";
         }
 
