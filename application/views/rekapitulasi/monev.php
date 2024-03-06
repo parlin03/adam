@@ -130,7 +130,7 @@
 <script>
     $(function() {
         $("#example1").DataTable({
-            "responsive": true,
+            // "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
             "buttons": ["copy", "csv", "excel", {
