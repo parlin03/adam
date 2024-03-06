@@ -235,47 +235,80 @@ class Rekapitulasi_model extends CI_Model
 
         if ($kec == 'biringkanaya') {
             $query = "select tps, 
-            SUM(if(dummy_table.namakel= 'Paccerakkang',jml_suara,NULL)) AS 'C0', 
-            SUM(if(dummy_table.namakel= 'Daya',jml_suara,NULL)) AS 'C1', 
-            SUM(if(dummy_table.namakel= 'Pai',jml_suara,NULL)) AS 'C2',
-            SUM(if(dummy_table.namakel= 'Bulurokeng',jml_suara,NULL)) AS 'C3',
-            SUM(if(dummy_table.namakel= 'Sudiang',jml_suara,NULL)) AS 'C4', 
-            SUM(if(dummy_table.namakel= 'Sudiang Raya',jml_suara,NULL)) AS 'C5',
-            SUM(if(dummy_table.namakel= 'Untia',jml_suara,NULL)) AS 'C6',
-            SUM(if(dummy_table.namakel= 'Laikang',jml_suara,NULL)) AS 'C7',
-            SUM(if(dummy_table.namakel= 'Berua',jml_suara,NULL)) AS 'C8',
-            SUM(if(dummy_table.namakel= 'Katimbang',jml_suara,NULL)) AS 'C9',
-            SUM(if(dummy_table.namakel= 'Bakung',jml_suara,NULL)) AS 'C10'
-            FROM(SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps ORDER BY `tbl_tps`.`tps`) 
-            as dummy_table WHERE namakec ='BIRINGKANAYA' group by dummy_table.tps ORDER BY `dummy_table`.`tps`+0 asc";
+            SUM(if(namakel= 'Paccerakkang',dtdcktp,NULL)) AS 'C0', 
+            SUM(if(namakel= 'Daya',dtdcktp,NULL)) AS 'C1', 
+            SUM(if(namakel= 'Pai',dtdcktp,NULL)) AS 'C2',
+            SUM(if(namakel= 'Bulurokeng',dtdcktp,NULL)) AS 'C3',
+            SUM(if(namakel= 'Sudiang',dtdcktp,NULL)) AS 'C4', 
+            SUM(if(namakel= 'Sudiang Raya',dtdcktp,NULL)) AS 'C5',
+            SUM(if(namakel= 'Untia',dtdcktp,NULL)) AS 'C6',
+            SUM(if(namakel= 'Laikang',dtdcktp,NULL)) AS 'C7',
+            SUM(if(namakel= 'Berua',dtdcktp,NULL)) AS 'C8',
+            SUM(if(namakel= 'Katimbang',dtdcktp,NULL)) AS 'C9',
+            SUM(if(namakel= 'Bakung',dtdcktp,NULL)) AS 'C10',
+            SUM(if(namakel= 'Paccerakkang',jml_suara,NULL)) AS 'D0', 
+            SUM(if(namakel= 'Daya',jml_suara,NULL)) AS 'D1', 
+            SUM(if(namakel= 'Pai',jml_suara,NULL)) AS 'D2',
+            SUM(if(namakel= 'Bulurokeng',jml_suara,NULL)) AS 'D3',
+            SUM(if(namakel= 'Sudiang',jml_suara,NULL)) AS 'D4', 
+            SUM(if(namakel= 'Sudiang Raya',jml_suara,NULL)) AS 'D5',
+            SUM(if(namakel= 'Untia',jml_suara,NULL)) AS 'D6',
+            SUM(if(namakel= 'Laikang',jml_suara,NULL)) AS 'D7',
+            SUM(if(namakel= 'Berua',jml_suara,NULL)) AS 'D8',
+            SUM(if(namakel= 'Katimbang',jml_suara,NULL)) AS 'D9',
+            SUM(if(namakel= 'Bakung',jml_suara,NULL)) AS 'D10'
+            FROM (SELECT dpt.namakel, dpt.namakec, dpt.tps, count(lks_dtdc.noktp) AS dtdcktp, jml_suara FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp 
+            join (SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps WHERE no_urut_calon= '01' ORDER BY `tbl_tps`.`tps`) rekap_table 
+                   on concat(dpt.namakel,dpt.tps) = concat(rekap_table.namakel,rekap_table.tps) 
+                   WHERE dpt.namakec = '" . $kec . "' group by dpt.namakel,dpt.tps) AS tbl GROUP by tbl.tps ORDER by tbl.tps+0 asc;";
         }
 
         if ($kec == 'manggala') {
             $query = "select tps, 
-            SUM(if(dummy_table.namakel= 'Manggala',jml_suara,NULL)) AS 'C0', 
-            SUM(if(dummy_table.namakel= 'Bangkala',jml_suara,NULL)) AS 'C1', 
-            SUM(if(dummy_table.namakel= 'Tamangapa',jml_suara,NULL)) AS 'C2',
-            SUM(if(dummy_table.namakel= 'Antang',jml_suara,NULL)) AS 'C3',
-            SUM(if(dummy_table.namakel= 'Batua',jml_suara,NULL)) AS 'C4', 
-            SUM(if(dummy_table.namakel= 'Borong',jml_suara,NULL)) AS 'C5',
-            SUM(if(dummy_table.namakel= 'Biring Romang',jml_suara,NULL)) AS 'C6',
-            SUM(if(dummy_table.namakel= 'Bitowa',jml_suara,NULL)) AS 'C7'
-            FROM(SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps ORDER BY `tbl_tps`.`tps`) 
-            as dummy_table WHERE namakec ='MANGGALA' group by dummy_table.tps ORDER BY `dummy_table`.`tps`+0 asc";
+            SUM(if(namakel= 'Manggala',dtdcktp,NULL)) AS 'C0', 
+            SUM(if(namakel= 'Bangkala',dtdcktp,NULL)) AS 'C1', 
+            SUM(if(namakel= 'Tamangapa',dtdcktp,NULL)) AS 'C2',
+            SUM(if(namakel= 'Antang',dtdcktp,NULL)) AS 'C3',
+            SUM(if(namakel= 'Batua',dtdcktp,NULL)) AS 'C4', 
+            SUM(if(namakel= 'Borong',dtdcktp,NULL)) AS 'C5',
+            SUM(if(namakel= 'Biring Romang',dtdcktp,NULL)) AS 'C6',
+            SUM(if(namakel= 'Bitowa',dtdcktp,NULL)) AS 'C7',
+            SUM(if(namakel= 'Manggala',jml_suara,NULL)) AS 'D0', 
+            SUM(if(namakel= 'Bangkala',jml_suara,NULL)) AS 'D1', 
+            SUM(if(namakel= 'Tamangapa',jml_suara,NULL)) AS 'D2',
+            SUM(if(namakel= 'Antang',jml_suara,NULL)) AS 'D3',
+            SUM(if(namakel= 'Batua',jml_suara,NULL)) AS 'D4', 
+            SUM(if(namakel= 'Borong',jml_suara,NULL)) AS 'D5',
+            SUM(if(namakel= 'Biring Romang',jml_suara,NULL)) AS 'D6',
+            SUM(if(namakel= 'Bitowa',jml_suara,NULL)) AS 'D7'
+            FROM (SELECT dpt.namakel, dpt.namakec, dpt.tps, count(lks_dtdc.noktp) AS dtdcktp, jml_suara FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp 
+            join (SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps WHERE no_urut_calon= '01' ORDER BY `tbl_tps`.`tps`) rekap_table 
+                   on concat(dpt.namakel,dpt.tps) = concat(rekap_table.namakel,rekap_table.tps) 
+                   WHERE dpt.namakec = '" . $kec . "' group by dpt.namakel,dpt.tps) AS tbl GROUP by tbl.tps ORDER by tbl.tps+0 asc;";
         }
 
         if ($kec == 'tamalanrea') {
             $query = "select tps, 
-            SUM(if(dummy_table.namakel= 'Tamalanrea',jml_suara,NULL)) AS 'C0', 
-            SUM(if(dummy_table.namakel= 'Kapasa',jml_suara,NULL)) AS 'C1', 
-            SUM(if(dummy_table.namakel= 'Tamalanrea Indah',jml_suara,NULL)) AS 'C2',
-            SUM(if(dummy_table.namakel= 'Parang Loe',jml_suara,NULL)) AS 'C3',
-            SUM(if(dummy_table.namakel= 'Bira',jml_suara,NULL)) AS 'C4', 
-            SUM(if(dummy_table.namakel= 'Tamalanrea Jaya',jml_suara,NULL)) AS 'C5',
-            SUM(if(dummy_table.namakel= 'Buntusu',jml_suara,NULL)) AS 'C6',
-            SUM(if(dummy_table.namakel= 'Kapasa Raya',jml_suara,NULL)) AS 'C7'
-            FROM(SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps ORDER BY `tbl_tps`.`tps`) 
-            as dummy_table WHERE namakec ='tamalanrea' group by dummy_table.tps ORDER BY `dummy_table`.`tps`+0 asc";
+            SUM(if(namakel= 'Tamalanrea',dtdcktp,NULL)) AS 'C0', 
+            SUM(if(namakel= 'Kapasa',dtdcktp,NULL)) AS 'C1', 
+            SUM(if(namakel= 'Tamalanrea Indah',dtdcktp,NULL)) AS 'C2',
+            SUM(if(namakel= 'Parang Loe',dtdcktp,NULL)) AS 'C3',
+            SUM(if(namakel= 'Bira',dtdcktp,NULL)) AS 'C4', 
+            SUM(if(namakel= 'Tamalanrea Jaya',dtdcktp,NULL)) AS 'C5',
+            SUM(if(namakel= 'Buntusu',dtdcktp,NULL)) AS 'C6',
+            SUM(if(namakel= 'Kapasa Raya',dtdcktp,NULL)) AS 'C7',
+            SUM(if(namakel= 'Tamalanrea',jml_suara,NULL)) AS 'D0', 
+            SUM(if(namakel= 'Kapasa',jml_suara,NULL)) AS 'D1', 
+            SUM(if(namakel= 'Tamalanrea Indah',jml_suara,NULL)) AS 'D2',
+            SUM(if(namakel= 'Parang Loe',jml_suara,NULL)) AS 'D3',
+            SUM(if(namakel= 'Bira',jml_suara,NULL)) AS 'D4', 
+            SUM(if(namakel= 'Tamalanrea Jaya',jml_suara,NULL)) AS 'D5',
+            SUM(if(namakel= 'Buntusu',jml_suara,NULL)) AS 'D6',
+            SUM(if(namakel= 'Kapasa Raya',jml_suara,NULL)) AS 'D7'
+            FROM (SELECT dpt.namakel, dpt.namakec, dpt.tps, count(lks_dtdc.noktp) AS dtdcktp, jml_suara FROM `dpt` LEFT join lks_dtdc on lks_dtdc.noktp = dpt.noktp 
+            join (SELECT namakel,namakec, tps, jml_suara FROM `rekap_suara` RIGHT join tbl_tps on rekap_suara.id_tps=tbl_tps.id_tps WHERE no_urut_calon= '01' ORDER BY `tbl_tps`.`tps`) rekap_table 
+                   on concat(dpt.namakel,dpt.tps) = concat(rekap_table.namakel,rekap_table.tps) 
+                   WHERE dpt.namakec = '" . $kec . "' group by dpt.namakel,dpt.tps) AS tbl GROUP by tbl.tps ORDER by tbl.tps+0 asc;";
         }
 
         return  $this->db->query($query)->result_array();

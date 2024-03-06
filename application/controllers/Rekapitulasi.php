@@ -47,7 +47,7 @@ class Rekapitulasi extends CI_Controller
         $data['summary'] = $this->rekapitulasi->getDataGraph();
         $data['hasil'] = $this->rekapitulasi->getDataHasil($data['kec'], $data['kel']);
         $data['blank'] = $this->rekapitulasi->getDataTpsBlank();
-       // $data['sbpanakkukang'] = $this->rekapitulasi->getSebaranTpsPanakkukang();
+        // $data['sbpanakkukang'] = $this->rekapitulasi->getSebaranTpsPanakkukang();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -106,6 +106,22 @@ class Rekapitulasi extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('rekapitulasi/sebaranpartai', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function Monev()
+    {
+        $data['menu'] = 'Sebaran';
+        $data['title'] = 'Monitoring dan Evaluasi';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        $data['kec'] = $this->input->get('kec');
+        $data['kelurahan'] = $this->rekapitulasi->getKelurahan($data['kec']);
+        $data['export'] = $this->rekapitulasi->getMonev($data['kec']);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('rekapitulasi/monev', $data);
         $this->load->view('templates/footer');
     }
 
