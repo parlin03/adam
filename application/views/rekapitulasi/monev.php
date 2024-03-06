@@ -66,7 +66,7 @@
                                             <th class="text-center"><?= $row['tps']; ?></th>
                                             <?php for ($k = 0; $k < $i; ++$k) {
                                                 echo "<td class='text-center'><a href='" . base_url('potensi/dtdc/tps/' . $kec . "/" . strtolower($j[$k]) . "/" . $row['tps']) . "'>" . ($m[$k] >= $row['tps']   ? $row['C' . $k] : null)  . "</td>";
-                                                echo "<td class='text-center'>" . ($m[$k] >= $row['tps']   ? $row['D' . $k] : null)  . "</td>";
+                                                echo "<td class='text-center " . ($row['D' . $k] == 0 & $row['D' . $k] != null ? "bg-red" : "") . "'>" . ($m[$k] >= $row['tps']   ? $row['D' . $k] : null)  . "</td>";
                                                 // $total[$k] += $row['C' . $k];
                                             } ?>
                                         </tr>
