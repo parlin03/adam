@@ -229,7 +229,7 @@ class Dtdc_model extends CI_Model
 
     public function getPencapaianTps($kec, $kel, $tps)
     {
-        $this->db->select('lks_dtdc.id, dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, lks_dtdc.nohp, user.name, lks_dtdc.image');
+        $this->db->select('lks_dtdc.id, dpt.noktp, dpt.nama, dpt.alamat, namakel, namakec, rt, rw, tps, lks_dtdc.nohp, user.name, lks_dtdc.image, lks_dtdc.program');
         $this->db->from('dpt');
         $this->db->join('lks_dtdc', 'lks_dtdc.dpt_id = dpt.id');
         $this->db->join('user', 'lks_dtdc.user_id = user.id');
